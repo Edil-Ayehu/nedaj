@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/stand%20by/screens/stand_by_code_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -157,7 +156,13 @@ class HomeScreen extends StatelessWidget {
                           title: 'Pay by QR',
                           description: 'Directly pay by station QR',
                           icon: Icons.qr_code_scanner,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return PayByQrGeneratePage();
+                              },
+                            ));
+                          },
                         ),
                       ],
                     ),
@@ -222,7 +227,7 @@ class HomeScreen extends StatelessWidget {
                                 date: transaction.date,
                               ),
                               Gap(8),
-                              if (index != transactionHistory.length - 1) 
+                              if (index != transactionHistory.length - 1)
                                 Divider(
                                   color: Colors.grey.shade300,
                                 ),

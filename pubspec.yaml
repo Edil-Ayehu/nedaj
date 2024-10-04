@@ -38,6 +38,8 @@ dependencies:
   gap:
   easy_stepper:
   lottie:
+  qr_flutter:
+  get:
 
 dev_dependencies:
   flutter_test:
