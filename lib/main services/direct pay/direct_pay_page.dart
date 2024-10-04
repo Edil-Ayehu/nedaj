@@ -1,20 +1,25 @@
 import 'package:nedaj/export.dart';
 
-class PayByQrGeneratePage extends StatefulWidget {
-  const PayByQrGeneratePage({super.key});
+class DirectPayPage extends StatefulWidget {
+  const DirectPayPage({super.key});
 
   @override
-  State<PayByQrGeneratePage> createState() => _PayByQrGeneratePageState();
+  State<DirectPayPage> createState() => _DirectPayPageState();
 }
 
-class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
+class _DirectPayPageState extends State<DirectPayPage> {
   TextEditingController _controller = TextEditingController();
+  final List<TextEditingController> _controllers =
+      List.generate(6, (_) => TextEditingController());
   FocusNode _focusNode = FocusNode(); // Create a FocusNode
+  final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
+
   int currentStep = 0;
 
   String? _selectedFuelType; // Store selected fuel type
   String? _selectedCar; // Store the selected car value
   String _enteredAmount = ''; // Store the entered amount
+  String _paymentCode = ''; // Store the entered amount
 
   // List of car options
   final List<String> _registeredCars = ['Toyota', 'Honda', 'Tesla', 'Ford'];
@@ -36,15 +41,24 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
   @override
   void dispose() {
     _controller.dispose();
+    _controllers.forEach((controller) => controller.dispose());
+    _focusNodes
+        .forEach((focusNode) => focusNode.dispose()); // Dispose all FocusNodes
     _focusNode.dispose(); // Dispose the FocusNode
     super.dispose();
   }
 
   void continueStep() {
-    if (currentStep < 2) {
+    if (currentStep < 3) {
       setState(() {
         currentStep++;
       });
+
+      if (currentStep == 1) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          FocusScope.of(context).requestFocus(_focusNode); // Request focus
+        });
+      }
     }
   }
 
@@ -99,16 +113,26 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     }
   }
 
-  String _generateQrData() {
-    return 'Amount: $_enteredAmount, Car: $_selectedCar, Fuel: $_selectedFuelType';
-  }
-
-  void _generateButtonPressed() {
+  void _payButtonPressed() {
     final enteredText = _controller.text;
 
     // Store the entered text into _enteredAmount
     setState(() {
       _enteredAmount = enteredText;
+    });
+
+    // Proceed to the next step
+    continueStep();
+  }
+
+  void _continueButtonPressed() {
+    // Combine the entered digits into a single string
+    String enteredText =
+        _controllers.map((controller) => controller.text).join();
+
+    // Store the entered text into _enteredAmount
+    setState(() {
+      _paymentCode = enteredText;
     });
 
     // Proceed to the next step
@@ -125,7 +149,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Generate QR'),
+        title: const Text('Pay By ID'),
       ),
       body: Stepper(
         elevation: 0,
@@ -144,7 +168,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
               style: TextStyle(fontSize: 1),
             ),
             label: Text(
-              'Add Amount',
+              'Payment Code',
               style: TextStyle(
                 fontSize: 16,
                 color: currentStep == 0 ? Colors.green : Colors.grey,
@@ -157,47 +181,70 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
               children: [
                 Gap(120),
                 Text(
-                  'Enter Amount',
+                  'Enter 6-Digit Payment Code',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: size.width * 0.25,
-                      child: TextField(
-                        controller: _controller,
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontSize: 40,
-                            ),
-                        cursorColor: Colors.grey.shade700,
-                        autofocus: true,
-                        focusNode: _focusNode, // Assign the FocusNode
-                        readOnly: true, // Make the TextField read-only
-                        decoration: InputDecoration(
-                          hintText: '5000',
-                          hintStyle:
+                  children: List.generate(
+                    6,
+                    (index) {
+                      return Container(
+                        width: size.width * 0.1, // Set width for each digit box
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 4.0), // Spacing between boxes
+                        child: TextField(
+                          controller: _controllers[index],
+                          style:
                               Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: Colors.grey,
                                     fontSize: 40,
                                   ),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                        ),
-                        keyboardType: TextInputType.none,
-                        textInputAction: TextInputAction.none,
-                        textAlign: TextAlign.end,
-                      ),
-                    ),
-                    Text(
-                      'birr',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Colors.grey,
-                            fontSize: 40,
+                          cursorColor: Colors.grey.shade700,
+                          autofocus: true,
+                          focusNode: _focusNodes[index],
+                          maxLength: 1, // Limit to 1 character per field
+                          decoration: InputDecoration(
+                            counterText: '', // Hide counter text
+                            hintText: '0',
+                            hintStyle: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: Colors.grey,
+                                  fontSize: 40,
+                                ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade400),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade600),
+                            ),
                           ),
-                    ),
-                  ],
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.phone,
+                          onChanged: (value) {
+                            // Move focus to the next field when a digit is entered
+                            if (value.length == 1 && index < 5) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                            // Optionally handle backspace logic to go back if the field is empty
+                            if (value.isEmpty && index > 0) {
+                              FocusScope.of(context).previousFocus();
+                            }
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Gap(20),
+                CustomButton(
+                  buttonText: 'Continue',
+                  onPressed: _continueButtonPressed,
                 ),
               ],
             ),
@@ -206,14 +253,80 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
           ),
           // step 2
           Step(
+            title: const Text(
+              '',
+              style: TextStyle(fontSize: 1),
+            ),
+            label: Text(
+              'Add Amount',
+              style: TextStyle(
+                fontSize: 16,
+                color: currentStep == 1 ? Colors.green : Colors.grey,
+                fontWeight:
+                    currentStep == 1 ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                StationContainer(
+                  stationName: 'Megenagna Station',
+                  stationID: '39290423',
+                  stationImageUrl:
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIvBWa7TC33t0QCN0zfVogKxJHEq3qpo02Dg&s',
+                ),
+                Gap(80),
+                Text(
+                  'Enter Amount',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                ),
+                Gap(20),
+                SizedBox(
+                  width: size.width * 0.8,
+                  child: TextField(
+                    controller: _controller,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 40,
+                        ),
+                    cursorColor: Colors.grey.shade700,
+                    autofocus: true,
+                    focusNode: _focusNode, // Assign the FocusNode
+                    readOnly: true, // Make the TextField read-only
+                    decoration: InputDecoration(
+                      hintText: '500 Birr',
+                      contentPadding: EdgeInsets.only(left: 50),
+                      suffixText: 'Birr',
+                      suffixStyle:
+                          Theme.of(context).textTheme.titleLarge!.copyWith(
+                                fontSize: 40,
+                              ),
+                      hintStyle:
+                          Theme.of(context).textTheme.titleLarge!.copyWith(
+                                color: Colors.grey,
+                                fontSize: 40,
+                              ),
+                      border: OutlineInputBorder(borderSide: BorderSide.none),
+                    ),
+                    keyboardType: TextInputType.none,
+                    textInputAction: TextInputAction.none,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+            isActive: currentStep >= 1,
+            state: currentStep >= 1 ? StepState.complete : StepState.disabled,
+          ),
+          // step 3
+          Step(
             title: const Text(''),
             label: Text(
               'Basic Info.',
               style: TextStyle(
                 fontSize: 16,
-                color: currentStep == 1 ? Colors.green : Colors.grey,
+                color: currentStep == 2 ? Colors.green : Colors.grey,
                 fontWeight:
-                    currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+                    currentStep == 2 ? FontWeight.bold : FontWeight.normal,
               ),
             ),
             content: Column(
@@ -325,85 +438,104 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
                 ),
               ],
             ),
-            isActive: currentStep >= 1,
-            state: currentStep >= 1 ? StepState.complete : StepState.disabled,
+            isActive: currentStep >= 2,
+            state: currentStep >= 2 ? StepState.complete : StepState.disabled,
           ),
-          // step 3
+          // step 4
           Step(
             title: const Text(''),
             label: Text(
-              'QR Code',
+              'Completed',
               style: TextStyle(
                 fontSize: 16,
-                color: currentStep == 2 ? Colors.green : Colors.grey,
+                color: currentStep == 3 ? Colors.green : Colors.grey,
                 fontWeight:
-                    currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+                    currentStep == 3 ? FontWeight.bold : FontWeight.normal,
               ),
             ),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Gap(30),
-                // qr code area
-                if (currentStep == 2)
-                  QrImageView(
-                    data: _generateQrData(),
-                    size: 200.0, // Adjust the size of the QR code
+                Gap(90),
+                Center(
+                  child: Transform.scale(
+                    scale: 2.0,
+                    child: Lottie.asset(
+                      'assets/animations/success_anim.json',
+                      repeat: false,
+                      animate: true,
+                    ),
                   ),
-
-                Gap(10),
+                ),
+                Gap(50),
                 Text(
-                  'Your QR Code is Generated Successfully!',
+                  'You have paid successfully!',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.w900,
                       ),
                 ),
                 Gap(30),
+                Container(
+                  width: size.width * 0.7,
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    color: Color(0xffFAFAFA),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Text('FT Number: '),
+                          Text(
+                            '3084983',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(60),
                 Text(
                   'Fuel Amount',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                 ),
-                Gap(20),
+                Gap(10),
                 Text(
                   _enteredAmount,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(),
                 ),
+                Text(
+                  _paymentCode,
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                ),
               ],
             ),
-            isActive: currentStep >= 2,
-            state: currentStep >= 2 ? StepState.complete : StepState.disabled,
+            isActive: currentStep >= 3,
+            state: currentStep >= 3 ? StepState.complete : StepState.disabled,
           ),
         ],
       ),
-      bottomNavigationBar: currentStep == 0
+      bottomNavigationBar: currentStep == 1
           ? CustomKeyboardWithButton(
               onTextInput: _insertText,
               onBackspace: _deleteText,
-              onGenerate: _generateButtonPressed,
-              buttonText: 'Generate',
+              onGenerate: _payButtonPressed,
+              buttonText: 'Pay',
             )
-          : (currentStep == 1
+          : (currentStep == 2
               ? Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomButton(
-                        buttonText: 'Back',
-                        onPressed: cancelStep,
-                        width: size.width * 0.45,
-                        isOutlinedButton: true,
-                      ),
-                      CustomButton(
-                        buttonText: 'Next',
-                        onPressed: continueStep,
-                        width: size.width * 0.45,
-                      ),
-                    ],
+                  child: CustomButton(
+                    buttonText: 'Next',
+                    onPressed: continueStep,
+                    width: size.width * 0.45,
                   ),
                 )
-              : (currentStep == 2
+              : (currentStep == 3
                   ? Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 8),
@@ -413,3 +545,4 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     );
   }
 }
+

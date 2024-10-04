@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/my_cars_page.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -58,10 +59,8 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 5),
-                  Text(
-                    'Full Name',
-                    style: Theme.of(context).textTheme.bodyLarge
-                  ),
+                  Text('Full Name',
+                      style: Theme.of(context).textTheme.bodyLarge),
                   Text('+251 - 912345676'),
                 ],
               ),
@@ -82,7 +81,15 @@ class ProfileScreen extends StatelessWidget {
                   ProfileInfoContainer(
                     text: 'My Cars',
                     icon: Icons.notification_add,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return MyCarsPage();
+                          },
+                        ),
+                      );
+                    },
                   ),
                   ProfileInfoContainer(
                     text: 'Notifications',

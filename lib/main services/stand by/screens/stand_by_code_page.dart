@@ -157,44 +157,39 @@ class _StandByCodePageState extends State<StandByCodePage> {
                   'Enter Amount',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: size.width * 0.25,
-                      child: TextField(
-                        controller: _controller,
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              fontSize: 40,
-                            ),
-                        cursorColor: Colors.grey.shade700,
-                        autofocus: true,
-                        focusNode: _focusNode, // Assign the FocusNode
-                        readOnly: true, // Make the TextField read-only
-                        decoration: InputDecoration(
-                          hintText: '5000',
-                          hintStyle:
-                              Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    color: Colors.grey,
-                                    fontSize: 40,
-                                  ),
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
+                Gap(20),
+                SizedBox(
+                  width: size.width * 0.8,
+                  child: TextField(
+                    controller: _controller,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 40,
                         ),
-                        keyboardType: TextInputType.none,
-                        textInputAction: TextInputAction.none,
-                        textAlign: TextAlign.end,
+                    cursorColor: Colors.grey.shade700,
+                    autofocus: true,
+                    focusNode: _focusNode, // Assign the FocusNode
+                    readOnly: true, // Make the TextField read-only
+                    decoration: InputDecoration(
+                      hintText: '500 Birr',
+                      contentPadding: EdgeInsets.only(left: 50),
+                      hintStyle:
+                          Theme.of(context).textTheme.titleLarge!.copyWith(
+                                color: Colors.grey,
+                                fontSize: 40,
+                              ),
+                      suffixText: 'Birr',
+                      suffixStyle:
+                          Theme.of(context).textTheme.titleLarge!.copyWith(
+                                fontSize: 40,
+                              ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
                     ),
-                    Text(
-                      'birr',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Colors.grey,
-                            fontSize: 40,
-                          ),
-                    ),
-                  ],
+                    keyboardType: TextInputType.none,
+                    textInputAction: TextInputAction.none,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
@@ -402,29 +397,19 @@ class _StandByCodePageState extends State<StandByCodePage> {
         ],
       ),
       bottomNavigationBar: currentStep == 0
-          ? CustomKeyboard(
+          ? CustomKeyboardWithButton(
               onTextInput: _insertText,
               onBackspace: _deleteText,
               onGenerate: _generateButtonPressed,
+              buttonText: 'Generate',
             )
           : (currentStep == 1
               ? Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomButton(
-                        buttonText: 'Back',
-                        onPressed: cancelStep,
-                        width: size.width * 0.45,
-                        isOutlinedButton: true,
-                      ),
-                      CustomButton(
-                        buttonText: 'Next',
-                        onPressed: continueStep,
-                        width: size.width * 0.45,
-                      ),
-                    ],
+                  child: CustomButton(
+                    buttonText: 'Next',
+                    onPressed: continueStep,
+                    width: size.width * 0.45,
                   ),
                 )
               : (currentStep == 2

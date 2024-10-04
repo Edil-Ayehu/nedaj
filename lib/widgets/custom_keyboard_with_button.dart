@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CustomKeyboard extends StatelessWidget {
+class CustomKeyboardWithButton extends StatelessWidget {
   final ValueSetter<String> onTextInput;
   final VoidCallback onBackspace;
   final VoidCallback onGenerate;
+  final String buttonText;
 
-  const CustomKeyboard({
+  const CustomKeyboardWithButton({
     super.key,
     required this.onTextInput,
     required this.onBackspace,
     required this.onGenerate,
+    required this.buttonText,
   });
 
   void _textInputHandler(String text) {
@@ -21,14 +23,14 @@ class CustomKeyboard extends StatelessWidget {
     return Container(
       color: Colors.grey[200],
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.only(right: 15, top: 10, bottom: 8),
       child: Row(
         children: [
           // Number pad section
           Flexible(
             flex: 2,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.height * 0.3,
               child: Column(
                 children: [
                   _buildKeyboardRow(['1', '2', '3']),
@@ -39,11 +41,10 @@ class CustomKeyboard extends StatelessWidget {
               ),
             ),
           ),
-          // Generate button section
+          // button section
           Expanded(
             child: SizedBox(
-              height: MediaQuery.of(context).size.height *
-                  0.37, // Consistent height
+              height: MediaQuery.of(context).size.height * 0.3,
               child: ElevatedButton(
                 onPressed: onGenerate,
                 style: ElevatedButton.styleFrom(
@@ -54,7 +55,7 @@ class CustomKeyboard extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Generate',
+                  buttonText,
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
@@ -85,7 +86,9 @@ class CustomKeyboard extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => _textInputHandler(label),
       style: ElevatedButton.styleFrom(
-        shape: const RoundedRectangleBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
         backgroundColor: Colors.white,
         padding: const EdgeInsets.all(20),
       ),

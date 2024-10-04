@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/main%20services/direct%20pay/direct_pay_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -150,7 +151,15 @@ class HomeScreen extends StatelessWidget {
                           title: 'Direct Pay',
                           description: 'Pay by fuel station ID',
                           icon: Icons.qr_code_scanner,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return DirectPayPage();
+                                },
+                              ),
+                            );
+                          },
                         ),
                         MainServiceContainer(
                           title: 'Pay by QR',
