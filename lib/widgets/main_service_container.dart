@@ -52,7 +52,7 @@ class MainServiceContainer extends StatelessWidget {
               SizedBox(height: 6),
               Text(
                 description,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.center, 
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ],

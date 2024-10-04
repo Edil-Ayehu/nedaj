@@ -16,7 +16,7 @@ class AppTheme {
     ),
 
     // text theme
-    textTheme: TextTheme(
+    textTheme: TextTheme( 
       titleLarge: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.bold,
@@ -67,6 +67,8 @@ class AppTheme {
         textStyle: TextStyle(fontSize: 18),
       ),
     ),
+
+    
     // inputDecorationTheme: InputDecorationTheme(
     //   border: OutlineInputBorder(
     //     borderRadius: BorderRadius.circular(12),

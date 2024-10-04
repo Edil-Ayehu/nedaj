@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/main%20services/stand%20by/screens/stand_by_code_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,12 +16,12 @@ class HomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton( 
+      floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(
           Icons.qr_code_scanner,
           color: Colors.white,
-          size: 30, 
+          size: 30,
         ),
       ),
       body: SingleChildScrollView(
@@ -138,7 +139,13 @@ class HomeScreen extends StatelessWidget {
                           title: 'Stand By',
                           description: 'Set all process before arriving',
                           icon: Icons.qr_code_scanner,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return StandByCodePage();
+                              },
+                            ));
+                          },
                         ),
                         MainServiceContainer(
                           title: 'Direct Pay',
@@ -215,7 +222,7 @@ class HomeScreen extends StatelessWidget {
                                 date: transaction.date,
                               ),
                               Gap(8),
-                              if (index != transactionHistory.length - 1)
+                              if (index != transactionHistory.length - 1) 
                                 Divider(
                                   color: Colors.grey.shade300,
                                 ),
