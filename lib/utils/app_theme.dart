@@ -25,7 +25,7 @@ class AppTheme {
       ),
       titleMedium: TextStyle(
         fontSize: 24,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.bold, 
         color: Colors.black,
         fontFamily: 'Lato',
       ),
@@ -41,7 +41,7 @@ class AppTheme {
       ),
       bodyMedium: TextStyle(
         fontSize: 18,
-        color: Colors.black54,
+        color: Colors.black,
         fontFamily: 'Lato',
       ),
       bodySmall: TextStyle(

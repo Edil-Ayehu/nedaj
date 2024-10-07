@@ -404,7 +404,11 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
                   ? Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                      child: CustomButton(buttonText: 'Done', onPressed: () {}),
+                      child: CustomButton(
+                          buttonText: 'Done',
+                          onPressed: () {
+                            Get.off(() => Home());
+                          }),
                     )
                   : null)),
     );

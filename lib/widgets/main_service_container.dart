@@ -42,17 +42,16 @@ class MainServiceContainer extends StatelessWidget {
                 child: Icon(icon, color: Colors.white),
               ),
               SizedBox(height: 6),
-              Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
-              ),
+              Text(title,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                      )),
               SizedBox(height: 6),
               Text(
                 description,
-                textAlign: TextAlign.center, 
+                textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ],

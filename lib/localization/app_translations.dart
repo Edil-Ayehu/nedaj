@@ -27,6 +27,8 @@ class AppTranslations extends Translations {
           "registered_vehicles": "Registered Vehicles",
           "linked_cars":
               "The cars listed below are linked to your bank account.",
+          "terms_conditions": "Terms and conditions",
+          "unlink_phone": "Unlink Phone",
         },
         'am_ET': {
           'app_name': 'የእኔ መተግበሪያ',
@@ -51,6 +53,8 @@ class AppTranslations extends Translations {
           "register_car": "መኪና ይመዝግቡ",
           "registered_vehicles": "የተመዘገቡ ተሽከርካሮች",
           "linked_cars": "ከታች የተዘጋጁት መኪናዎች ወቅታዊ ወንድም ባንክ መረጃዎች ይደብር ይሆናል።",
+          "terms_conditions": "የውል እና የሁኔታዎች",
+          "unlink_phone": "ስልክ ይለይ",
         },
         'or_ET': {
           'app_name': 'Applikeshinii Koo',
@@ -76,6 +80,8 @@ class AppTranslations extends Translations {
           "registered_vehicles": "Bajjiileen Galmeedhanu",
           "linked_cars":
               "Asxaa jala ka’aniin gara koompitara keetii walqabatee jiru.",
+          "terms_conditions": "Shirri fi Haala",
+          "unlink_phone": "Bilbila Yakkamoo",
         },
         'ti_ET': {
           'app_name': 'አፕሊኬሽን ሰይዲ',
@@ -100,6 +106,8 @@ class AppTranslations extends Translations {
           "register_car": "መኪና ይመዝግቡ",
           "registered_vehicles": "ዝመዝገቡ መኪናታት",
           "linked_cars": "መኪናታት እዚ ዝተሳተፉ ናብ ባንክ ሒደራ እተወዲህ ይኹን።",
+          "terms_conditions": "ዝክታታት እና ዝሕሳባት",
+          "unlink_phone": "ስልክ ኣይንወክል",
         },
         'so_ET': {
           'app_name': 'Codsiga',
@@ -123,7 +131,9 @@ class AppTranslations extends Translations {
           "transactions": "Khadar",
           "register_car": "Diiwaangeli Gaariga",
           "registered_vehicles": "Gaariga Diiwaangeliyay",
-          "linked_cars": "Hooyooyinka hoose ee la xiriira akoonkaaga bangiga."
+          "linked_cars": "Hooyooyinka hoose ee la xiriira akoonkaaga bangiga.",
+          "terms_conditions": "Shuruudaha iyo Xaaladaha",
+          "unlink_phone": "Telefoonka ka saar",
         },
       };
 }

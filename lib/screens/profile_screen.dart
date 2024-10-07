@@ -1,10 +1,23 @@
+import 'dart:io';
+
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nedaj/export.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class ProfileScreen extends StatelessWidget {
-  final LanguageController languageController = Get.find<LanguageController>();
-
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final LanguageController languageController = Get.find<LanguageController>();
+
+  final ImagePicker _picker = ImagePicker(); // Initialize ImagePicker
+  XFile? _selectedImage; // Store the selected image
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,29 +62,49 @@ class ProfileScreen extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(width: 2, color: Colors.green),
                 ),
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: NetworkImage(
-                      'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D'),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(60),
+                  child: _selectedImage != null
+                      ? Image.file(
+                          File(_selectedImage!.path),
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        )
+                      : FancyShimmerImage(
+                          imageUrl:
+                              'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D',
+                          boxFit: BoxFit.cover,
+                          errorWidget: Icon(Icons.error, color: Colors.red),
+                          shimmerDuration: Duration(seconds: 2),
+                          shimmerBaseColor: Colors.grey[300]!,
+                          shimmerHighlightColor: Colors.white,
+                          width: 100,
+                          height: 100,
+                        ),
                 ),
               ),
               Positioned(
                 right: 0,
                 top: 4,
-                child: Container(
-                  padding: EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
-                    border: Border.all(width: 1, color: Colors.green),
+                child: GestureDetector(
+                  onTap: () => _showImagePicker(context),
+                  child: Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      shape: BoxShape.circle,
+                      border: Border.all(width: 1, color: Colors.green),
+                    ),
+                    child: Icon(Icons.photo_camera, color: Colors.white),
                   ),
-                  child: Icon(Icons.photo_camera, color: Colors.white),
                 ),
               ),
             ],
           ),
           SizedBox(height: 5),
-          Text('Full Name', style: Theme.of(context).textTheme.bodyLarge),
+          Text('Aschalew G Tesfa',
+              style: Theme.of(context).textTheme.bodyLarge),
           Text('+251 - 912345676'),
         ],
       ),
@@ -91,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           ProfileInfoContainer(
             text: 'my_cars'.tr,
-            icon: Icons.notification_add,
+            icon: CupertinoIcons.car_detailed,
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -109,7 +142,12 @@ class ProfileScreen extends StatelessWidget {
           ),
           ProfileInfoContainer(
             text: 'change_pin'.tr,
-            icon: Icons.notification_add,
+            icon: Icons.password,
+            onTap: () {},
+          ),
+          ProfileInfoContainer(
+            text: 'terms_conditions'.tr,
+            icon: Icons.password,
             onTap: () {},
           ),
           ProfileInfoContainer(
@@ -118,6 +156,11 @@ class ProfileScreen extends StatelessWidget {
             onTap: () {
               showLanguageSelectionBottomSheet(context);
             },
+          ),
+          ProfileInfoContainer(
+            text: 'unlink_phone'.tr,
+            icon: Icons.password,
+            onTap: () {},
           ),
           ProfileInfoContainer(
             text: 'logout'.tr,
@@ -193,5 +236,73 @@ class ProfileScreen extends StatelessWidget {
         });
       },
     );
+  }
+
+  // Function to show the bottom sheet
+  void _showImagePicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Select a Photo',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              ListTile(
+                leading: Icon(Icons.camera),
+                title: Text('Take a photo'),
+                onTap: () {
+                  _takePhoto();
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.photo_library),
+                title: Text('Select from Gallery'),
+                onTap: () {
+                  _selectFromGallery();
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // Function to take a photo using the camera
+  Future<void> _takePhoto() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      setState(() {
+        _selectedImage = image;
+      });
+    }
+  }
+
+  // Function to select a photo from the gallery
+  Future<void> _selectFromGallery() async {
+    await _requestPermission(); // Request gallery permission
+
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        _selectedImage = image;
+      });
+    }
+  }
+
+  // Request permission to access gallery
+  Future<void> _requestPermission() async {
+    var status = await Permission.photos.status;
+    if (!status.isGranted) {
+      await Permission.photos.request();
+    }
   }
 }

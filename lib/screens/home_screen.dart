@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:nedaj/export.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // gradient container at the top
             Container(
               height: 300,
               padding: EdgeInsets.only(left: 15, right: 15, top: 50),
@@ -52,11 +53,27 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     children: [
                       // Profile pic avatar
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D'),
+                      // CircleAvatar(
+                      //   radius: 40,
+                      //   // backgroundImage:
+                      //   // NetworkImage(
+                      //   //   'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D',
+                      //   // ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(60),
+                        child: FancyShimmerImage(
+                          imageUrl:
+                              'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D',
+                          boxFit: BoxFit.cover,
+                          errorWidget: Icon(Icons.error, color: Colors.red),
+                          shimmerDuration: Duration(seconds: 2),
+                          shimmerBaseColor: Colors.grey[300]!,
+                          shimmerHighlightColor: Colors.white,
+                          width: 80,
+                          height: 80,
+                        ),
                       ),
+
                       Gap(10),
                       // User full name
                       Column(
@@ -101,12 +118,16 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
-                        child: Text(
-                      'Account is Linked',
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w100,
-                          ),
+                        child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'Account is Linked',
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w100,
+                              fontSize: 16,
+                            ),
+                      ),
                     )),
                   ),
                   Gap(15),
@@ -125,6 +146,8 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+
+            // the second container
             Transform.translate(
               offset: Offset(0, -30),
               child: Container(
@@ -137,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Services
+                    // Main Services List
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -189,6 +212,8 @@ class HomeScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     SizedBox(height: 10),
+
+                    // other services list
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 14),

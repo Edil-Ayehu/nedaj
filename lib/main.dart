@@ -1,6 +1,4 @@
-import 'package:hive_flutter/adapters.dart';
 import 'package:nedaj/export.dart';
-import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +12,7 @@ void main() async {
   await Hive.openBox('settingsBox');
   // dependencies 
   Get.put(LanguageController());
-  
+
   runApp(const MyApp());
 }
 
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
           savedLanguageCode!), // Load saved language or default to English
       fallbackLocale: Locale('en', 'US'), // Fallback locale in case of an error
       title: 'app_name'.tr, // Use translation
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.lightTheme, 
       home: Home(),
     );
   }

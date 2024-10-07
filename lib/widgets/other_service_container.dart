@@ -31,13 +31,8 @@ class OtherServiceContainer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
+              Text(title,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith()),
               Text(
                 description,
                 maxLines: 2,

@@ -2,7 +2,7 @@ import '../export.dart';
 
 class LanguageController extends GetxController {
   // Observable variable for the selected language
-  var selectedLanguage = 'en'.obs;
+  var selectedLanguage = 'en'.obs; 
 
   // Initialize the selected language from Hive
   @override

@@ -154,7 +154,6 @@ class _DirectPayPageState extends State<DirectPayPage> {
       body: Theme(
         data: ThemeData(
           canvasColor: Colors.white,
-          
         ),
         child: Stepper(
           elevation: 0,
@@ -550,7 +549,11 @@ class _DirectPayPageState extends State<DirectPayPage> {
                   ? Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                      child: CustomButton(buttonText: 'Done', onPressed: () {}),
+                      child: CustomButton(
+                          buttonText: 'Done',
+                          onPressed: () {
+                            Get.off(() => Home());
+                          }),
                     )
                   : null)),
     );
