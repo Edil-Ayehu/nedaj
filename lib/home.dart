@@ -23,25 +23,34 @@ class _HomeState extends State<Home> {
         index: _currentPage,
         children: pages,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentPage,
-        onTap: (value) {
-          setState(() {
-            _currentPage = value;
-          });
-        },
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.green,
-        selectedLabelStyle: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+      bottomNavigationBar: SizedBox(
+        height: 65,
+        child: BottomNavigationBar(
+          currentIndex: _currentPage,
+          onTap: (value) {
+            setState(() {
+              _currentPage = value;
+            });
+          },
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.green,
+          unselectedLabelStyle: TextStyle(
+            fontSize: 15,
+          ),
+          selectedLabelStyle: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.local_gas_station_outlined), label: 'home'.tr),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.history), label: 'history'.tr),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), label: 'profile'.tr),
+          ],
         ),
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_gas_station_outlined), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
       ),
     );
   }

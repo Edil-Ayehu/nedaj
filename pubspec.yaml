@@ -40,6 +40,11 @@ dependencies:
   lottie:
   qr_flutter:
   get:
+  qr_code_scanner:
+  permission_handler:
+  hive:
+  hive_flutter:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +70,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/animations/
+    - assets/locales/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

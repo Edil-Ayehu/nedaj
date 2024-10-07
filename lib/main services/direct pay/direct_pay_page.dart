@@ -151,373 +151,384 @@ class _DirectPayPageState extends State<DirectPayPage> {
       appBar: AppBar(
         title: const Text('Pay By ID'),
       ),
-      body: Stepper(
-        elevation: 0,
-        connectorColor: WidgetStatePropertyAll(Colors.green),
-        type: StepperType.horizontal,
-        physics: const ScrollPhysics(),
-        onStepTapped: onStepTapped,
-        currentStep: currentStep,
-        controlsBuilder: controlBuilders, // Hide default controls
+      body: Theme(
+        data: ThemeData(
+          canvasColor: Colors.white,
+          
+        ),
+        child: Stepper(
+          elevation: 0,
+          connectorColor: WidgetStatePropertyAll(Colors.green),
+          type: StepperType.horizontal,
+          physics: const ScrollPhysics(),
+          onStepTapped: onStepTapped,
+          currentStep: currentStep,
 
-        steps: [
-          // step 1
-          Step(
-            title: const Text(
-              '',
-              style: TextStyle(fontSize: 1),
-            ),
-            label: Text(
-              'Payment Code',
-              style: TextStyle(
-                fontSize: 16,
-                color: currentStep == 0 ? Colors.green : Colors.grey,
-                fontWeight:
-                    currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+          controlsBuilder: controlBuilders, // Hide default controls
+
+          steps: [
+            // step 1
+            Step(
+              title: const Text(
+                '',
+                style: TextStyle(fontSize: 1),
               ),
-            ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Gap(120),
-                Text(
-                  'Enter 6-Digit Payment Code',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+              label: Text(
+                'Payment Code',
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: currentStep == 0 ? Colors.green : Colors.grey,
+                  fontWeight:
+                      currentStep == 0 ? FontWeight.bold : FontWeight.normal,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    6,
-                    (index) {
-                      return Container(
-                        width: size.width * 0.1, // Set width for each digit box
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 4.0), // Spacing between boxes
-                        child: TextField(
-                          controller: _controllers[index],
-                          style:
-                              Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    fontSize: 40,
-                                  ),
-                          cursorColor: Colors.grey.shade700,
-                          autofocus: true,
-                          focusNode: _focusNodes[index],
-                          maxLength: 1, // Limit to 1 character per field
-                          decoration: InputDecoration(
-                            counterText: '', // Hide counter text
-                            hintText: '0',
-                            hintStyle: Theme.of(context)
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Gap(120),
+                  Text(
+                    'Enter 6-Digit Payment Code',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      6,
+                      (index) {
+                        return Container(
+                          width:
+                              size.width * 0.1, // Set width for each digit box
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 4.0), // Spacing between boxes
+                          child: TextField(
+                            controller: _controllers[index],
+                            style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
                                 .copyWith(
+                                  fontSize: 40,
+                                ),
+                            cursorColor: Colors.grey.shade700,
+                            autofocus: true,
+                            focusNode: _focusNodes[index],
+                            maxLength: 1, // Limit to 1 character per field
+                            decoration: InputDecoration(
+                              counterText: '', // Hide counter text
+                              hintText: '0',
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    color: Colors.grey,
+                                    fontSize: 40,
+                                  ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade400),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade600),
+                              ),
+                            ),
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.phone,
+                            onChanged: (value) {
+                              // Move focus to the next field when a digit is entered
+                              if (value.length == 1 && index < 5) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                              // Optionally handle backspace logic to go back if the field is empty
+                              if (value.isEmpty && index > 0) {
+                                FocusScope.of(context).previousFocus();
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Gap(20),
+                  CustomButton(
+                    buttonText: 'Continue',
+                    onPressed: _continueButtonPressed,
+                  ),
+                ],
+              ),
+              isActive: currentStep >= 0,
+              state: currentStep >= 0 ? StepState.complete : StepState.disabled,
+            ),
+            // step 2
+            Step(
+              title: const Text(
+                '',
+                style: TextStyle(fontSize: 1),
+              ),
+              label: Text(
+                'Add Amount',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: currentStep == 1 ? Colors.green : Colors.grey,
+                  fontWeight:
+                      currentStep == 1 ? FontWeight.bold : FontWeight.normal,
+                ),
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  StationContainer(
+                    stationName: 'Megenagna Station',
+                    stationID: '39290423',
+                    stationImageUrl:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIvBWa7TC33t0QCN0zfVogKxJHEq3qpo02Dg&s',
+                  ),
+                  Gap(80),
+                  Text(
+                    'Enter Amount',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                  ),
+                  Gap(20),
+                  SizedBox(
+                    width: size.width * 0.8,
+                    child: TextField(
+                      controller: _controller,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 40,
+                          ),
+                      cursorColor: Colors.grey.shade700,
+                      autofocus: true,
+                      focusNode: _focusNode, // Assign the FocusNode
+                      readOnly: true, // Make the TextField read-only
+                      decoration: InputDecoration(
+                        hintText: '500 Birr',
+                        contentPadding: EdgeInsets.only(left: 50),
+                        suffixText: 'Birr',
+                        suffixStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  fontSize: 40,
+                                ),
+                        hintStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
                                   color: Colors.grey,
                                   fontSize: 40,
                                 ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade400),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  BorderSide(color: Colors.grey.shade600),
-                            ),
-                          ),
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.phone,
-                          onChanged: (value) {
-                            // Move focus to the next field when a digit is entered
-                            if (value.length == 1 && index < 5) {
-                              FocusScope.of(context).nextFocus();
-                            }
-                            // Optionally handle backspace logic to go back if the field is empty
-                            if (value.isEmpty && index > 0) {
-                              FocusScope.of(context).previousFocus();
-                            }
-                          },
-                        ),
-                      );
-                    },
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                      ),
+                      keyboardType: TextInputType.none,
+                      textInputAction: TextInputAction.none,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                ),
-                Gap(20),
-                CustomButton(
-                  buttonText: 'Continue',
-                  onPressed: _continueButtonPressed,
-                ),
-              ],
-            ),
-            isActive: currentStep >= 0,
-            state: currentStep >= 0 ? StepState.complete : StepState.disabled,
-          ),
-          // step 2
-          Step(
-            title: const Text(
-              '',
-              style: TextStyle(fontSize: 1),
-            ),
-            label: Text(
-              'Add Amount',
-              style: TextStyle(
-                fontSize: 16,
-                color: currentStep == 1 ? Colors.green : Colors.grey,
-                fontWeight:
-                    currentStep == 1 ? FontWeight.bold : FontWeight.normal,
+                ],
               ),
+              isActive: currentStep >= 1,
+              state: currentStep >= 1 ? StepState.complete : StepState.disabled,
             ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                StationContainer(
-                  stationName: 'Megenagna Station',
-                  stationID: '39290423',
-                  stationImageUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIvBWa7TC33t0QCN0zfVogKxJHEq3qpo02Dg&s',
+            // step 3
+            Step(
+              title: const Text(''),
+              label: Text(
+                'Basic Info.',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: currentStep == 2 ? Colors.green : Colors.grey,
+                  fontWeight:
+                      currentStep == 2 ? FontWeight.bold : FontWeight.normal,
                 ),
-                Gap(80),
-                Text(
-                  'Enter Amount',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                ),
-                Gap(20),
-                SizedBox(
-                  width: size.width * 0.8,
-                  child: TextField(
-                    controller: _controller,
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontSize: 40,
-                        ),
-                    cursorColor: Colors.grey.shade700,
-                    autofocus: true,
-                    focusNode: _focusNode, // Assign the FocusNode
-                    readOnly: true, // Make the TextField read-only
-                    decoration: InputDecoration(
-                      hintText: '500 Birr',
-                      contentPadding: EdgeInsets.only(left: 50),
-                      suffixText: 'Birr',
-                      suffixStyle:
-                          Theme.of(context).textTheme.titleLarge!.copyWith(
-                                fontSize: 40,
-                              ),
-                      hintStyle:
-                          Theme.of(context).textTheme.titleLarge!.copyWith(
-                                color: Colors.grey,
-                                fontSize: 40,
-                              ),
-                      border: OutlineInputBorder(borderSide: BorderSide.none),
-                    ),
-                    keyboardType: TextInputType.none,
-                    textInputAction: TextInputAction.none,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-            isActive: currentStep >= 1,
-            state: currentStep >= 1 ? StepState.complete : StepState.disabled,
-          ),
-          // step 3
-          Step(
-            title: const Text(''),
-            label: Text(
-              'Basic Info.',
-              style: TextStyle(
-                fontSize: 16,
-                color: currentStep == 2 ? Colors.green : Colors.grey,
-                fontWeight:
-                    currentStep == 2 ? FontWeight.bold : FontWeight.normal,
               ),
-            ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Select a car'),
-                SizedBox(height: 15),
-                DropdownButtonFormField<String>(
-                  value: _selectedCar,
-                  hint: Text(
-                    'Choose your registered car',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Colors.grey),
-                  ),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Colors.grey,
-                  ),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.grey.shade700,
-                        fontWeight: FontWeight.w500,
-                      ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 12),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade400,
-                        width: 1,
-                      ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Select a car'),
+                  SizedBox(height: 15),
+                  DropdownButtonFormField<String>(
+                    value: _selectedCar,
+                    hint: Text(
+                      'Choose your registered car',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Colors.grey),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade600,
-                        width: 2,
-                      ),
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.grey,
                     ),
-                  ),
-                  dropdownColor:
-                      Colors.white, // Background color of dropdown items
-
-                  items: _registeredCars.map((car) {
-                    return DropdownMenuItem<String>(
-                      value: car,
-                      child: Text(
-                        car,
-                        style: TextStyle(
-                          fontSize: 18,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.grey.shade700,
                           fontWeight: FontWeight.w500,
                         ),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade400,
+                          width: 1,
+                        ),
                       ),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedCar = value;
-                    });
-                  },
-                ),
-                Gap(20),
-                Text('Fuel Type'),
-                Gap(15),
-                DropdownButtonFormField<String>(
-                  value: _selectedFuelType,
-                  hint: Text(
-                    'Choose a fuel type',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade600,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    dropdownColor:
+                        Colors.white, // Background color of dropdown items
+
+                    items: _registeredCars.map((car) {
+                      return DropdownMenuItem<String>(
+                        value: car,
+                        child: Text(
+                          car,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedCar = value;
+                      });
+                    },
+                  ),
+                  Gap(20),
+                  Text('Fuel Type'),
+                  Gap(15),
+                  DropdownButtonFormField<String>(
+                    value: _selectedFuelType,
+                    hint: Text(
+                      'Choose a fuel type',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.grey,
+                          ),
+                    ),
+                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.grey,
+                          color: Colors.grey.shade700,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade400,
+                          width: 1,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade600,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    items: _fuelTypes.map((fuelType) {
+                      return DropdownMenuItem<String>(
+                        value: fuelType,
+                        child: Text(fuelType),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedFuelType = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              isActive: currentStep >= 2,
+              state: currentStep >= 2 ? StepState.complete : StepState.disabled,
+            ),
+            // step 4
+            Step(
+              title: const Text(''),
+              label: Text(
+                'Completed',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: currentStep == 3 ? Colors.green : Colors.grey,
+                  fontWeight:
+                      currentStep == 3 ? FontWeight.bold : FontWeight.normal,
+                ),
+              ),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Gap(90),
+                  Center(
+                    child: Transform.scale(
+                      scale: 2.0,
+                      child: Lottie.asset(
+                        'assets/animations/success_anim.json',
+                        repeat: false,
+                        animate: true,
+                      ),
+                    ),
+                  ),
+                  Gap(50),
+                  Text(
+                    'You have paid successfully!',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.w900,
                         ),
                   ),
-                  icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.grey.shade700,
-                        fontWeight: FontWeight.w500,
-                      ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 12),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade400,
-                        width: 1,
-                      ),
+                  Gap(30),
+                  Container(
+                    width: size.width * 0.7,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      color: Color(0xffFAFAFA),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade600,
-                        width: 2,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Text('FT Number: '),
+                            Text(
+                              '3084983',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  items: _fuelTypes.map((fuelType) {
-                    return DropdownMenuItem<String>(
-                      value: fuelType,
-                      child: Text(fuelType),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedFuelType = value;
-                    });
-                  },
-                ),
-              ],
-            ),
-            isActive: currentStep >= 2,
-            state: currentStep >= 2 ? StepState.complete : StepState.disabled,
-          ),
-          // step 4
-          Step(
-            title: const Text(''),
-            label: Text(
-              'Completed',
-              style: TextStyle(
-                fontSize: 16,
-                color: currentStep == 3 ? Colors.green : Colors.grey,
-                fontWeight:
-                    currentStep == 3 ? FontWeight.bold : FontWeight.normal,
+                  Gap(60),
+                  Text(
+                    'Fuel Amount',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                  ),
+                  Gap(10),
+                  Text(
+                    _enteredAmount,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                  ),
+                  Text(
+                    _paymentCode,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                  ),
+                ],
               ),
+              isActive: currentStep >= 3,
+              state: currentStep >= 3 ? StepState.complete : StepState.disabled,
             ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Gap(90),
-                Center(
-                  child: Transform.scale(
-                    scale: 2.0,
-                    child: Lottie.asset(
-                      'assets/animations/success_anim.json',
-                      repeat: false,
-                      animate: true,
-                    ),
-                  ),
-                ),
-                Gap(50),
-                Text(
-                  'You have paid successfully!',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.w900,
-                      ),
-                ),
-                Gap(30),
-                Container(
-                  width: size.width * 0.7,
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFAFAFA),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Text('FT Number: '),
-                          Text(
-                            '3084983',
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Gap(60),
-                Text(
-                  'Fuel Amount',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                ),
-                Gap(10),
-                Text(
-                  _enteredAmount,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                ),
-                Text(
-                  _paymentCode,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                ),
-              ],
-            ),
-            isActive: currentStep >= 3,
-            state: currentStep >= 3 ? StepState.complete : StepState.disabled,
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: currentStep == 1
           ? CustomKeyboardWithButton(
@@ -545,4 +556,3 @@ class _DirectPayPageState extends State<DirectPayPage> {
     );
   }
 }
-

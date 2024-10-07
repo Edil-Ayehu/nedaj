@@ -4,6 +4,7 @@ class ProfileInfoContainer extends StatelessWidget {
   final String text;
   final IconData icon;
   final VoidCallback onTap;
+
   const ProfileInfoContainer({
     super.key,
     required this.text,

@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/direct%20pay/direct_pay_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,7 +17,13 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              return PayByQrGeneratePage();
+            },
+          ));
+        },
         child: Icon(
           Icons.qr_code_scanner,
           color: Colors.white,
@@ -57,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Welcome',
+                            'welcome'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -66,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w200),
                           ),
                           Text(
-                            'Full Name',
+                            'Aschalew G Tesfa',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -105,13 +111,13 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Gap(15),
                   Text(
-                    'Collected Points',
+                    'collected_points'.tr,
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: Colors.white,
                         ),
                   ),
                   Text(
-                    'Collected Points',
+                    '532',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Colors.white,
                         ),
@@ -138,19 +144,21 @@ class HomeScreen extends StatelessWidget {
                         MainServiceContainer(
                           title: 'Stand By',
                           description: 'Set all process before arriving',
-                          icon: Icons.qr_code_scanner,
+                          icon: Icons.rocket_launch_outlined,
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) {
-                                return StandByCodePage();
-                              },
-                            ));
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return StandByCodePage();
+                                },
+                              ),
+                            );
                           },
                         ),
                         MainServiceContainer(
                           title: 'Direct Pay',
                           description: 'Pay by fuel station ID',
-                          icon: Icons.qr_code_scanner,
+                          icon: Icons.payments_outlined,
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -176,7 +184,10 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 14),
-                    Text('Other Services'),
+                    Text(
+                      'other_services'.tr,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                     SizedBox(height: 10),
                     Container(
                       padding:
@@ -198,6 +209,7 @@ class HomeScreen extends StatelessWidget {
                                 icon: service.icon,
                                 title: service.title,
                                 description: service.description,
+                                onTap: service.onTap,
                               ),
                               Gap(5),
                               if (index != services.length - 1)
@@ -211,7 +223,10 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 18),
-                    Text('Recent History'),
+                    Text(
+                      'recent_history'.tr,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                     SizedBox(height: 10),
                     Container(
                       padding:

@@ -40,7 +40,7 @@ class MyCarsPage extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: ElevatedButton.icon(
                 onPressed: () {},
-                label: Text('Register Car'),
+                label: Text('register_car'.tr),
                 icon: Icon(Icons.add),
               ),
             ),
@@ -49,7 +49,7 @@ class MyCarsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              'Registered Vehicles',
+              'registered_vehicles'.tr,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontSize: 22,
                   ),
@@ -59,7 +59,7 @@ class MyCarsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              'The cars listed below are linked to your bank account.',
+              'linked_cars'.tr,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
             ),
           ),

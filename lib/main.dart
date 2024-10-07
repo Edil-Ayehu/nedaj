@@ -1,8 +1,20 @@
-import 'package:nedaj/main%20services/stand%20by/screens/stand_by_code_page.dart';
-import 'package:nedaj/utils/app_theme.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:nedaj/export.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Get the application documents directory
+  final appDocumentDir = await getApplicationDocumentsDirectory();
+
+  // Initialize Hive with the app documents directory
+  await Hive.initFlutter(appDocumentDir.path);
+
+  // Open a Hive box to store the selected language
+  await Hive.openBox('settingsBox');
+  // dependencies 
+  Get.put(LanguageController());
+  
   runApp(const MyApp());
 }
 
@@ -11,9 +23,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final settingsBox = Hive.box('settingsBox');
+    String? savedLanguageCode =
+        settingsBox.get('languageCode', defaultValue: 'en');
+
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      translations: AppTranslations(), // Translation mappings
+      locale: Locale(
+          savedLanguageCode!), // Load saved language or default to English
+      fallbackLocale: Locale('en', 'US'), // Fallback locale in case of an error
+      title: 'app_name'.tr, // Use translation
       theme: AppTheme.lightTheme,
       home: Home(),
     );

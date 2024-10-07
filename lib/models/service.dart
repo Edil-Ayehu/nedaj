@@ -1,14 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:nedaj/export.dart';
 
 class Service {
   final String title;
   final String description;
   final IconData icon;
+  final VoidCallback onTap;
 
   Service({
     required this.title,
     required this.description,
     required this.icon,
+    required this.onTap,
   });
 
   // Factory constructor to create a Service instance from a Map
@@ -17,6 +20,7 @@ class Service {
       title: data['title'],
       description: data['description'],
       icon: data['icon'],
+      onTap: data['onTap'],
     );
   }
 
@@ -24,24 +28,30 @@ class Service {
   static List<Service> getServices() {
     return [
       Service(
-        title: 'OTP',
+        title: 'otp'.tr,
         description: 'Your registered cars listed here.',
-        icon: Icons.qr_code,
+        icon: Icons.pin,
+        onTap: () {},
       ),
       Service(
-        title: 'My Cars',
+        title: 'my_cars'.tr,
         description: 'Your registered cars listed here.',
-        icon: Icons.qr_code,
+        icon: CupertinoIcons.car_detailed,
+        onTap: () {
+          Get.to(() => MyCarsPage());
+        },
       ),
       Service(
-        title: 'Tips',
+        title: 'tips'.tr,
         description: 'You can give a tip for an attendant.',
-        icon: Icons.qr_code,
+        icon: Icons.tips_and_updates_outlined,
+        onTap: () {},
       ),
       Service(
-        title: 'Fuel Stations',
+        title: 'fuel_stations'.tr,
         description: 'You can find fuel available at nearby fuel stations.',
-        icon: Icons.qr_code,
+        icon: Icons.ev_station_outlined,
+        onTap: () {},
       ),
     ];
   }

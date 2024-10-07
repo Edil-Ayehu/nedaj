@@ -11,7 +11,7 @@ class TransactionsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transactions'),
+        title: Text('transactions'.tr),
       ),
       body: Container(
         decoration: BoxDecoration(
