@@ -29,7 +29,7 @@ class CustomKeyboardWithButton extends StatelessWidget {
           // Number pad section
           Flexible(
             flex: 2,
-            child: Container(
+            child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.3,
               child: Column(
                 children: [

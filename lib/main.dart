@@ -1,3 +1,4 @@
+import 'package:nedaj/controllers/home_controller.dart';
 import 'package:nedaj/export.dart';
 
 void main() async {
@@ -10,8 +11,10 @@ void main() async {
 
   // Open a Hive box to store the selected language
   await Hive.openBox('settingsBox');
+  
   // dependencies 
   Get.put(LanguageController());
+  Get.put(HomeController());
 
   runApp(const MyApp());
 }
@@ -32,8 +35,8 @@ class MyApp extends StatelessWidget {
           savedLanguageCode!), // Load saved language or default to English
       fallbackLocale: Locale('en', 'US'), // Fallback locale in case of an error
       title: 'app_name'.tr, // Use translation
-      theme: AppTheme.lightTheme, 
+      theme: AppTheme.lightTheme,  
       home: Home(),
     );
   }
-}
+} 

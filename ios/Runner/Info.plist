@@ -51,6 +51,12 @@
 <string>We need access to your camera to take profile pictures.</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>We need access to your photo library to upload pictures.</string>
+<!-- permission for accessing user's current location -->
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need your location to show nearby fuel stations.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need your location to show nearby fuel stations.</string>
+
 
 </dict>
 </plist>

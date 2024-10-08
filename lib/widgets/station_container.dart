@@ -36,15 +36,20 @@ class StationContainer extends StatelessWidget {
                   stationName,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
+                SizedBox(height: 4),
                 Row(
                   children: [
                     Text(
                       'ID: ',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.grey.shade600,
+                          ),
                     ),
                     Text(
                       stationID,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.grey.shade600,
+                          ),
                     ),
                   ],
                 ),

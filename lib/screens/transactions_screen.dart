@@ -28,32 +28,31 @@ class TransactionsScreen extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: transactionHistory.length,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (context, index) {
-                      final transaction = transactionHistory[index];
-                      return Column(
-                        children: [
-                          TransactionContainer(
-                            transactionId: transaction.transactionId,
-                            fuelType: transaction.fuelType,
-                            amount: transaction.amount,
-                            date: transaction.date,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: transactionHistory.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    final transaction = transactionHistory[index];
+                    return Column(
+                      children: [
+                        TransactionContainer(
+                          transactionId: transaction.transactionId,
+                          fuelType: transaction.fuelType,
+                          amount: transaction.amount,
+                          date: transaction.date,
+                          onTap: transaction.onTap,
+                        ),
+                        Gap(8),
+                        if (index != transactionHistory.length - 1)
+                          Divider(
+                            color: Colors.grey.shade300,
                           ),
-                          Gap(8),
-                          if (index != transactionHistory.length - 1)
-                            Divider(
-                              color: Colors.grey.shade300,
-                            ),
-                          Gap(8),
-                        ],
-                      );
-                    },
-                  ),
+                        Gap(8),
+                      ],
+                    );
+                  },
                 ),
               ),
             ],

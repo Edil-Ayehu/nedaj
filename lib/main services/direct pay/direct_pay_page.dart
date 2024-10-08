@@ -8,10 +8,10 @@ class DirectPayPage extends StatefulWidget {
 }
 
 class _DirectPayPageState extends State<DirectPayPage> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   final List<TextEditingController> _controllers =
       List.generate(6, (_) => TextEditingController());
-  FocusNode _focusNode = FocusNode(); // Create a FocusNode
+  final FocusNode _focusNode = FocusNode(); // Create a FocusNode
   final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
 
   int currentStep = 0;
@@ -41,9 +41,12 @@ class _DirectPayPageState extends State<DirectPayPage> {
   @override
   void dispose() {
     _controller.dispose();
-    _controllers.forEach((controller) => controller.dispose());
-    _focusNodes
-        .forEach((focusNode) => focusNode.dispose()); // Dispose all FocusNodes
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    for (var focusNode in _focusNodes) {
+      focusNode.dispose();
+    } // Dispose all FocusNodes
     _focusNode.dispose(); // Dispose the FocusNode
     super.dispose();
   }
@@ -302,7 +305,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
                       focusNode: _focusNode, // Assign the FocusNode
                       readOnly: true, // Make the TextField read-only
                       decoration: InputDecoration(
-                        hintText: '500 Birr',
+                        hintText: '00 Birr',
                         contentPadding: EdgeInsets.only(left: 50),
                         suffixText: 'Birr',
                         suffixStyle:
@@ -514,13 +517,13 @@ class _DirectPayPageState extends State<DirectPayPage> {
                   ),
                   Gap(10),
                   Text(
-                    _enteredAmount,
+                    '$_enteredAmount Birr',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(),
                   ),
-                  Text(
-                    _paymentCode,
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                  ),
+                  // Text(
+                  //   _paymentCode,
+                  //   style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                  // ),
                 ],
               ),
               isActive: currentStep >= 3,

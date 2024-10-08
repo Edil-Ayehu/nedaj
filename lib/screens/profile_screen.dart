@@ -1,13 +1,12 @@
 import 'dart:io';
-
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:nedaj/export.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:nedaj/screens/change_pin_screen.dart';
+import 'package:nedaj/screens/notifications_screen.dart';
+import 'package:nedaj/screens/terms_and_conditions_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -126,29 +125,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
             text: 'my_cars'.tr,
             icon: CupertinoIcons.car_detailed,
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return MyCarsPage();
-                  },
-                ),
-              );
+              Get.to(() => MyCarsPage());
             },
           ),
           ProfileInfoContainer(
             text: 'notifications'.tr,
             icon: Icons.notification_add,
-            onTap: () {},
+            onTap: () {
+              Get.to(() => NotificationsScreen());
+            },
           ),
           ProfileInfoContainer(
             text: 'change_pin'.tr,
             icon: Icons.password,
-            onTap: () {},
+            onTap: () {
+              Get.to(() => ChangePinScreen());
+            },
           ),
           ProfileInfoContainer(
             text: 'terms_conditions'.tr,
             icon: Icons.password,
-            onTap: () {},
+            onTap: () {
+              Get.to(() => TermsAndConditionsScreen());
+            },
           ),
           ProfileInfoContainer(
             text: 'language'.tr,
@@ -192,6 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : null,
                   onTap: () {
                     languageController.changeLanguage('en', 'US');
+                    Navigator.pop(context);
                   },
                 ),
                 ListTile(
@@ -201,6 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : null,
                   onTap: () {
                     languageController.changeLanguage('am', 'ET');
+                    Navigator.pop(context);
                   },
                 ),
                 ListTile(
@@ -210,6 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : null,
                   onTap: () {
                     languageController.changeLanguage('or', 'ET');
+                    Navigator.pop(context);
                   },
                 ),
                 ListTile(
@@ -219,6 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : null,
                   onTap: () {
                     languageController.changeLanguage('ti', 'ET');
+                    Navigator.pop(context);
                   },
                 ),
                 ListTile(
@@ -228,6 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       : null,
                   onTap: () {
                     languageController.changeLanguage('so', 'SO');
+                    Navigator.pop(context);
                   },
                 ),
               ],

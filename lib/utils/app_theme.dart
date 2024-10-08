@@ -9,9 +9,10 @@ class AppTheme {
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
       titleTextStyle: TextStyle(
-        color: Colors.grey.shade700,
+        color: Colors.grey.shade800,
         fontWeight: FontWeight.w300,
-        fontSize: 28,
+        fontSize: 24,
+        fontFamily: 'Lato',
       ),
     ),
 
@@ -25,7 +26,7 @@ class AppTheme {
       ),
       titleMedium: TextStyle(
         fontSize: 24,
-        fontWeight: FontWeight.bold, 
+        fontWeight: FontWeight.bold,
         color: Colors.black,
         fontFamily: 'Lato',
       ),

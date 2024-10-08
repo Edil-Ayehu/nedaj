@@ -1,14 +1,13 @@
-import 'package:lottie/lottie.dart';
 import 'package:nedaj/export.dart';
 
-class StandByCodePage extends StatefulWidget {
-  const StandByCodePage({super.key});
+class PayByQrGeneratePage extends StatefulWidget {
+  const PayByQrGeneratePage({super.key});
 
   @override
-  State<StandByCodePage> createState() => _StandByCodePageState();
+  State<PayByQrGeneratePage> createState() => _PayByQrGeneratePageState();
 }
 
-class _StandByCodePageState extends State<StandByCodePage> {
+class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode(); // Create a FocusNode
   int currentStep = 0;
@@ -100,6 +99,10 @@ class _StandByCodePageState extends State<StandByCodePage> {
     }
   }
 
+  String _generateQrData() {
+    return 'Amount: $_enteredAmount, Car: $_selectedCar, Fuel: $_selectedFuelType';
+  }
+
   void _generateButtonPressed() {
     final enteredText = _controller.text;
 
@@ -122,7 +125,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Stand by Code'),
+        title: const Text('Generate QR'),
       ),
       body: Theme(
         data: ThemeData(
@@ -161,7 +164,6 @@ class _StandByCodePageState extends State<StandByCodePage> {
                     'Enter Amount',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                   ),
-                  Gap(20),
                   SizedBox(
                     width: size.width * 0.8,
                     child: TextField(
@@ -176,19 +178,17 @@ class _StandByCodePageState extends State<StandByCodePage> {
                       decoration: InputDecoration(
                         hintText: '0 Birr',
                         contentPadding: EdgeInsets.only(left: 50),
-                        hintStyle:
-                            Theme.of(context).textTheme.titleLarge!.copyWith(
-                                  color: Colors.grey,
-                                  fontSize: 40,
-                                ),
                         suffixText: 'Birr',
                         suffixStyle:
                             Theme.of(context).textTheme.titleLarge!.copyWith(
                                   fontSize: 40,
                                 ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
+                        hintStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  color: Colors.grey,
+                                  fontSize: 40,
+                                ),
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       keyboardType: TextInputType.none,
                       textInputAction: TextInputAction.none,
@@ -328,7 +328,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
             Step(
               title: const Text(''),
               label: Text(
-                'Stand By Code',
+                'QR Code',
                 style: TextStyle(
                   fontSize: 14,
                   color: currentStep == 2 ? Colors.green : Colors.grey,
@@ -339,60 +339,28 @@ class _StandByCodePageState extends State<StandByCodePage> {
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Gap(90),
-                  Center(
-                    child: Transform.scale(
-                      scale: 2.0,
-                      child: Lottie.asset(
-                        'assets/animations/success_anim.json',
-                        repeat: false,
-                        animate: true,
-                      ),
+                  Gap(30),
+                  // qr code area
+                  if (currentStep == 2)
+                    QrImageView(
+                      data: _generateQrData(),
+                      size: 200.0, // Adjust the size of the QR code
                     ),
-                  ),
-                  Gap(50),
+
+                  Gap(10),
                   Text(
-                    'Stand By Code Generated Successfully!',
+                    'Your QR Code is Generated Successfully!',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.w900,
                         ),
                   ),
                   Gap(30),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                      color: Color(0xffEDFFF4),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Your code is',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(),
-                        ),
-                        Gap(10),
-                        Text(
-                          '4935930',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Gap(20),
                   Text(
                     'Fuel Amount',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                   ),
-                  Gap(10),
+                  Gap(20),
                   Text(
                     '$_enteredAmount Birr',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(),
@@ -428,9 +396,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
                       child: CustomButton(
                           buttonText: 'Done',
                           onPressed: () {
-                            Get.off(
-                              () => Home(),
-                            );
+                            Get.off(() => Home());
                           }),
                     )
                   : null)),

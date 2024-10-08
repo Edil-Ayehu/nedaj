@@ -1,15 +1,25 @@
 import 'package:nedaj/export.dart';
 
-class PayByQrGeneratePage extends StatefulWidget {
-  const PayByQrGeneratePage({super.key});
+class PayByQrScanPage extends StatefulWidget {
+  final String gasStationName;
+  final String gasStationID;
+  const PayByQrScanPage({
+    super.key,
+    required this.gasStationName,
+    required this.gasStationID,
+  });
 
   @override
-  State<PayByQrGeneratePage> createState() => _PayByQrGeneratePageState();
+  State<PayByQrScanPage> createState() => _PayByQrScanPageState();
 }
 
-class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
-  TextEditingController _controller = TextEditingController();
-  FocusNode _focusNode = FocusNode(); // Create a FocusNode
+class _PayByQrScanPageState extends State<PayByQrScanPage> {
+  final TextEditingController _controller = TextEditingController();
+  final List<TextEditingController> _controllers =
+      List.generate(6, (_) => TextEditingController());
+  final FocusNode _focusNode = FocusNode(); // Create a FocusNode
+  final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
+
   int currentStep = 0;
 
   String? _selectedFuelType; // Store selected fuel type
@@ -36,15 +46,27 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
   @override
   void dispose() {
     _controller.dispose();
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    for (var focusNode in _focusNodes) {
+      focusNode.dispose();
+    } // Dispose all FocusNodes
     _focusNode.dispose(); // Dispose the FocusNode
     super.dispose();
   }
 
   void continueStep() {
-    if (currentStep < 2) {
+    if (currentStep < 3) {
       setState(() {
         currentStep++;
       });
+
+      if (currentStep == 1) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          FocusScope.of(context).requestFocus(_focusNode); // Request focus
+        });
+      }
     }
   }
 
@@ -99,11 +121,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     }
   }
 
-  String _generateQrData() {
-    return 'Amount: $_enteredAmount, Car: $_selectedCar, Fuel: $_selectedFuelType';
-  }
-
-  void _generateButtonPressed() {
+  void _payButtonPressed() {
     final enteredText = _controller.text;
 
     // Store the entered text into _enteredAmount
@@ -111,6 +129,11 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
       _enteredAmount = enteredText;
     });
 
+    // Proceed to the next step
+    continueStep();
+  }
+
+  void _continueButtonPressed() {
     // Proceed to the next step
     continueStep();
   }
@@ -125,7 +148,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Generate QR'),
+        title: const Text('Scan QR'),
       ),
       body: Theme(
         data: ThemeData(
@@ -138,6 +161,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
           physics: const ScrollPhysics(),
           onStepTapped: onStepTapped,
           currentStep: currentStep,
+
           controlsBuilder: controlBuilders, // Hide default controls
 
           steps: [
@@ -150,7 +174,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
               label: Text(
                 'Add Amount',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   color: currentStep == 0 ? Colors.green : Colors.grey,
                   fontWeight:
                       currentStep == 0 ? FontWeight.bold : FontWeight.normal,
@@ -159,52 +183,48 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Gap(120),
+                  StationContainer(
+                    stationName: 'Megenagna Station',
+                    stationID: '39290423',
+                    stationImageUrl:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIvBWa7TC33t0QCN0zfVogKxJHEq3qpo02Dg&s',
+                  ),
+                  Gap(80),
                   Text(
                     'Enter Amount',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: size.width * 0.25,
-                        child: TextField(
-                          controller: _controller,
-                          style:
-                              Theme.of(context).textTheme.titleLarge!.copyWith(
-                                    fontSize: 40,
-                                  ),
-                          cursorColor: Colors.grey.shade700,
-                          autofocus: true,
-                          focusNode: _focusNode, // Assign the FocusNode
-                          readOnly: true, // Make the TextField read-only
-                          decoration: InputDecoration(
-                            hintText: '5000',
-                            hintStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
+                  Gap(20),
+                  SizedBox(
+                    width: size.width * 0.8,
+                    child: TextField(
+                      controller: _controller,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: 40,
+                          ),
+                      cursorColor: Colors.grey.shade700,
+                      autofocus: true,
+                      focusNode: _focusNode, // Assign the FocusNode
+                      readOnly: true, // Make the TextField read-only
+                      decoration: InputDecoration(
+                        hintText: '0 Birr',
+                        contentPadding: EdgeInsets.only(left: 50),
+                        suffixText: 'Birr',
+                        suffixStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  fontSize: 40,
+                                ),
+                        hintStyle:
+                            Theme.of(context).textTheme.titleLarge!.copyWith(
                                   color: Colors.grey,
                                   fontSize: 40,
                                 ),
-                            border:
-                                OutlineInputBorder(borderSide: BorderSide.none),
-                          ),
-                          keyboardType: TextInputType.none,
-                          textInputAction: TextInputAction.none,
-                          textAlign: TextAlign.end,
-                        ),
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
                       ),
-                      Text(
-                        'birr',
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              color: Colors.grey,
-                              fontSize: 40,
-                            ),
-                      ),
-                    ],
+                      keyboardType: TextInputType.none,
+                      textInputAction: TextInputAction.none,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
@@ -217,10 +237,10 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
               label: Text(
                 'Basic Info.',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   color: currentStep == 1 ? Colors.green : Colors.grey,
                   fontWeight:
-                      currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+                      currentStep == 1 ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
               content: Column(
@@ -339,41 +359,67 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
             Step(
               title: const Text(''),
               label: Text(
-                'QR Code',
+                'Completed',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 13,
                   color: currentStep == 2 ? Colors.green : Colors.grey,
                   fontWeight:
-                      currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+                      currentStep == 2 ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Gap(30),
-                  // qr code area
-                  if (currentStep == 2)
-                    QrImageView(
-                      data: _generateQrData(),
-                      size: 200.0, // Adjust the size of the QR code
+                  Gap(90),
+                  Center(
+                    child: Transform.scale(
+                      scale: 2.0,
+                      child: Lottie.asset(
+                        'assets/animations/success_anim.json',
+                        repeat: false,
+                        animate: true,
+                      ),
                     ),
-
-                  Gap(10),
+                  ),
+                  Gap(50),
                   Text(
-                    'Your QR Code is Generated Successfully!',
+                    'You have paid successfully!',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.w900,
                         ),
                   ),
                   Gap(30),
+                  Container(
+                    width: size.width * 0.7,
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      color: Color(0xffFAFAFA),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Text('FT Number: '),
+                            Text(
+                              '3084983',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gap(60),
                   Text(
                     'Fuel Amount',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                   ),
-                  Gap(20),
+                  Gap(10),
                   Text(
-                    _enteredAmount,
+                    '$_enteredAmount Birr',
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(),
                   ),
                 ],
@@ -388,8 +434,8 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
           ? CustomKeyboardWithButton(
               onTextInput: _insertText,
               onBackspace: _deleteText,
-              onGenerate: _generateButtonPressed,
-              buttonText: 'Generate',
+              onGenerate: _payButtonPressed,
+              buttonText: 'Pay',
             )
           : (currentStep == 1
               ? Padding(

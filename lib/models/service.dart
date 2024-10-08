@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/otp_screen.dart';
+import 'package:nedaj/screens/tips_screen.dart';
 
 class Service {
   final String title;
@@ -31,7 +33,9 @@ class Service {
         title: 'otp'.tr,
         description: 'Your registered cars listed here.',
         icon: Icons.pin,
-        onTap: () {},
+        onTap: () {
+          Get.to(() => OtpScreen());
+        },
       ),
       Service(
         title: 'my_cars'.tr,
@@ -45,7 +49,9 @@ class Service {
         title: 'tips'.tr,
         description: 'You can give a tip for an attendant.',
         icon: Icons.tips_and_updates_outlined,
-        onTap: () {},
+        onTap: () {
+          Get.to(() => TipsScreen());
+        },
       ),
       Service(
         title: 'fuel_stations'.tr,
