@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/transaction_details_screen.dart';
 
 class Transaction {
   final String transactionId;

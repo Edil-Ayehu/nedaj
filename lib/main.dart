@@ -1,10 +1,9 @@
-import 'package:nedaj/controllers/home_controller.dart';
 import 'package:nedaj/export.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Get the application documents directory
-  final appDocumentDir = await getApplicationDocumentsDirectory();
+  final appDocumentDir = await getApplicationDocumentsDirectory(); 
 
   // Initialize Hive with the app documents directory
   await Hive.initFlutter(appDocumentDir.path);

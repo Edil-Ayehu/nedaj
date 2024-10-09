@@ -35,4 +35,16 @@ export 'package:nedaj/localization/translations/ti_et.dart';
 export 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:permission_handler/permission_handler.dart';
+export 'package:flutter/services.dart';
+export 'package:nedaj/controllers/home_controller.dart';
+export 'package:nedaj/main%20services/pay%20by%20qr/screens/pay_by_qr.dart';
+export 'package:nedaj/screens/notifications_screen.dart';
+export 'package:nedaj/main%20services/pay%20by%20qr/screens/pay_by_qr_scan_page.dart';
+export 'package:qr_code_scanner/qr_code_scanner.dart';
+export 'package:nedaj/screens/change_pin_screen.dart';
+export 'package:nedaj/screens/terms_and_conditions_screen.dart';
+export 'package:nedaj/models/car_model.dart';
+export 'package:nedaj/screens/otp_screen.dart';
+export 'package:nedaj/screens/tips_screen.dart';
+export 'package:nedaj/screens/transaction_details_screen.dart';
 

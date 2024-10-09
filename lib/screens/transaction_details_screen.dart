@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:nedaj/export.dart';
 
 class TransactionDetailsScreen extends StatelessWidget {
   const TransactionDetailsScreen({super.key});

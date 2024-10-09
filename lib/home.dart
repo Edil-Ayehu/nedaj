@@ -1,4 +1,3 @@
-import 'package:nedaj/controllers/home_controller.dart';
 import 'package:nedaj/export.dart';
 
 class Home extends StatelessWidget {

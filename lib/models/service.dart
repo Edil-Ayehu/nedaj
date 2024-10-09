@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/otp_screen.dart';
-import 'package:nedaj/screens/tips_screen.dart';
 
 class Service {
   final String title;

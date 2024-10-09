@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/pay%20by%20qr/screens/pay_by_qr_scan_page.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class PayByQr extends StatefulWidget {
   const PayByQr({super.key});
@@ -56,27 +54,31 @@ class _PayByQrState extends State<PayByQr> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: Container(
-        height: size.height,
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 77, 78, 78),
-          image: DecorationImage(
-            image: AssetImage('assets/images/bg_image.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarIconBrightness: Brightness.light, // For light icons
+        statusBarBrightness: Brightness.dark, // For dark background
+      ),
+      child: Scaffold(
+        body: Stack(
           children: [
-            SizedBox(height: 60),
-
-            // Toggle between "Scan QR" and "Generate QR"
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+            QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+              overlay: QrScannerOverlayShape(
+                borderWidth: 0,
+                borderRadius: 10,
+                borderLength: 20,
+                cutOutSize: size.width * 0.8,
+                // borderColor: Colors.grey,
               ),
+            ),
+
+            // Top Switch for Scan QR / Generate QR
+            Positioned(
+              top: 60,
+              left: size.width * 0.05,
+              right: size.width * 0.05,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -143,42 +145,11 @@ class _PayByQrState extends State<PayByQr> {
               ),
             ),
 
-            SizedBox(height: 20),
-
-            // Show QR Scanner only if "Scan QR" is selected
-            Spacer(),
-            if (isScanQRSelected)
-              Container(
-                width: size.width * 0.8,
-                height: size.width * 0.8,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: EdgeInsets.only(top: 20),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(22),
-                      child: QRView(
-                        key: qrKey,
-                        onQRViewCreated: _onQRViewCreated,
-                        overlay: QrScannerOverlayShape(
-                          borderWidth: 10,
-                          borderRadius: 10,
-                          borderLength: 20,
-                          cutOutSize: size.width * 0.8,
-                          borderColor: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            Spacer(flex: 2),
-
-            Padding(
-              padding: const EdgeInsets.all(18.0),
+            // Cancel Button at the bottom
+            Positioned(
+              bottom: 20,
+              left: size.width * 0.1,
+              right: size.width * 0.1,
               child: CustomButton(
                 buttonText: 'Cancel',
                 onPressed: () {

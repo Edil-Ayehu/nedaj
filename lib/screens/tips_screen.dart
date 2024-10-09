@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:nedaj/export.dart';
 
 class TipsScreen extends StatelessWidget {
   const TipsScreen({super.key});

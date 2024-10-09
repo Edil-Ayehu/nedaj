@@ -1,9 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/change_pin_screen.dart';
-import 'package:nedaj/screens/notifications_screen.dart';
-import 'package:nedaj/screens/terms_and_conditions_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

@@ -1,7 +1,4 @@
-import 'package:flutter/services.dart';
-import 'package:nedaj/controllers/home_controller.dart';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/pay%20by%20qr/screens/pay_by_qr.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -114,10 +111,15 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                        Icon(
-                          Icons.notifications_none,
-                          color: Colors.white,
-                          size: 28,
+                        IconButton(
+                          onPressed: () {
+                            Get.to(() => NotificationsScreen());
+                          },
+                          icon: Icon(
+                            Icons.notifications_none,
+                            color: Colors.white,
+                            size: 28,
+                          ),
                         ),
                       ],
                     ),

@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/models/car_model.dart';
 
 class MyCarsPage extends StatelessWidget {
   const MyCarsPage({super.key});

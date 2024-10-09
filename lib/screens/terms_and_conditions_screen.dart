@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:nedaj/export.dart';
 
 class TermsAndConditionsScreen extends StatelessWidget {
   const TermsAndConditionsScreen({super.key});
