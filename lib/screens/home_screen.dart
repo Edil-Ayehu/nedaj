@@ -125,11 +125,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Gap(15),
                     Container(
-                      height: 50,
+                      height: 40,
                       width: size.width * 0.35,
-                      padding: EdgeInsets.all(6),
+                      padding: EdgeInsets.symmetric(horizontal: 6),
                       decoration: BoxDecoration(
-                        color: Colors.green.shade400,
+                        color: Colors.green.withOpacity(0.6),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Center(
@@ -154,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      '532',
+                      '532 Pt',
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             color: Colors.white,
                           ),
@@ -292,12 +292,12 @@ class HomeScreen extends StatelessWidget {
                                   date: transaction.date,
                                   onTap: transaction.onTap,
                                 ),
-                                Gap(8),
+                                Gap(10),
                                 if (index != transactionHistory.length - 1)
                                   Divider(
                                     color: Colors.grey.shade300,
                                   ),
-                                Gap(8),
+                                Gap(10),
                               ],
                             );
                           },

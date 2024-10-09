@@ -5,10 +5,10 @@ class OtherServiceContainer extends StatelessWidget {
   final String title;
   final String description;
   final VoidCallback onTap;
-  const OtherServiceContainer({
+  const OtherServiceContainer({ 
     super.key,
     required this.icon,
-    required this.title,
+    required this.title, 
     required this.description,
     required this.onTap,
   });
@@ -35,7 +35,7 @@ class OtherServiceContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith()),
+                    style: Theme.of(context).textTheme.bodyMedium),
                 Text(
                   description,
                   maxLines: 2,

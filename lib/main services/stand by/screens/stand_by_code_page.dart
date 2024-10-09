@@ -118,6 +118,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
   // Function to show bottom sheet for selecting a car
   void _showCarSelectionBottomSheet() {
     showModalBottomSheet(
+      backgroundColor: Colors.white,
       context: context,
       builder: (context) {
         return ListView.builder(
@@ -143,6 +144,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
   // Function to show bottom sheet for selecting a fuel type
   void _showFuelTypeSelectionBottomSheet() {
     showModalBottomSheet(
+      backgroundColor: Colors.white,
       context: context,
       builder: (context) {
         return ListView.builder(

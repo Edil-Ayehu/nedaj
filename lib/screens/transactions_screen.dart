@@ -44,12 +44,12 @@ class TransactionsScreen extends StatelessWidget {
                           date: transaction.date,
                           onTap: transaction.onTap,
                         ),
-                        Gap(8),
+                        Gap(10),
                         if (index != transactionHistory.length - 1)
                           Divider(
                             color: Colors.grey.shade300,
                           ),
-                        Gap(8),
+                        Gap(10),
                       ],
                     );
                   },

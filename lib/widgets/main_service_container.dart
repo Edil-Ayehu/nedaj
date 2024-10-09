@@ -21,11 +21,9 @@ class MainServiceContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: size.width * 0.3,
+        width: size.width * 0.29,
         height: 160,
         padding: EdgeInsets.only(
-          top: 12,
-          bottom: 20,
           left: 8,
           right: 8,
         ),
@@ -36,18 +34,22 @@ class MainServiceContainer extends StatelessWidget {
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
                 backgroundColor: Colors.green,
                 child: Icon(icon, color: Colors.white),
               ),
               SizedBox(height: 6),
-              Text(title,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                      )),
+              FittedBox(
+                fit: BoxFit.contain,
+                child: Text(title,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                        )),
+              ),
               SizedBox(height: 6),
               Text(
                 description,

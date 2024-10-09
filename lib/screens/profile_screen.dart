@@ -170,6 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void showLanguageSelectionBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Colors.white,
       context: context,
       builder: (context) {
         return Obx(() {
@@ -242,6 +243,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Function to show the bottom sheet
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Colors.white,
       context: context,
       builder: (BuildContext context) {
         return Container(

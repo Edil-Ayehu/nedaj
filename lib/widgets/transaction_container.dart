@@ -43,17 +43,13 @@ class TransactionContainer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  transactionId,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
+                Text(transactionId,
+                    style: Theme.of(context).textTheme.bodyMedium),
                 Text(
                   fuelType,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey,
+                        fontSize: 17,
                       ),
                 ),
               ],
@@ -62,19 +58,13 @@ class TransactionContainer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  '+ETB $amount',
-                  style: TextStyle(
-                    color: Colors.grey.shade700,
-                    fontSize: 21,
-                    fontWeight: FontWeight.w200,
-                  ),
-                ),
+                Text('+ETB $amount',
+                    style: Theme.of(context).textTheme.bodyMedium),
                 Text(
                   formattedDate,
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 18,
+                    fontSize: 17,
                   ),
                 ),
               ],
