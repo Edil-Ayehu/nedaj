@@ -5,7 +5,7 @@ void main() async {
   // Get the application documents directory
   final appDocumentDir = await getApplicationDocumentsDirectory(); 
 
-  // Initialize Hive with the app documents directory
+  // Initialize Hive with the app documents directory 
   await Hive.initFlutter(appDocumentDir.path);
 
   // Open a Hive box to store the selected language
