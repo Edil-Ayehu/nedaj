@@ -14,7 +14,7 @@
 
 
     <application
-        android:label="nedaj"
+        android:label="Nedaj"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         
