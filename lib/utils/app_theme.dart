@@ -69,14 +69,28 @@ class AppTheme {
       ),
     ),
 
-    // inputDecorationTheme: InputDecorationTheme(
-    //   border: OutlineInputBorder(
-    //     borderRadius: BorderRadius.circular(12),
-    //     borderSide: BorderSide(color: Colors.green),
-    //   ),
-    //   filled: true,
-    //   fillColor: Colors.green[50],
-    //   contentPadding: EdgeInsets.all(12),
-    // ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(6),
+        borderSide: BorderSide(
+          color: Colors.grey.shade400,
+          width: 1,
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(6),
+        borderSide: BorderSide(
+          color: Colors.grey.shade400,
+          width: 1,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(6),
+        borderSide: BorderSide(
+          color: Colors.grey.shade600,
+          width: 1,
+        ),
+      ),
+    ),
   );
 }

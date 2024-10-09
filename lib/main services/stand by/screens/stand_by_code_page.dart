@@ -1,4 +1,3 @@
-import 'package:lottie/lottie.dart';
 import 'package:nedaj/export.dart';
 
 class StandByCodePage extends StatefulWidget {
@@ -116,6 +115,56 @@ class _StandByCodePageState extends State<StandByCodePage> {
     return SizedBox(); // Return an empty SizedBox to hide default buttons
   }
 
+  // Function to show bottom sheet for selecting a car
+  void _showCarSelectionBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return ListView.builder(
+          itemCount: _registeredCars.length,
+          shrinkWrap: true,
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(_registeredCars[index]),
+              onTap: () {
+                setState(() {
+                  _selectedCar = _registeredCars[index];
+                });
+                Navigator.pop(context); // Close the bottom sheet
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
+  // Function to show bottom sheet for selecting a fuel type
+  void _showFuelTypeSelectionBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return ListView.builder(
+          itemCount: _fuelTypes.length,
+          shrinkWrap: true,
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(_fuelTypes[index]),
+              onTap: () {
+                setState(() {
+                  _selectedFuelType = _fuelTypes[index];
+                });
+                Navigator.pop(context); // Close the bottom sheet
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -139,269 +188,11 @@ class _StandByCodePageState extends State<StandByCodePage> {
 
           steps: [
             // step 1
-            Step(
-              title: const Text(
-                '',
-                style: TextStyle(fontSize: 1),
-              ),
-              label: Text(
-                'Add Amount',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: currentStep == 0 ? Colors.green : Colors.grey,
-                  fontWeight:
-                      currentStep == 0 ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Gap(120),
-                  Text(
-                    'Enter Amount',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                  ),
-                  Gap(20),
-                  SizedBox(
-                    width: size.width * 0.8,
-                    child: TextField(
-                      controller: _controller,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontSize: 40,
-                          ),
-                      cursorColor: Colors.grey.shade700,
-                      autofocus: true,
-                      focusNode: _focusNode, // Assign the FocusNode
-                      readOnly: true, // Make the TextField read-only
-                      decoration: InputDecoration(
-                        hintText: '0 Birr',
-                        contentPadding: EdgeInsets.only(left: 50),
-                        hintStyle:
-                            Theme.of(context).textTheme.titleLarge!.copyWith(
-                                  color: Colors.grey,
-                                  fontSize: 40,
-                                ),
-                        suffixText: 'Birr',
-                        suffixStyle:
-                            Theme.of(context).textTheme.titleLarge!.copyWith(
-                                  fontSize: 40,
-                                ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      keyboardType: TextInputType.none,
-                      textInputAction: TextInputAction.none,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-              isActive: currentStep >= 0,
-              state: currentStep >= 0 ? StepState.complete : StepState.disabled,
-            ),
+            buildAddAmountStep(context, size),
             // step 2
-            Step(
-              title: const Text(''),
-              label: Text(
-                'Basic Info.',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: currentStep == 1 ? Colors.green : Colors.grey,
-                  fontWeight:
-                      currentStep == 0 ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Select a car'),
-                  SizedBox(height: 15),
-                  DropdownButtonFormField<String>(
-                    value: _selectedCar,
-                    hint: Text(
-                      'Choose your registered car',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Colors.grey),
-                    ),
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.grey,
-                    ),
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.grey.shade700,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade600,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    dropdownColor:
-                        Colors.white, // Background color of dropdown items
-
-                    items: _registeredCars.map((car) {
-                      return DropdownMenuItem<String>(
-                        value: car,
-                        child: Text(
-                          car,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedCar = value;
-                      });
-                    },
-                  ),
-                  Gap(20),
-                  Text('Fuel Type'),
-                  Gap(15),
-                  DropdownButtonFormField<String>(
-                    value: _selectedFuelType,
-                    hint: Text(
-                      'Choose a fuel type',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.grey,
-                          ),
-                    ),
-                    icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.grey.shade700,
-                          fontWeight: FontWeight.w500,
-                        ),
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade600,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    items: _fuelTypes.map((fuelType) {
-                      return DropdownMenuItem<String>(
-                        value: fuelType,
-                        child: Text(fuelType),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedFuelType = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              isActive: currentStep >= 1,
-              state: currentStep >= 1 ? StepState.complete : StepState.disabled,
-            ),
+            buildBasicInfoStep(context),
             // step 3
-            Step(
-              title: const Text(''),
-              label: Text(
-                'Stand By Code',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: currentStep == 2 ? Colors.green : Colors.grey,
-                  fontWeight:
-                      currentStep == 0 ? FontWeight.bold : FontWeight.normal,
-                ),
-              ),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Gap(90),
-                  Center(
-                    child: Transform.scale(
-                      scale: 2.0,
-                      child: Lottie.asset(
-                        'assets/animations/success_anim.json',
-                        repeat: false,
-                        animate: true,
-                      ),
-                    ),
-                  ),
-                  Gap(50),
-                  Text(
-                    'Stand By Code Generated Successfully!',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontWeight: FontWeight.w900,
-                        ),
-                  ),
-                  Gap(30),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                      color: Color(0xffEDFFF4),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Your code is',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(),
-                        ),
-                        Gap(10),
-                        Text(
-                          '4935930',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Gap(20),
-                  Text(
-                    'Fuel Amount',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                  ),
-                  Gap(10),
-                  Text(
-                    '$_enteredAmount Birr',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                  ),
-                ],
-              ),
-              isActive: currentStep >= 2,
-              state: currentStep >= 2 ? StepState.complete : StepState.disabled,
-            ),
+            buildStandByCodeStep(context),
           ],
         ),
       ),
@@ -434,6 +225,212 @@ class _StandByCodePageState extends State<StandByCodePage> {
                           }),
                     )
                   : null)),
+    );
+  }
+
+  // step 3
+  Step buildStandByCodeStep(BuildContext context) {
+    return Step(
+      stepStyle: StepStyle(
+        color: currentStep >= 2 ? Colors.green : Colors.grey,
+      ),
+      title: const Text(''),
+      label: Text(
+        'Stand By Code',
+        style: TextStyle(
+          fontSize: 14,
+          color: currentStep == 2 ? Colors.green : Colors.grey,
+          fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Gap(90),
+          Center(
+            child: Transform.scale(
+              scale: 2.0,
+              child: Lottie.asset(
+                'assets/animations/success_anim.json',
+                repeat: false,
+                animate: true,
+              ),
+            ),
+          ),
+          Gap(50),
+          Text(
+            'Stand By Code Generated Successfully!',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.w900,
+                ),
+          ),
+          Gap(30),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+              color: Color(0xffEDFFF4),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Your code is',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+                ),
+                Gap(10),
+                Text(
+                  '4935930',
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                ),
+              ],
+            ),
+          ),
+          Gap(20),
+          Text(
+            'Fuel Amount',
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+          ),
+          Gap(10),
+          Text(
+            '$_enteredAmount Birr',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+          ),
+        ],
+      ),
+      isActive: currentStep >= 2,
+      state: currentStep >= 2 ? StepState.complete : StepState.disabled,
+    );
+  }
+
+  // step 1
+  Step buildAddAmountStep(BuildContext context, Size size) {
+    return Step(
+      stepStyle: StepStyle(
+        color: currentStep >= 0 ? Colors.green : Colors.grey,
+      ),
+      title: const Text(
+        '',
+        style: TextStyle(fontSize: 1),
+      ),
+      label: Text(
+        'Add Amount',
+        style: TextStyle(
+          fontSize: 14,
+          color: currentStep == 0 ? Colors.green : Colors.grey,
+          fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Gap(120),
+          Text(
+            'Enter Amount',
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
+          ),
+          Gap(20),
+          SizedBox(
+            width: size.width * 0.8,
+            child: TextField(
+              controller: _controller,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontSize: 40,
+                  ),
+              cursorColor: Colors.grey.shade700,
+              autofocus: true,
+              focusNode: _focusNode, // Assign the FocusNode
+              readOnly: true, // Make the TextField read-only
+              decoration: InputDecoration(
+                hintText: '0 Birr',
+                contentPadding: EdgeInsets.only(left: 50),
+                hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Colors.grey,
+                      fontSize: 40,
+                    ),
+                suffixText: 'Birr',
+                suffixStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontSize: 40,
+                    ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              keyboardType: TextInputType.none,
+              textInputAction: TextInputAction.none,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+      isActive: currentStep >= 0,
+      state: currentStep >= 0 ? StepState.complete : StepState.disabled,
+    );
+  }
+
+  // step 2
+  Step buildBasicInfoStep(BuildContext context) {
+    return Step(
+      stepStyle: StepStyle(
+        color: currentStep >= 1 ? Colors.green : Colors.grey,
+      ),
+      title: const Text(''),
+      label: Text(
+        'Basic Info.',
+        style: TextStyle(
+          fontSize: 14,
+          color: currentStep == 1 ? Colors.green : Colors.grey,
+          fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Select a car'),
+          Gap(15),
+          TextField(
+            readOnly: true,
+            controller: TextEditingController(text: _selectedCar),
+            decoration: InputDecoration(
+              hintText: 'Choose your registered car',
+              hintStyle: TextStyle(
+                color: Colors.grey,
+              ),
+              suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+              border: Theme.of(context).inputDecorationTheme.border,
+              enabledBorder:
+                  Theme.of(context).inputDecorationTheme.enabledBorder,
+              focusedBorder:
+                  Theme.of(context).inputDecorationTheme.focusedBorder,
+            ),
+            onTap: _showCarSelectionBottomSheet,
+          ),
+          Gap(20),
+          Text('Fuel Type'),
+          Gap(15),
+          TextField(
+            readOnly: true,
+            controller: TextEditingController(text: _selectedFuelType),
+            decoration: InputDecoration(
+              hintText: 'Choose a fuel type',
+              hintStyle: TextStyle(
+                color: Colors.grey,
+              ),
+              suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+              border: Theme.of(context).inputDecorationTheme.border,
+              enabledBorder:
+                  Theme.of(context).inputDecorationTheme.enabledBorder,
+              focusedBorder:
+                  Theme.of(context).inputDecorationTheme.focusedBorder,
+            ),
+            onTap: _showFuelTypeSelectionBottomSheet,
+          ),
+        ],
+      ),
+      isActive: currentStep >= 1,
+      state: currentStep >= 1 ? StepState.complete : StepState.disabled,
     );
   }
 }
