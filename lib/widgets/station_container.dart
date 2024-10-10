@@ -29,31 +29,43 @@ class StationContainer extends StatelessWidget {
               backgroundImage: NetworkImage(stationImageUrl),
             ),
             Gap(10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  stationName,textScaler: TextScaler.linear(1),
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    Text(
-                      'ID: ',textScaler: TextScaler.linear(1),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.grey.shade600,
-                          ),
-                    ),
-                    Text(
-                      stationID,textScaler: TextScaler.linear(1),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.grey.shade600,
-                          ),
-                    ),
-                  ],
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    stationName,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Text(
+                        'ID: ',
+                        textScaler: TextScaler.linear(1),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Colors.grey.shade600,
+                            ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          stationID,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          textScaler: TextScaler.linear(1),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.grey.shade600,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -333,13 +333,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // Function to select a photo from the gallery
   Future<void> _selectFromGallery() async {
-    await _requestPermission(); // Request gallery permission
+    // Check and request permission first
+    var status = await Permission.photos.status;
+    if (!status.isGranted) {
+      status = await Permission.photos.request();
+    }
 
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      setState(() {
-        _selectedImage = image;
-      });
+    // Only proceed if the permission is granted
+    if (status.isGranted) {
+      // Open the gallery to select a single image
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+      if (image != null) {
+        setState(() {
+          _selectedImage = image;
+        });
+      }
+    } else {
+      // Handle permission denied scenario (optional)
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Permission to access gallery is denied.')),
+      );
     }
   }
 

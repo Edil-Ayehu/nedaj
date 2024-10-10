@@ -47,8 +47,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-<string>We need access to your camera to take profile pictures.</string>
+<key>io.flutter.embedded_views_preview</key>
+<true/>
+<key>NSCameraUsageDescription</key>
+<string>This app needs camera access to scan QR codes</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>We need access to your photo library to upload pictures.</string>
 <!-- permission for accessing user's current location -->

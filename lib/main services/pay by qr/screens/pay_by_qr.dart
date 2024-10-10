@@ -51,7 +51,9 @@ class _PayByQrState extends State<PayByQr> {
     if (Platform.isAndroid) {
       controller!.pauseCamera();
     }
-    controller!.resumeCamera();
+    else if (Platform.isIOS) {
+      controller!.resumeCamera();
+    }
   }
 
   @override
