@@ -173,7 +173,10 @@ class _StandByCodePageState extends State<StandByCodePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Stand by Code'),
+        title: const Text(
+          'Stand by Code',
+          textScaler: TextScaler.linear(1),
+        ),
       ),
       body: Theme(
         data: ThemeData(
@@ -182,6 +185,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
         child: Stepper(
           elevation: 0,
           connectorColor: WidgetStatePropertyAll(Colors.green),
+          stepIconMargin: EdgeInsets.symmetric(vertical: 12, horizontal: 0),
           type: StepperType.horizontal,
           physics: const ScrollPhysics(),
           onStepTapped: onStepTapped,
@@ -239,8 +243,9 @@ class _StandByCodePageState extends State<StandByCodePage> {
       title: const Text(''),
       label: Text(
         'Stand By Code',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 15,
           color: currentStep == 2 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -248,7 +253,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Gap(90),
+          Gap(70),
           Center(
             child: Transform.scale(
               scale: 2.0,
@@ -262,6 +267,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
           Gap(50),
           Text(
             'Stand By Code Generated Successfully!',
+            textScaler: TextScaler.linear(1),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w900,
@@ -270,7 +276,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
           Gap(30),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
               color: Color(0xffEDFFF4),
               borderRadius: BorderRadius.circular(12),
@@ -280,11 +286,13 @@ class _StandByCodePageState extends State<StandByCodePage> {
               children: [
                 Text(
                   'Your code is',
+                  textScaler: TextScaler.linear(1.1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
                 ),
                 Gap(10),
                 Text(
                   '4935930',
+                  textScaler: TextScaler.linear(1.1),
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(),
                 ),
               ],
@@ -293,11 +301,13 @@ class _StandByCodePageState extends State<StandByCodePage> {
           Gap(20),
           Text(
             'Fuel Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(10),
           Text(
             '$_enteredAmount Birr',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(),
           ),
         ],
@@ -319,8 +329,9 @@ class _StandByCodePageState extends State<StandByCodePage> {
       ),
       label: Text(
         'Add Amount',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 15,
           color: currentStep == 0 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -331,15 +342,16 @@ class _StandByCodePageState extends State<StandByCodePage> {
           Gap(120),
           Text(
             'Enter Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(20),
           SizedBox(
-            width: size.width * 0.8,
+            width: size.width * 0.9,
             child: TextField(
               controller: _controller,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontSize: 40,
+                    fontSize: 30,
                   ),
               cursorColor: Colors.grey.shade700,
               autofocus: true,
@@ -350,11 +362,11 @@ class _StandByCodePageState extends State<StandByCodePage> {
                 contentPadding: EdgeInsets.only(left: 50),
                 hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.grey,
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 suffixText: 'Birr',
                 suffixStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -381,8 +393,9 @@ class _StandByCodePageState extends State<StandByCodePage> {
       title: const Text(''),
       label: Text(
         'Basic Info.',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 15,
           color: currentStep == 1 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -390,7 +403,10 @@ class _StandByCodePageState extends State<StandByCodePage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Select a car'),
+          Text(
+            'Select a car',
+            textScaler: TextScaler.linear(1),
+          ),
           Gap(15),
           TextField(
             readOnly: true,
@@ -399,6 +415,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
               hintText: 'Choose your registered car',
               hintStyle: TextStyle(
                 color: Colors.grey,
+                fontSize: 16,
               ),
               suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
               border: Theme.of(context).inputDecorationTheme.border,
@@ -410,7 +427,10 @@ class _StandByCodePageState extends State<StandByCodePage> {
             onTap: _showCarSelectionBottomSheet,
           ),
           Gap(20),
-          Text('Fuel Type'),
+          Text(
+            'Fuel Type',
+            textScaler: TextScaler.linear(1),
+          ),
           Gap(15),
           TextField(
             readOnly: true,
@@ -419,6 +439,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
               hintText: 'Choose a fuel type',
               hintStyle: TextStyle(
                 color: Colors.grey,
+                fontSize: 16,
               ),
               suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
               border: Theme.of(context).inputDecorationTheme.border,

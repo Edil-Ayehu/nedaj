@@ -18,21 +18,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('profile'.tr),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
+        title: Text(
+          'profile'.tr,
+          textScaler: TextScaler.linear(1),
         ),
-        child: Column(
-          children: [
-            Gap(10),
-            // Profile pic and details
-            buildProfileDetails(context),
-            Gap(10),
-            // Profile Info
-            buildProfileInfo(context),
-          ],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey.shade100,
+          ),
+          child: Column(
+            children: [
+              Gap(10),
+              // Profile pic and details
+              buildProfileDetails(context),
+              Gap(10),
+              // Profile Info
+              buildProfileInfo(context),
+            ],
+          ),
         ),
       ),
     );
@@ -100,8 +105,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           SizedBox(height: 5),
           Text('Aschalew G Tesfa',
-              style: Theme.of(context).textTheme.bodyLarge),
-          Text('+251 - 912345676'),
+              textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.titleMedium),
+          Text('+251 - 912345676',
+              textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.black54,
+                    fontSize: 18,
+                  )),
         ],
       ),
     );
@@ -181,9 +192,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('select_language'.tr,
-                    style: Theme.of(context).textTheme.titleMedium),
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodyLarge),
                 ListTile(
-                  title: Text('English'),
+                  title: Text(
+                    'English',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.black54,
+                        ),
+                    textScaler: TextScaler.linear(1),
+                  ),
                   trailing: languageController.selectedLanguage.value == 'en'
                       ? Icon(Icons.check, color: Colors.green)
                       : null,
@@ -193,7 +211,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ListTile(
-                  title: Text('Amharic'),
+                  title: Text(
+                    'Amharic',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.black54,
+                        ),
+                    textScaler: TextScaler.linear(1),
+                  ),
                   trailing: languageController.selectedLanguage.value == 'am'
                       ? Icon(Icons.check, color: Colors.green)
                       : null,
@@ -203,7 +227,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ListTile(
-                  title: Text('Afaan Oromoo'),
+                  title: Text(
+                    'Afaan Oromoo',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.black54,
+                        ),
+                    textScaler: TextScaler.linear(1),
+                  ),
                   trailing: languageController.selectedLanguage.value == 'or'
                       ? Icon(Icons.check, color: Colors.green)
                       : null,
@@ -213,7 +243,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ListTile(
-                  title: Text('Tigrigna'),
+                  title: Text(
+                    'Tigrigna',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.black54,
+                        ),
+                    textScaler: TextScaler.linear(1),
+                  ),
                   trailing: languageController.selectedLanguage.value == 'ti'
                       ? Icon(Icons.check, color: Colors.green)
                       : null,
@@ -223,7 +259,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 ListTile(
-                  title: Text('Soomaali'),
+                  title: Text(
+                    'Soomaali',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.black54,
+                        ),
+                    textScaler: TextScaler.linear(1.1),
+                  ),
                   trailing: languageController.selectedLanguage.value == 'so'
                       ? Icon(Icons.check, color: Colors.green)
                       : null,

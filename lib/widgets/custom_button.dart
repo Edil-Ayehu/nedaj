@@ -30,6 +30,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           buttonText,
+          textScaler: TextScaler.linear(1),
           style: TextStyle(
               color: isOutlinedButton ? Colors.black54 : Colors.white),
         ),

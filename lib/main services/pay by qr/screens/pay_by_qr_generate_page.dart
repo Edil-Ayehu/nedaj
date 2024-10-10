@@ -177,7 +177,10 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Generate QR'),
+        title: const Text(
+          'Generate QR',
+          textScaler: TextScaler.linear(1),
+        ),
       ),
       body: Theme(
         data: ThemeData(
@@ -186,6 +189,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
         child: Stepper(
           elevation: 0,
           connectorColor: WidgetStatePropertyAll(Colors.green),
+          stepIconMargin: EdgeInsets.symmetric(vertical: 12, horizontal: 0),
           type: StepperType.horizontal,
           physics: const ScrollPhysics(),
           onStepTapped: onStepTapped,
@@ -231,6 +235,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
                   : null)),
     );
   }
+
   // step 3
   Step buildQrCodeStep(BuildContext context) {
     return Step(
@@ -239,8 +244,9 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
       title: const Text(''),
       label: Text(
         'QR Code',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 15,
           color: currentStep == 2 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -254,25 +260,28 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
             QrImageView(
               data: _generateQrData(),
               version: QrVersions.auto,
-              size: 200.0, // Adjust the size of the QR code
+              size: 230.0, // Adjust the size of the QR code
             ),
 
-          Gap(10),
+          Gap(15),
           Text(
             'Your QR Code is Generated Successfully!',
+            textScaler: TextScaler.linear(1),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w900,
                 ),
           ),
-          Gap(30),
+          Gap(40),
           Text(
             'Fuel Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(20),
           Text(
             '$_enteredAmount Birr',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(),
           ),
         ],
@@ -290,8 +299,9 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
       title: const Text(''),
       label: Text(
         'Basic Info.',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 15,
           color: currentStep == 1 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -299,7 +309,10 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Select a car'),
+          Text(
+            'Select a car',
+            textScaler: TextScaler.linear(1),
+          ),
           Gap(15),
           TextField(
             readOnly: true,
@@ -319,7 +332,10 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
             onTap: _showCarSelectionBottomSheet,
           ),
           Gap(20),
-          Text('Fuel Type'),
+          Text(
+            'Fuel Type',
+            textScaler: TextScaler.linear(1),
+          ),
           Gap(15),
           TextField(
             readOnly: true,
@@ -344,7 +360,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
       state: currentStep >= 1 ? StepState.complete : StepState.disabled,
     );
   }
-  
+
   // step 1
   Step buildAddAmountStep(BuildContext context, Size size) {
     return Step(
@@ -357,8 +373,9 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
       ),
       label: Text(
         'Add Amount',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 14,
+          fontSize: 15,
           color: currentStep == 0 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -369,14 +386,16 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
           Gap(120),
           Text(
             'Enter Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
+          Gap(12),
           SizedBox(
             width: size.width * 0.8,
             child: TextField(
               controller: _controller,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontSize: 40,
+                    fontSize: 30,
                   ),
               cursorColor: Colors.grey.shade700,
               autofocus: true,
@@ -387,11 +406,11 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
                 contentPadding: EdgeInsets.only(left: 50),
                 suffixText: 'Birr',
                 suffixStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.grey,
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 border: OutlineInputBorder(borderSide: BorderSide.none),
               ),

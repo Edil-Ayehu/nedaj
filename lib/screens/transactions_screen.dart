@@ -10,8 +10,12 @@ class TransactionsScreen extends StatelessWidget {
         Transaction.getSampleTransactions();
 
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: Text('transactions'.tr),
+        title: Text(
+          'transactions'.tr,
+          textScaler: TextScaler.linear(1),
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(

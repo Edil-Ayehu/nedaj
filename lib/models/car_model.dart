@@ -36,5 +36,11 @@ class Car {
       addedTime: '45 minutes ago',
       region: 'SR',
     ),
+    Car(
+      plateNumber: 09743,
+      code: 4,
+      addedTime: '45 minutes ago',
+      region: 'SR',
+    ),
   ];
 }

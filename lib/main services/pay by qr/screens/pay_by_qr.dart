@@ -25,13 +25,17 @@ class _PayByQrState extends State<PayByQr> {
   }
 
   Future<void> _requestCameraPermission() async {
-    if (await Permission.camera.request().isGranted) {
-      // Camera permission granted
-    } else {
-      // Handle permission denial
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Camera permission is required")),
-      );
+    var status = await Permission.camera.status;
+    if (!status.isGranted) {
+      var result = await Permission.camera.request();
+      if (result.isGranted) {
+        // Permission granted, proceed with scanning
+      } else {
+        // Permission denied, handle appropriately
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Camera permission is required")),
+        );
+      }
     }
   }
 
@@ -70,7 +74,6 @@ class _PayByQrState extends State<PayByQr> {
                 borderRadius: 10,
                 borderLength: 20,
                 cutOutSize: size.width * 0.8,
-                // borderColor: Colors.grey,
               ),
             ),
 
@@ -101,16 +104,23 @@ class _PayByQrState extends State<PayByQr> {
                           left: Radius.circular(8),
                         ),
                       ),
-                      child: Text('Scan QR'),
+                      child: Text(
+                        'Scan QR',
+                        textScaler: TextScaler.linear(1),
+                      ),
                     ),
                   ),
 
                   // Generate QR Button
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       setState(() {
                         isScanQRSelected = false;
                       });
+
+                      // Stop the camera before navigating
+                      await controller?.pauseCamera();
+
                       if (!isScanQRSelected) {
                         // Navigate to the QR Generation page when "Generate QR" is selected
                         Navigator.push(
@@ -118,11 +128,13 @@ class _PayByQrState extends State<PayByQr> {
                           MaterialPageRoute(
                             builder: (context) => PayByQrGeneratePage(),
                           ),
-                        ).then((_) {
+                        ).then((_) async {
                           // This code runs when returning from PayByQrGeneratePage
                           setState(() {
                             isScanQRSelected = true; // Set back to "Scan QR"
                           });
+                          // Stop the camera before navigating
+                          await controller?.resumeCamera();
                         });
                       }
                     },
@@ -138,7 +150,10 @@ class _PayByQrState extends State<PayByQr> {
                           right: Radius.circular(8),
                         ),
                       ),
-                      child: Text('Generate QR'),
+                      child: Text(
+                        'Generate QR',
+                        textScaler: TextScaler.linear(1),
+                      ),
                     ),
                   ),
                 ],
@@ -174,7 +189,7 @@ class _PayByQrState extends State<PayByQr> {
     });
   }
 
-  void _handleScanData(String? data) {
+  void _handleScanData(String? data) async {
     if (data != null) {
       final parts = data.split(',');
       if (parts.length == 2) {
@@ -184,11 +199,20 @@ class _PayByQrState extends State<PayByQr> {
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Data Scanned Successfully')),
+          SnackBar(
+            backgroundColor: Colors.black,
+            content: Text(
+              'Data Scanned Successfully',
+              textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+          ),
         );
 
         // Optionally, you can pause the scanner once the data is scanned
-        controller?.pauseCamera();
+        controller?.dispose();
 
         // Navigate to PayByQrScanPage page with the scanned information
         Navigator.push(

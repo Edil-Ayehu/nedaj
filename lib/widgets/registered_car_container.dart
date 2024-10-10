@@ -17,87 +17,110 @@ class RegisteredCarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
-          Icon(CupertinoIcons.car_detailed, size: 60),
-          Gap(16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    'Added on: ',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 16,
+          Expanded(child: Icon(CupertinoIcons.car_detailed, size: 50)),
+          Gap(25),
+          Expanded(
+            flex: 5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Added on: ',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 16,
+                          ),
+                    ),
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          addedTime,
+                          textScaler: TextScaler.linear(1),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.green,
+                                    fontSize: 16,
+                                  ),
                         ),
-                  ),
-                  Text(
-                    addedTime,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.green,
-                          fontSize: 16,
-                        ),
-                  ),
-                ],
-              ),
-              Gap(3),
-              Row(
-                children: [
-                  Text(
-                    'Code: ',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 16,
-                        ),
-                  ),
-                  Text(
-                    '$code',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.green,
-                          fontSize: 16,
-                        ),
-                  ),
-                ],
-              ),
-              Gap(3),
-              Row(
-                children: [
-                  Text(
-                    'Region: ',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 16,
-                        ),
-                  ),
-                  Text(
-                    region,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.green,
-                          fontSize: 16,
-                        ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Spacer(),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                  ],
+                ),
+                Gap(3),
+                Row(
+                  children: [
+                    Text(
+                      'Code: ',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 16,
+                          ),
+                    ),
+                    Text(
+                      '$code',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.green,
+                            fontSize: 16,
+                          ),
+                    ),
+                  ],
+                ),
+                Gap(3),
+                Row(
+                  children: [
+                    Text(
+                      'Region: ',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 16,
+                          ),
+                    ),
+                    Text(
+                      region,
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.green,
+                            fontSize: 16,
+                          ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            child: Text(
-              '$plateNumber',
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+          ),
+          Gap(16),
+          Expanded(
+            flex: 2,
+            child: Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(
+                  '$plateNumber',
+                  textScaler: TextScaler.linear(1),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
             ),
           ),
         ],

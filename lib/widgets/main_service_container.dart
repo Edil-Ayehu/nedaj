@@ -21,11 +21,13 @@ class MainServiceContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: size.width * 0.29,
-        height: 160,
+        width: size.width * 0.3,
+        height: 170,
         padding: EdgeInsets.only(
           left: 8,
           right: 8,
+          top: 6,
+          bottom: 4,
         ),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -44,15 +46,19 @@ class MainServiceContainer extends StatelessWidget {
               FittedBox(
                 fit: BoxFit.contain,
                 child: Text(title,
+                    textScaler: TextScaler.linear(1),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
-                          fontSize: 22,
+                          fontSize: 20,
                         )),
               ),
               SizedBox(height: 6),
               Text(
                 description,
+                textScaler: TextScaler.linear(1),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),

@@ -200,7 +200,10 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Scan QR'),
+        title: const Text(
+          'Scan QR',
+          textScaler: TextScaler.linear(1),
+        ),
       ),
       body: Theme(
         data: ThemeData(
@@ -209,6 +212,7 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
         child: Stepper(
           elevation: 0,
           connectorColor: WidgetStatePropertyAll(Colors.green),
+          stepIconMargin: EdgeInsets.symmetric(vertical: 12, horizontal: 0),
           type: StepperType.horizontal,
           physics: const ScrollPhysics(),
           onStepTapped: onStepTapped,
@@ -267,8 +271,9 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
       ),
       label: Text(
         'Add Amount',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 13,
+          fontSize: 15,
           color: currentStep == 0 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -285,6 +290,7 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
           Gap(80),
           Text(
             'Enter Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(20),
@@ -293,7 +299,7 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
             child: TextField(
               controller: _controller,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontSize: 40,
+                    fontSize: 30,
                   ),
               cursorColor: Colors.grey.shade700,
               autofocus: true,
@@ -304,11 +310,11 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
                 contentPadding: EdgeInsets.only(left: 50),
                 suffixText: 'Birr',
                 suffixStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.grey,
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 border: OutlineInputBorder(borderSide: BorderSide.none),
               ),
@@ -332,8 +338,9 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
       title: const Text(''),
       label: Text(
         'Basic Info.',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 13,
+          fontSize: 15,
           color: currentStep == 1 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 1 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -341,7 +348,9 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Select a car'),
+          Text('Select a car',
+              textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.bodyLarge),
           Gap(15),
           TextField(
             readOnly: true,
@@ -361,7 +370,9 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
             onTap: _showCarSelectionBottomSheet,
           ),
           Gap(20),
-          Text('Fuel Type'),
+          Text('Fuel Type',
+              textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.bodyLarge),
           Gap(15),
           TextField(
             readOnly: true,
@@ -395,8 +406,9 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
       title: const Text(''),
       label: Text(
         'Completed',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
-          fontSize: 13,
+          fontSize: 15,
           color: currentStep == 2 ? Colors.green : Colors.grey,
           fontWeight: currentStep == 2 ? FontWeight.bold : FontWeight.normal,
         ),
@@ -418,6 +430,7 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
           Gap(50),
           Text(
             'You have paid successfully!',
+            textScaler: TextScaler.linear(1),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w900,
@@ -436,9 +449,13 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
               children: [
                 Row(
                   children: [
-                    Text('FT Number: '),
+                    Text(
+                      'FT Number: ',
+                      textScaler: TextScaler.linear(1),
+                    ),
                     Text(
                       '3084983',
+                      textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ],
@@ -449,11 +466,13 @@ class _PayByQrScanPageState extends State<PayByQrScanPage> {
           Gap(60),
           Text(
             'Fuel Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(10),
           Text(
             '$_enteredAmount Birr',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(),
           ),
         ],

@@ -33,20 +33,20 @@ class StationContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  stationName,
+                  stationName,textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(height: 4),
                 Row(
                   children: [
                     Text(
-                      'ID: ',
+                      'ID: ',textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.grey.shade600,
                           ),
                     ),
                     Text(
-                      stationID,
+                      stationID,textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.grey.shade600,
                           ),

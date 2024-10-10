@@ -39,14 +39,16 @@ class TransactionContainer extends StatelessWidget {
                 ), // Upward arrow, rotated to north-east
               ),
             ),
-            SizedBox(width: 10),
+            Gap(16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(transactionId,
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium),
                 Text(
                   fuelType,
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey,
                         fontSize: 17,
@@ -59,12 +61,14 @@ class TransactionContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text('+ETB $amount',
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium),
                 Text(
                   formattedDate,
+                  textScaler: TextScaler.linear(1),
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 17,
+                    fontSize: 16,
                   ),
                 ),
               ],

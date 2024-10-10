@@ -72,13 +72,17 @@ class HomeScreen extends StatelessWidget {
                                   imageUrl:
                                       'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D',
                                   boxFit: BoxFit.cover,
-                                  errorWidget:
-                                      Icon(Icons.error, color: Colors.red),
+                                  errorWidget: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white70,
+                                    ),
+                                    child: Icon(Icons.error, color: Colors.red),
+                                  ),
                                   shimmerDuration: Duration(seconds: 2),
                                   shimmerBaseColor: Colors.grey[300]!,
                                   shimmerHighlightColor: Colors.white,
-                                  width: 80,
-                                  height: 80,
+                                  width: 70,
+                                  height: 70,
                                 ),
                               ),
                               Gap(10),
@@ -88,21 +92,25 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   Text(
                                     'welcome'.tr,
+                                    textScaler: TextScaler.linear(1),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
                                             color: Colors.white,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.w200),
                                   ),
                                   Text(
                                     'Aschalew G Tesfa',
+                                    textScaler: TextScaler.linear(1),
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleMedium!
                                         .copyWith(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
+                                          fontSize: 22,
                                         ),
                                   ),
                                 ],
@@ -127,7 +135,7 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       height: 40,
                       width: size.width * 0.35,
-                      padding: EdgeInsets.symmetric(horizontal: 6),
+                      padding: EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
                         color: Colors.green.withOpacity(0.6),
                         borderRadius: BorderRadius.circular(8),
@@ -137,9 +145,10 @@ class HomeScreen extends StatelessWidget {
                         fit: BoxFit.contain,
                         child: Text(
                           'Account is Linked',
+                          textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.white,
+                                    color: Colors.white.withOpacity(0.9),
                                     fontWeight: FontWeight.w100,
                                     fontSize: 16,
                                   ),
@@ -149,12 +158,14 @@ class HomeScreen extends StatelessWidget {
                     Gap(15),
                     Text(
                       'collected_points'.tr,
+                      textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.white,
+                            color: Colors.white.withOpacity(0.9),
                           ),
                     ),
                     Text(
                       '532 Pt',
+                      textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             color: Colors.white,
                           ),
@@ -165,9 +176,9 @@ class HomeScreen extends StatelessWidget {
 
               // the second container
               Transform.translate(
-                offset: Offset(0, -30),
+                offset: Offset(0, -25),
                 child: Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 20),
+                  padding: EdgeInsets.only(left: 10, right: 10, top: 20),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Color(0xFFF4F4F4),
@@ -225,7 +236,10 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 14),
                       Text(
                         'other_services'.tr,
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        textScaler: TextScaler.linear(1),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 22,
+                            ),
                       ),
                       SizedBox(height: 10),
 
@@ -266,7 +280,10 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 18),
                       Text(
                         'recent_history'.tr,
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        textScaler: TextScaler.linear(1),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 22,
+                            ),
                       ),
                       SizedBox(height: 10),
                       Container(
@@ -280,7 +297,7 @@ class HomeScreen extends StatelessWidget {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.zero,
-                          itemCount: transactionHistory.length,
+                          itemCount: 4,
                           itemBuilder: (context, index) {
                             final transaction = transactionHistory[index];
                             return Column(

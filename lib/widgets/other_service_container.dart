@@ -5,10 +5,10 @@ class OtherServiceContainer extends StatelessWidget {
   final String title;
   final String description;
   final VoidCallback onTap;
-  const OtherServiceContainer({ 
+  const OtherServiceContainer({
     super.key,
     required this.icon,
-    required this.title, 
+    required this.title,
     required this.description,
     required this.onTap,
   });
@@ -31,18 +31,24 @@ class OtherServiceContainer extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style: Theme.of(context).textTheme.bodyMedium),
-                Text(
-                  description,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Text(
+                    textScaler: TextScaler.linear(1),
+                    description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

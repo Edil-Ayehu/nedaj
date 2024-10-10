@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nedaj/export.dart';
 
 class CustomKeyboardWithButton extends StatelessWidget {
   final ValueSetter<String> onTextInput;
@@ -23,7 +24,7 @@ class CustomKeyboardWithButton extends StatelessWidget {
     return Container(
       color: Colors.grey[200],
       width: double.infinity,
-      padding: EdgeInsets.only(right: 15, top: 10, bottom: 8),
+      padding: EdgeInsets.only(right: 10, top: 10, bottom: 8),
       child: Row(
         children: [
           // Number pad section
@@ -34,8 +35,11 @@ class CustomKeyboardWithButton extends StatelessWidget {
               child: Column(
                 children: [
                   _buildKeyboardRow(['1', '2', '3']),
+                  Gap(3),
                   _buildKeyboardRow(['4', '5', '6']),
+                  Gap(3),
                   _buildKeyboardRow(['7', '8', '9']),
+                  Gap(3),
                   _buildKeyboardRow(['-', '0', 'backspace']),
                 ],
               ),
@@ -48,18 +52,22 @@ class CustomKeyboardWithButton extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onGenerate,
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.zero,
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
                   backgroundColor: Colors.green,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
                 ),
-                child: Text(
-                  buttonText,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: Colors.white),
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    buttonText,
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: Colors.white),
+                  ),
                 ),
               ),
             ),
@@ -90,11 +98,15 @@ class CustomKeyboardWithButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         backgroundColor: Colors.white,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       ),
-      child: Text(
-        label,
-        style: const TextStyle(fontSize: 24, color: Colors.black),
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Text(
+          label,
+          textScaler: TextScaler.linear(1),
+          style: const TextStyle(fontSize: 22, color: Colors.black),
+        ),
       ),
     );
   }
@@ -103,9 +115,11 @@ class CustomKeyboardWithButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onBackspace,
       style: ElevatedButton.styleFrom(
-        shape: const RoundedRectangleBorder(), // Consistent shape
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ), // Consistent shape
         backgroundColor: Colors.white,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       ),
       child: const Icon(Icons.backspace, color: Colors.black),
     );

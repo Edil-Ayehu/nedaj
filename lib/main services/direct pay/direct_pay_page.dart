@@ -204,7 +204,10 @@ class _DirectPayPageState extends State<DirectPayPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Pay By ID'),
+        title: const Text(
+          'Pay By ID',
+          textScaler: TextScaler.linear(1),
+        ),
       ),
       body: Theme(
         data: ThemeData(
@@ -214,6 +217,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
           elevation: 0,
           connectorColor: WidgetStatePropertyAll(Colors.green),
           type: StepperType.horizontal,
+          stepIconMargin: EdgeInsets.symmetric(vertical: 12, horizontal: 0),
           physics: const ScrollPhysics(),
           onStepTapped: onStepTapped,
           currentStep: currentStep,
@@ -270,6 +274,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
       title: const Text(''),
       label: Text(
         'Completed',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
           fontSize: 13,
           color: currentStep == 3 ? Colors.green : Colors.grey,
@@ -279,7 +284,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Gap(90),
+          Gap(80),
           Center(
             child: Transform.scale(
               scale: 2.0,
@@ -293,15 +298,17 @@ class _DirectPayPageState extends State<DirectPayPage> {
           Gap(50),
           Text(
             'You have paid successfully!',
+            textScaler: TextScaler.linear(1),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w900,
+                  fontSize: 30,
                 ),
           ),
           Gap(30),
           Container(
             width: size.width * 0.7,
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 6),
             decoration: BoxDecoration(
               color: Color(0xffFAFAFA),
               borderRadius: BorderRadius.circular(12),
@@ -309,14 +316,14 @@ class _DirectPayPageState extends State<DirectPayPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Text('FT Number: '),
-                    Text(
-                      '3084983',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
+                Text(
+                  'FT Number: ',
+                  textScaler: TextScaler.linear(1),
+                ),
+                Text(
+                  '3084983',
+                  textScaler: TextScaler.linear(1),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
             ),
@@ -324,11 +331,13 @@ class _DirectPayPageState extends State<DirectPayPage> {
           Gap(60),
           Text(
             'Fuel Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(10),
           Text(
             '$_enteredAmount Birr',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(),
           ),
           // Text(
@@ -350,6 +359,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
       title: const Text(''),
       label: Text(
         'Basic Info.',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
           fontSize: 13,
           color: currentStep == 2 ? Colors.green : Colors.grey,
@@ -359,7 +369,10 @@ class _DirectPayPageState extends State<DirectPayPage> {
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Select a car'),
+          Text(
+            'Select a car',
+            textScaler: TextScaler.linear(1),
+          ),
           Gap(15),
           TextField(
             readOnly: true,
@@ -379,7 +392,10 @@ class _DirectPayPageState extends State<DirectPayPage> {
             onTap: _showCarSelectionBottomSheet,
           ),
           Gap(20),
-          Text('Fuel Type'),
+          Text(
+            'Fuel Type',
+            textScaler: TextScaler.linear(1),
+          ),
           Gap(15),
           TextField(
             readOnly: true,
@@ -416,6 +432,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
       ),
       label: Text(
         'Add Amount',
+        textScaler: TextScaler.linear(1),
         style: TextStyle(
           fontSize: 13,
           color: currentStep == 1 ? Colors.green : Colors.grey,
@@ -434,6 +451,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
           Gap(80),
           Text(
             'Enter Amount',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
           Gap(20),
@@ -449,15 +467,15 @@ class _DirectPayPageState extends State<DirectPayPage> {
               focusNode: _focusNode, // Assign the FocusNode
               readOnly: true, // Make the TextField read-only
               decoration: InputDecoration(
-                hintText: '00 Birr',
+                hintText: '0 Birr',
                 contentPadding: EdgeInsets.only(left: 50),
                 suffixText: 'Birr',
                 suffixStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: Colors.grey,
-                      fontSize: 40,
+                      fontSize: 30,
                     ),
                 border: OutlineInputBorder(borderSide: BorderSide.none),
               ),
@@ -484,6 +502,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
       ),
       label: Text(
         'Payment Code',
+        textScaler: TextScaler.linear(1),
         maxLines: 2,
         style: TextStyle(
           fontSize: 13,
@@ -497,21 +516,23 @@ class _DirectPayPageState extends State<DirectPayPage> {
           Gap(120),
           Text(
             'Enter 6-Digit Payment Code',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
           ),
+          Gap(25),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               6,
               (index) {
                 return Container(
-                  width: size.width * 0.1, // Set width for each digit box
-                  margin: EdgeInsets.symmetric(
-                      horizontal: 4.0), // Spacing between boxes
+                  width: size.width * 0.12, // Set width for each digit box
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.symmetric(horizontal: 4.0),
                   child: TextField(
                     controller: _controllers[index],
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontSize: 40,
+                          fontSize: 30,
                         ),
                     cursorColor: Colors.grey.shade700,
                     autofocus: true,
@@ -523,7 +544,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
                       hintStyle:
                           Theme.of(context).textTheme.titleLarge!.copyWith(
                                 color: Colors.grey,
-                                fontSize: 40,
+                                fontSize: 30,
                               ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -551,7 +572,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
               },
             ),
           ),
-          Gap(20),
+          Gap(30),
           CustomButton(
             buttonText: 'Continue',
             onPressed: _continueButtonPressed,
