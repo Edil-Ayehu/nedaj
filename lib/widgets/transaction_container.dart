@@ -45,13 +45,16 @@ class TransactionContainer extends StatelessWidget {
               children: [
                 Text(transactionId,
                     textScaler: TextScaler.linear(1),
-                    style: Theme.of(context).textTheme.bodyMedium),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontSize: 16)),
                 Text(
                   fuelType,
                   textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey,
-                        fontSize: 17,
+                        fontSize: 16,
                       ),
                 ),
               ],
@@ -62,13 +65,15 @@ class TransactionContainer extends StatelessWidget {
               children: [
                 Text('+ETB $amount',
                     textScaler: TextScaler.linear(1),
-                    style: Theme.of(context).textTheme.bodyMedium),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 16,
+                        )),
                 Text(
                   formattedDate,
                   textScaler: TextScaler.linear(1),
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 16,
+                    fontSize: 15,
                   ),
                 ),
               ],

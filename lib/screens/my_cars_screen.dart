@@ -19,7 +19,7 @@ class MyCarsPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 50.0, left: 20),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Get.back();
                 },
                 child: Container(
                   width: 40,
@@ -71,11 +71,13 @@ class MyCarsPage extends StatelessWidget {
                 textScaler: TextScaler.linear(1),
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Colors.black54,
+                      fontSize: 15,
                     ),
               ),
             ),
             Gap(16),
-            // registered car container
+
+            // list of registered cars
 
             Expanded(
               child: ListView.builder(

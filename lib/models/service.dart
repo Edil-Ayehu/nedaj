@@ -32,7 +32,11 @@ class Service {
         description: 'Your registered cars listed here.',
         icon: Icons.pin,
         onTap: () {
-          Get.to(() => OtpScreen());
+          Get.to(
+            () => OtpScreen(),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 200),
+          );
         },
       ),
       Service(
@@ -40,7 +44,11 @@ class Service {
         description: 'Your registered cars listed here.',
         icon: CupertinoIcons.car_detailed,
         onTap: () {
-          Get.to(() => MyCarsPage());
+          Get.to(
+            () => MyCarsPage(),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 200),
+          );
         },
       ),
       Service(
@@ -48,7 +56,11 @@ class Service {
         description: 'You can give a tip for an attendant.',
         icon: Icons.tips_and_updates_outlined,
         onTap: () {
-          Get.to(() => TipsScreen());
+          Get.to(
+            () => TipsScreen(),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 200),
+          );
         },
       ),
       Service(

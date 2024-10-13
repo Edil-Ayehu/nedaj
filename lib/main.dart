@@ -1,9 +1,10 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Get the application documents directory
-  final appDocumentDir = await getApplicationDocumentsDirectory(); 
+  final appDocumentDir = await getApplicationDocumentsDirectory();
 
   // Initialize Hive with the app documents directory 
   await Hive.initFlutter(appDocumentDir.path);
@@ -35,7 +36,11 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'), // Fallback locale in case of an error
       title: 'app_name'.tr, // Use translation
       theme: AppTheme.lightTheme,  
-      home: Home(),
+       initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(), // Show splash screen initially
+        '/home': (context) => HomeScreen(), // Your home screen
+      },
     );
   }
 } 

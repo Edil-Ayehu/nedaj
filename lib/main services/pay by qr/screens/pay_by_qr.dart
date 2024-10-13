@@ -1,5 +1,4 @@
-import 'dart:io';
-import 'package:nedaj/export.dart';
+import 'package:nedaj/export.dart'; // Assuming this contains the necessary imports
 
 class PayByQr extends StatefulWidget {
   const PayByQr({super.key});
@@ -8,52 +7,104 @@ class PayByQr extends StatefulWidget {
   _PayByQrState createState() => _PayByQrState();
 }
 
-class _PayByQrState extends State<PayByQr> {
+class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
   String? gasStationName;
   String? gasStationID;
   bool isScanQRSelected = true; // By default, "Scan QR" is selected.
+  bool cameraPermissionGranted = false; // Track if permission is granted
+  bool isListenerAttached = false; // Track if the listener is attached
 
   @override
   void initState() {
     super.initState();
-    _requestCameraPermission();
-    // Reset the scanned data when the screen is initialized
-    gasStationName = null;
-    gasStationID = null;
-  }
-
-  Future<void> _requestCameraPermission() async {
-    var status = await Permission.camera.status;
-    if (!status.isGranted) {
-      var result = await Permission.camera.request();
-      if (result.isGranted) {
-        // Permission granted, proceed with scanning
-      } else {
-        // Permission denied, handle appropriately
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Camera permission is required")),
-        );
-      }
-    }
+    WidgetsBinding.instance.addObserver(this);
+    _checkPermissionAndInitializeCamera();
   }
 
   @override
   void dispose() {
     controller?.dispose();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Check camera permission when the app is resumed
+      _checkPermissionAndRestartScanner();
     }
-    else if (Platform.isIOS) {
-      controller!.resumeCamera();
+  }
+
+  Future<void> _checkPermissionAndInitializeCamera() async {
+    var status = await Permission.camera.status;
+
+    if (status.isGranted) {
+      setState(() {
+        cameraPermissionGranted = true;
+      });
+    } else if (status.isPermanentlyDenied) {
+      // Permission is permanently denied, show dialog to guide user to app settings
+      _showPermissionDialog();
+    } else {
+      // Request permission if it's not permanently denied
+      var result = await Permission.camera.request();
+      if (result.isGranted) {
+        setState(() {
+          cameraPermissionGranted = true;
+        });
+      } else if (result.isPermanentlyDenied) {
+        _showPermissionDialog();
+      } else {
+        // Permission denied
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Camera permission is required to scan QR codes"),
+          ),
+        );
+      }
     }
+  }
+
+  Future<void> _checkPermissionAndRestartScanner() async {
+    var status = await Permission.camera.status;
+
+    if (status.isGranted) {
+      setState(() {
+        cameraPermissionGranted = true;
+      });
+      await controller?.resumeCamera();
+    } else {
+      _checkPermissionAndInitializeCamera();
+    }
+  }
+
+  void _showPermissionDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Permission Required'),
+        content: Text(
+            'Camera permission is permanently denied. Please enable it in the app settings to scan QR codes.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              openAppSettings();
+              Navigator.pop(context);
+            },
+            child: Text('Open Settings'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -62,22 +113,24 @@ class _PayByQrState extends State<PayByQr> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
-        statusBarIconBrightness: Brightness.light, // For light icons
-        statusBarBrightness: Brightness.dark, // For dark background
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
       ),
       child: Scaffold(
         body: Stack(
           children: [
-            QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
-              overlay: QrScannerOverlayShape(
-                borderWidth: 0,
-                borderRadius: 10,
-                borderLength: 20,
-                cutOutSize: size.width * 0.8,
+            // QR Scanner if permission is granted
+            if (cameraPermissionGranted)
+              QRView(
+                key: qrKey,
+                onQRViewCreated: _onQRViewCreated,
+                overlay: QrScannerOverlayShape(
+                  borderWidth: 0,
+                  borderRadius: 10,
+                  borderLength: 20,
+                  cutOutSize: size.width * 0.8,
+                ),
               ),
-            ),
 
             // Top Switch for Scan QR / Generate QR
             Positioned(
@@ -135,7 +188,6 @@ class _PayByQrState extends State<PayByQr> {
                           setState(() {
                             isScanQRSelected = true; // Set back to "Scan QR"
                           });
-                          // Stop the camera before navigating
                           await controller?.resumeCamera();
                         });
                       }
@@ -162,7 +214,7 @@ class _PayByQrState extends State<PayByQr> {
               ),
             ),
 
-            // Cancel Button at the bottom
+            // Cancel Button (always visible)
             Positioned(
               bottom: 20,
               left: size.width * 0.1,
@@ -184,12 +236,22 @@ class _PayByQrState extends State<PayByQr> {
     setState(() {
       this.controller = controller;
     });
-
-    controller.scannedDataStream.listen((scanData) {
-      final data = scanData.code; // Get the QR code data
-      _handleScanData(data);
-    });
+    // Attach the listener only once
+    if (!isListenerAttached) {
+      controller.scannedDataStream.listen((scanData) {
+        final data = scanData.code; // Get the QR code data
+        _handleScanData(data); // Handle the scan data
+      });
+      isListenerAttached = true;
+    }
   }
+
+  // void _startScanListener() {
+  //   controller?.scannedDataStream.listen((scanData) {
+  //     final data = scanData.code; // Get the QR code data
+  //     _handleScanData(data); // Handle the scan data
+  //   });
+  // }
 
   void _handleScanData(String? data) async {
     if (data != null) {
@@ -202,22 +264,14 @@ class _PayByQrState extends State<PayByQr> {
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: Colors.black,
-            content: Text(
-              'Data Scanned Successfully',
-              textScaler: TextScaler.linear(1),
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Colors.white,
-                  ),
-            ),
+            content: Text('Data Scanned Successfully'),
           ),
         );
 
-        // Optionally, you can pause the scanner once the data is scanned
-        controller?.dispose();
+        await controller?.pauseCamera(); // Pause the camera before navigating
 
-        // Navigate to PayByQrScanPage page with the scanned information
-        Navigator.push(
+        // controller?.dispose();
+        await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => PayByQrScanPage(
@@ -225,14 +279,16 @@ class _PayByQrState extends State<PayByQr> {
               gasStationID: gasStationID!,
             ),
           ),
-        ).then((_) {
-          // Clear the scanned data and resume the camera when returning
-          setState(() {
-            gasStationName = null; // Clear the previous scan
-            gasStationID = null; // Clear the previous scan
-          });
-          controller?.resumeCamera(); // Resume the camera for a new scan
+        );
+
+        // Reset values after returning from the page
+        setState(() {
+          gasStationName = null;
+          gasStationID = null;
         });
+
+        // Resume the camera and reattach the scan listener when returning to the page
+        await controller?.resumeCamera();
       }
     }
   }

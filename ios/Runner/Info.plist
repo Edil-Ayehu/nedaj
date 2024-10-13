@@ -25,7 +25,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string></string>
 	<key>NSDocumentsFolderUsageDescription</key>
 <string>We need access to your documents folder to store app data.</string>
 	<key>UIMainStoryboardFile</key>

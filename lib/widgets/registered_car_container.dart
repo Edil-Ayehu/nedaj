@@ -17,7 +17,7 @@ class RegisteredCarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
       margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -25,7 +25,9 @@ class RegisteredCarContainer extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(child: Icon(CupertinoIcons.car_detailed, size: 50)),
+          Expanded(
+            child: Icon(CupertinoIcons.car_detailed, size: 50),
+          ),
           Gap(25),
           Expanded(
             flex: 5,
@@ -38,7 +40,7 @@ class RegisteredCarContainer extends StatelessWidget {
                       'Added on: ',
                       textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                     ),
                     Flexible(
@@ -50,7 +52,7 @@ class RegisteredCarContainer extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: Colors.green,
-                                    fontSize: 16,
+                                    fontSize: 15,
                                   ),
                         ),
                       ),
@@ -64,7 +66,7 @@ class RegisteredCarContainer extends StatelessWidget {
                       'Code: ',
                       textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                     ),
                     Text(
@@ -72,7 +74,7 @@ class RegisteredCarContainer extends StatelessWidget {
                       textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.green,
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                     ),
                   ],
@@ -84,7 +86,7 @@ class RegisteredCarContainer extends StatelessWidget {
                       'Region: ',
                       textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                     ),
                     Text(
@@ -92,7 +94,7 @@ class RegisteredCarContainer extends StatelessWidget {
                       textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.green,
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                     ),
                   ],

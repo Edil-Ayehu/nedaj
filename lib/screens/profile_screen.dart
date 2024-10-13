@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nedaj/controllers/permission_controller.dart';
+import 'package:get/get.dart';
 import 'package:nedaj/export.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,9 +14,12 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final LanguageController languageController = Get.find<LanguageController>();
+  final PermissionController permissionController =
+      Get.put(PermissionController());
 
   final ImagePicker _picker = ImagePicker(); // Initialize ImagePicker
   XFile? _selectedImage; // Store the selected image
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -307,8 +313,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.photo_library),
-                title: Text('Select from Gallery'),
+                leading: Icon(Icons.image),
+                title: Text('Choose from gallery'),
                 onTap: () {
                   _selectFromGallery();
                   Navigator.pop(context);
@@ -321,47 +327,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // Function to take a photo using the camera
+  // Function to pick an image
   Future<void> _takePhoto() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
-    if (image != null) {
-      setState(() {
-        _selectedImage = image;
-      });
-    }
-  }
-
-  // Function to select a photo from the gallery
-  Future<void> _selectFromGallery() async {
-    // Check and request permission first
-    var status = await Permission.photos.status;
-    if (!status.isGranted) {
-      status = await Permission.photos.request();
-    }
-
-    // Only proceed if the permission is granted
-    if (status.isGranted) {
-      // Open the gallery to select a single image
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-      if (image != null) {
+    bool isGranted = await permissionController
+        .requestCameraPermission(); // Request permission
+    if (isGranted) {
+      XFile? selectedImage =
+          await _picker.pickImage(source: ImageSource.camera);
+      if (selectedImage != null) {
         setState(() {
-          _selectedImage = image;
+          _selectedImage = selectedImage;
         });
       }
     } else {
-      // Handle permission denied scenario (optional)
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Permission to access gallery is denied.')),
-      );
+      _showPermissionDeniedDialog();
     }
   }
 
-  // Request permission to access gallery
-  Future<void> _requestPermission() async {
-    var status = await Permission.photos.status;
-    if (!status.isGranted) {
-      await Permission.photos.request();
+  // Show permission denied dialog
+  // void _showPermissionDeniedDialog(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Permission Denied'),
+  //         content: Text('Please enable camera permission from settings.'),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () => Navigator.of(context).pop(),
+  //             child: Text('OK'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+
+    void _showPermissionDeniedDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Permission Required'),
+        content: Text(
+            'Camera permission is permanently denied. Please enable it in the app settings.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              openAppSettings();
+              Navigator.pop(context);
+            },
+            child: Text('Open Settings'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _selectFromGallery() async {
+    bool isGranted = await permissionController.requestGalleryPermission();
+
+    if (isGranted) {
+      // Open the gallery to pick a single image
+      final pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery, // Opens the gallery
+      );
+
+      // Set the picked image to the state
+      if (pickedFile != null) {
+        setState(() {
+          _selectedImage = pickedFile;
+        });
+      } else {
+        // Handle case where no image was selected
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("No image selected"),
+          ),
+        );
+      }
+    } else {
+      // Handle case where permission is denied
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Gallery permission denied"),
+        ),
+      );
     }
   }
 }

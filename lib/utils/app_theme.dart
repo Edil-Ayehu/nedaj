@@ -30,7 +30,7 @@ class AppTheme {
         color: Colors.black,
         fontFamily: 'Lato',
       ),
-      titleSmall: TextStyle(
+      titleSmall: TextStyle( 
         fontSize: 20,
         color: Colors.black54,
         fontFamily: 'Lato',

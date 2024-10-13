@@ -38,7 +38,9 @@ class OtherServiceContainer extends StatelessWidget {
                   Text(
                     title,
                     textScaler: TextScaler.linear(1),
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 16,
+                        ),
                   ),
                   Text(
                     textScaler: TextScaler.linear(1),
