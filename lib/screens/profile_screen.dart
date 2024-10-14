@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:nedaj/controllers/permission_controller.dart';
 import 'package:nedaj/export.dart';
+import 'package:page_transition/page_transition.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -138,28 +139,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
             text: 'my_cars'.tr,
             icon: CupertinoIcons.car_detailed,
             onTap: () {
-              Get.to(() => MyCarsPage());
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: MyCarsPage(),
+                    inheritTheme: true,
+                    ctx: context),
+              );
             },
           ),
           ProfileInfoContainer(
             text: 'notifications'.tr,
             icon: Icons.notification_add,
             onTap: () {
-              Get.to(() => NotificationsScreen());
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: NotificationsScreen(),
+                    inheritTheme: true,
+                    ctx: context),
+              );
             },
           ),
           ProfileInfoContainer(
             text: 'change_pin'.tr,
             icon: Icons.password,
             onTap: () {
-              Get.to(() => ChangePinScreen());
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: ChangePinScreen(),
+                    inheritTheme: true,
+                    ctx: context),
+              );
             },
           ),
           ProfileInfoContainer(
             text: 'terms_conditions'.tr,
             icon: Icons.password,
             onTap: () {
-              Get.to(() => TermsAndConditionsScreen());
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: TermsAndConditionsScreen(),
+                    inheritTheme: true,
+                    ctx: context),
+              );
             },
           ),
           ProfileInfoContainer(
@@ -215,12 +244,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
-                      child: Text('select_language'.tr,
-                          textScaler: TextScaler.linear(1),
-                          style:
-                              Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                    fontSize: 24,
-                                  ),),
+                      child: Text(
+                        'select_language'.tr,
+                        textScaler: TextScaler.linear(1),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontSize: 24,
+                            ),
+                      ),
                     ),
                   ],
                 ),
@@ -383,6 +413,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
         setState(() {
           _selectedImage = selectedImage;
         });
+      } else {
+        // Handle case where no image was taken
+        Get.snackbar(
+          "",
+          "",
+          titleText: Text(
+            'Error!',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          messageText: Text(
+            'No Image Taken',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.redAccent,
+          colorText: Colors.white,
+          duration: Duration(seconds: 3),
+        );
       }
     } else {
       _showPermissionDeniedDialog();
@@ -431,10 +485,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
         });
       } else {
         // Handle case where no image was selected
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("No image selected"),
+        Get.snackbar(
+          "",
+          "",
+          titleText: Text(
+            'Error!',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
+          messageText: Text(
+            'No image selected',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.redAccent,
+          colorText: Colors.white,
+          duration: Duration(seconds: 3),
         );
       }
     } else {

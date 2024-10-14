@@ -58,11 +58,27 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
       } else if (result.isPermanentlyDenied) {
         _showPermissionDialog();
       } else {
-        // Permission denied
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Camera permission is required to scan QR codes"),
+        Get.snackbar(
+          "",
+          "",
+          titleText: Text(
+            'Permission Required!',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
+          messageText: Text(
+            'Camera permission is required to scan QR codes',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.redAccent,
+          colorText: Colors.white,
+          duration: Duration(seconds: 3),
         );
       }
     }
