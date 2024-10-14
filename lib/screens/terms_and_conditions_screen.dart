@@ -6,13 +6,12 @@ class TermsAndConditionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Terms and Conditions'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text('OTP'),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          CustomAppBar(
+              title: 'Terms and Conditions', height: 100, centerTitle: true),
+        ],
       ),
     );
   }

@@ -7,12 +7,14 @@ class TransactionDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Transaction Details'), 
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text('Transaction Details'),
+      body: Column(
+        children: [
+          CustomAppBar(
+            title: 'Transaction Details',
+            height: 100,
+            centerTitle: true,
+          ),
+        ],
       ),
     );
   }

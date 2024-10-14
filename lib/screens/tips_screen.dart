@@ -6,13 +6,11 @@ class TipsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Tips'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text('Tips'),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          CustomAppBar(title: 'tips'.tr, height: 100, centerTitle: true),
+        ],
       ),
     );
   }

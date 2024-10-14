@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:nedaj/controllers/permission_controller.dart';
-import 'package:get/get.dart';
 import 'package:nedaj/export.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -23,28 +21,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'profile'.tr,
-          textScaler: TextScaler.linear(1),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey.shade100,
+      body: Column(
+        children: [
+          CustomAppBar(title: 'profile'.tr, height: 100),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                ),
+                child: Column(
+                  children: [
+                    Gap(10),
+                    // Profile pic and details
+                    buildProfileDetails(context),
+                    Gap(10),
+                    // Profile Info
+                    buildProfileInfo(context),
+                  ],
+                ),
+              ),
+            ),
           ),
-          child: Column(
-            children: [
-              Gap(10),
-              // Profile pic and details
-              buildProfileDetails(context),
-              Gap(10),
-              // Profile Info
-              buildProfileInfo(context),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }
@@ -344,26 +343,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  // Show permission denied dialog
-  // void _showPermissionDeniedDialog(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text('Permission Denied'),
-  //         content: Text('Please enable camera permission from settings.'),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(),
-  //             child: Text('OK'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
-    void _showPermissionDeniedDialog() {
+  void _showPermissionDeniedDialog() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -413,11 +393,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       }
     } else {
       // Handle case where permission is denied
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Gallery permission denied"),
-        ),
-      );
+      _showPermissionDeniedDialog();
     }
   }
 }

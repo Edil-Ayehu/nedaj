@@ -7,12 +7,10 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('OTP'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text('OTP'),
+      body: Column(
+        children: [
+          CustomAppBar(title: 'otp'.tr, height: 100, centerTitle: true),
+        ],
       ),
     );
   }

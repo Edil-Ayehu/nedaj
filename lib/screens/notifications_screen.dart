@@ -7,12 +7,11 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('Notifications'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text('Notifications'),
+      body: Column(
+        children: [
+          CustomAppBar(
+              title: 'Notifications', height: 100, centerTitle: true),
+        ],
       ),
     );
   }
