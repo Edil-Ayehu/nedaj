@@ -48,4 +48,5 @@ export 'package:nedaj/screens/otp_screen.dart';
 export 'package:nedaj/screens/tips_screen.dart';
 export 'package:nedaj/screens/transaction_details_screen.dart';
 export 'package:nedaj/widgets/custom_app._bar.dart';
+export 'package:nedaj/widgets/custom_bottom_sheet.dart';
 

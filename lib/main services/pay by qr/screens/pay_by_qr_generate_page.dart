@@ -124,22 +124,28 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       context: context,
+      isScrollControlled: true, // This allows better control over the size
       builder: (context) {
-        return ListView.builder(
-          itemCount: _registeredCars.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(_registeredCars[index]),
-              onTap: () {
-                setState(() {
-                  _selectedCar = _registeredCars[index];
-                });
-                Navigator.pop(context); // Close the bottom sheet
-              },
-            );
-          },
+        return CustomBottomSheet(
+          title: 'Select a car',
+          child: ListView.builder(
+            itemCount: _registeredCars.length,
+            shrinkWrap: true,
+            physics:
+                const NeverScrollableScrollPhysics(), // Prevent scrolling in the list
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_registeredCars[index]),
+                onTap: () {
+                  setState(() {
+                    _selectedCar = _registeredCars[index];
+                  });
+                  Navigator.pop(context); // Close the bottom sheet
+                },
+              );
+            },
+          ),
         );
       },
     );
@@ -150,22 +156,26 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       context: context,
+      isScrollControlled: true, // This allows better control over the size
       builder: (context) {
-        return ListView.builder(
-          itemCount: _fuelTypes.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(_fuelTypes[index]),
-              onTap: () {
-                setState(() {
-                  _selectedFuelType = _fuelTypes[index];
-                });
-                Navigator.pop(context); // Close the bottom sheet
-              },
-            );
-          },
+        return CustomBottomSheet(
+          title: 'Select fuel type',
+          child: ListView.builder(
+            itemCount: _fuelTypes.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_fuelTypes[index]),
+                onTap: () {
+                  setState(() {
+                    _selectedFuelType = _fuelTypes[index];
+                  });
+                  Navigator.pop(context); // Close the bottom sheet
+                },
+              );
+            },
+          ),
         );
       },
     );
@@ -270,6 +280,7 @@ class _PayByQrGeneratePageState extends State<PayByQrGeneratePage> {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w900,
+                  fontSize: 28,
                 ),
           ),
           Gap(40),

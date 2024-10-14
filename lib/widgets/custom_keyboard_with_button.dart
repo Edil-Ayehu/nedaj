@@ -118,9 +118,12 @@ class CustomKeyboardWithButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ), // Consistent shape
         backgroundColor: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       ),
-      child: const Icon(Icons.backspace, color: Colors.black),
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: const Icon(Icons.backspace, color: Colors.black),
+      ),
     );
   }
 }

@@ -147,52 +147,64 @@ class _DirectPayPageState extends State<DirectPayPage> {
   }
 
   // Function to show bottom sheet for selecting a car
-  void _showCarSelectionBottomSheet() {
+    void _showCarSelectionBottomSheet() {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       context: context,
+      isScrollControlled: true, // This allows better control over the size
       builder: (context) {
-        return ListView.builder(
-          itemCount: _registeredCars.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(_registeredCars[index]),
-              onTap: () {
-                setState(() {
-                  _selectedCar = _registeredCars[index];
-                });
-                Navigator.pop(context); // Close the bottom sheet
-              },
-            );
-          },
+        return CustomBottomSheet(
+          title: 'Select a car',
+          child: ListView.builder(
+            itemCount: _registeredCars.length,
+            shrinkWrap: true,
+            physics:
+                const NeverScrollableScrollPhysics(), // Prevent scrolling in the list
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_registeredCars[index]),
+                onTap: () {
+                  setState(() {
+                    _selectedCar = _registeredCars[index];
+                  });
+                  Navigator.pop(context); // Close the bottom sheet
+                },
+              );
+            },
+          ),
         );
       },
     );
   }
 
+  
+
   // Function to show bottom sheet for selecting a fuel type
-  void _showFuelTypeSelectionBottomSheet() {
+    void _showFuelTypeSelectionBottomSheet() {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       context: context,
+      isScrollControlled: true, // This allows better control over the size
       builder: (context) {
-        return ListView.builder(
-          itemCount: _fuelTypes.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(_fuelTypes[index]),
-              onTap: () {
-                setState(() {
-                  _selectedFuelType = _fuelTypes[index];
-                });
-                Navigator.pop(context); // Close the bottom sheet
-              },
-            );
-          },
+        return CustomBottomSheet(
+          title: 'Select fuel type',
+          child: ListView.builder(
+            itemCount: _fuelTypes.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_fuelTypes[index]),
+                onTap: () {
+                  setState(() {
+                    _selectedFuelType = _fuelTypes[index];
+                  });
+                  Navigator.pop(context); // Close the bottom sheet
+                },
+              );
+            },
+          ),
         );
       },
     );
@@ -302,7 +314,7 @@ class _DirectPayPageState extends State<DirectPayPage> {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w900,
-                  fontSize: 30,
+                  fontSize: 28,
                 ),
           ),
           Gap(30),

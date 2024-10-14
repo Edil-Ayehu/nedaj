@@ -190,95 +190,141 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (context) {
         return Obx(() {
-          return Container(
-            padding: EdgeInsets.all(20),
+          return SizedBox(
+            width: double.infinity,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('select_language'.tr,
-                    textScaler: TextScaler.linear(1),
-                    style: Theme.of(context).textTheme.bodyLarge),
-                ListTile(
-                  title: Text(
-                    'English',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black54,
-                        ),
-                    textScaler: TextScaler.linear(1),
-                  ),
-                  trailing: languageController.selectedLanguage.value == 'en'
-                      ? Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    languageController.changeLanguage('en', 'US');
-                    Navigator.pop(context);
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 5,
+                      width: 35,
+                      margin: EdgeInsets.only(top: 20, bottom: 15),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ],
                 ),
-                ListTile(
-                  title: Text(
-                    'Amharic',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black54,
-                        ),
-                    textScaler: TextScaler.linear(1),
-                  ),
-                  trailing: languageController.selectedLanguage.value == 'am'
-                      ? Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    languageController.changeLanguage('am', 'ET');
-                    Navigator.pop(context);
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: Text('select_language'.tr,
+                          textScaler: TextScaler.linear(1),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontSize: 24,
+                                  ),),
+                    ),
+                  ],
                 ),
-                ListTile(
-                  title: Text(
-                    'Afaan Oromoo',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black54,
-                        ),
-                    textScaler: TextScaler.linear(1),
-                  ),
-                  trailing: languageController.selectedLanguage.value == 'or'
-                      ? Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    languageController.changeLanguage('or', 'ET');
-                    Navigator.pop(context);
-                  },
+                Gap(10),
+                Divider(
+                  color: Colors.grey.shade400,
                 ),
-                ListTile(
-                  title: Text(
-                    'Tigrigna',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black54,
-                        ),
-                    textScaler: TextScaler.linear(1),
+                Gap(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    title: Text(
+                      'English',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                          ),
+                      textScaler: TextScaler.linear(1),
+                    ),
+                    trailing: languageController.selectedLanguage.value == 'en'
+                        ? Icon(Icons.check, color: Colors.green)
+                        : null,
+                    onTap: () {
+                      languageController.changeLanguage('en', 'US');
+                      Navigator.pop(context);
+                    },
                   ),
-                  trailing: languageController.selectedLanguage.value == 'ti'
-                      ? Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    languageController.changeLanguage('ti', 'ET');
-                    Navigator.pop(context);
-                  },
                 ),
-                ListTile(
-                  title: Text(
-                    'Soomaali',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black54,
-                        ),
-                    textScaler: TextScaler.linear(1.1),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    title: Text(
+                      'Amharic',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                          ),
+                      textScaler: TextScaler.linear(1),
+                    ),
+                    trailing: languageController.selectedLanguage.value == 'am'
+                        ? Icon(Icons.check, color: Colors.green)
+                        : null,
+                    onTap: () {
+                      languageController.changeLanguage('am', 'ET');
+                      Navigator.pop(context);
+                    },
                   ),
-                  trailing: languageController.selectedLanguage.value == 'so'
-                      ? Icon(Icons.check, color: Colors.green)
-                      : null,
-                  onTap: () {
-                    languageController.changeLanguage('so', 'SO');
-                    Navigator.pop(context);
-                  },
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    title: Text(
+                      'Afaan Oromoo',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                          ),
+                      textScaler: TextScaler.linear(1),
+                    ),
+                    trailing: languageController.selectedLanguage.value == 'or'
+                        ? Icon(Icons.check, color: Colors.green)
+                        : null,
+                    onTap: () {
+                      languageController.changeLanguage('or', 'ET');
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    title: Text(
+                      'Tigrigna',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                          ),
+                      textScaler: TextScaler.linear(1),
+                    ),
+                    trailing: languageController.selectedLanguage.value == 'ti'
+                        ? Icon(Icons.check, color: Colors.green)
+                        : null,
+                    onTap: () {
+                      languageController.changeLanguage('ti', 'ET');
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: ListTile(
+                    title: Text(
+                      'Soomaali',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                          ),
+                      textScaler: TextScaler.linear(1.1),
+                    ),
+                    trailing: languageController.selectedLanguage.value == 'so'
+                        ? Icon(Icons.check, color: Colors.green)
+                        : null,
+                    onTap: () {
+                      languageController.changeLanguage('so', 'SO');
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                Gap(10),
               ],
             ),
           );
