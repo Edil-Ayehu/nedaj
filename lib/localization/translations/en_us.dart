@@ -10,7 +10,7 @@ const Map<String, String> enUS = {
   "language": "Language",
   "logout": "Logout",
   "change_pin": "Change PIN",
-  "select_language": "Select Language",
+  "select_language": "Change Language",
   "otp": "OTP",
   "tips": "Tips",
   "fuel_stations": "Fuel Stations",

@@ -262,13 +262,6 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
     }
   }
 
-  // void _startScanListener() {
-  //   controller?.scannedDataStream.listen((scanData) {
-  //     final data = scanData.code; // Get the QR code data
-  //     _handleScanData(data); // Handle the scan data
-  //   });
-  // }
-
   void _handleScanData(String? data) async {
     if (data != null) {
       final parts = data.split(',');

@@ -8,33 +8,38 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(title: 'profile'.tr, height: 100),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                ),
-                child: Column(
-                  children: [
-                    Gap(10),
-                    // Profile pic and details
-                    UserProfileDetails(),
-                    Gap(10),
-                    // Profile Info
-                    ProfilePageSecondContainer(),
-                  ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarIconBrightness: Brightness.dark, 
+        statusBarBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        body: Column(
+          children: [
+            CustomAppBar(title: 'profile'.tr, height: 100),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                  ),
+                  child: Column(
+                    children: [
+                      Gap(10),
+                      // Profile pic and details
+                      UserProfileDetails(),
+                      Gap(10),
+                      // Profile Info
+                      ProfilePageSecondContainer(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
