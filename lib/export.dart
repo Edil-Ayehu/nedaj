@@ -6,7 +6,7 @@ export 'package:nedaj/home.dart';
 export 'package:nedaj/widgets/main_service_container.dart';
 export 'package:nedaj/widgets/other_service_container.dart';
 export 'package:nedaj/screens/transactions_screen.dart';
-export 'package:nedaj/screens/profile_screen.dart';
+export 'package:nedaj/screens/profile%20screen/profile_screen.dart';
 export 'package:nedaj/screens/home%20screen/home_screen.dart';
 export 'package:gap/gap.dart';
 export 'package:nedaj/models/service.dart';
@@ -53,3 +53,6 @@ export 'package:nedaj/screens/home%20screen/widgets/user_info_gradient_container
 export 'package:nedaj/screens/home%20screen/widgets/main_services_container.dart';
 export 'package:nedaj/screens/home%20screen/widgets/other_services_list_container.dart';
 export 'package:nedaj/screens/home%20screen/widgets/recent_history_list_container.dart';
+export 'package:page_transition/page_transition.dart';
+export 'package:nedaj/screens/profile%20screen/widgets/profile_page_second_container.dart';
+export 'package:nedaj/screens/profile%20screen/widgets/user_profile_details.dart';
