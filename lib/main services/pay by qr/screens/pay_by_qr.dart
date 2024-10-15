@@ -250,14 +250,7 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
   }
 
   Future<void> _checkPermissionAndRestartScanner() async {
-    if (_isShowingPermissionDialog) return;
-
-    var status = await Permission.camera.status;
-
-    if (status.isGranted) {
-      setState(() {
-        cameraPermissionGranted = true;
-      });
+    if (cameraPermissionGranted) {
       await controller?.resumeCamera();
     } else {
       _checkPermissionAndInitializeCamera();
@@ -286,12 +279,6 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
           gasStationID = parts[1];
         });
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Data Scanned Successfully'),
-          ),
-        );
-
         Get.snackbar(
           "",
           "",
@@ -310,7 +297,7 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
             ),
           ),
           snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.greenAccent,
+          backgroundColor: Colors.green,
           colorText: Colors.white,
           duration: Duration(seconds: 3),
         );
@@ -328,9 +315,6 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
           ),
         );
 
-        controller?.dispose();
-        controller = null;
-
         // Reset values after returning from the page
         setState(() {
           gasStationName = null;
@@ -338,7 +322,7 @@ class _PayByQrState extends State<PayByQr> with WidgetsBindingObserver {
         });
 
         // Resume the camera and reattach the scan listener when returning to the page
-        _checkPermissionAndInitializeCamera();
+        _checkPermissionAndRestartScanner();
       }
     }
   }
