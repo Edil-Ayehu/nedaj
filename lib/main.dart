@@ -1,5 +1,5 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/splash_screen.dart';
+import 'package:nedaj/screens/splash%20screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

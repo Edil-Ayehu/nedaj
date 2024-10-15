@@ -5,12 +5,14 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double width;
   final bool isOutlinedButton;
+  final double borderRadius;
   const CustomButton({
     super.key,
     required this.buttonText,
     required this.onPressed,
     this.width = double.infinity,
     this.isOutlinedButton = false,
+    this.borderRadius = 24,
   });
 
   @override
@@ -21,7 +23,7 @@ class CustomButton extends StatelessWidget {
       decoration: BoxDecoration(
         border:
             Border.all(color: Colors.green, width: isOutlinedButton ? 1 : 0),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
