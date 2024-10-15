@@ -89,11 +89,11 @@ We welcome contributions to Nedaj! If you'd like to contribute, please:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [EagleLion System Technology PLC](LICENSE).
 
 ## Contact
 
-For any queries or support, please contact [Your Contact Information].
+For any queries or support, please contact [edilayehu534027@gmail.com].
 
 ---
 
