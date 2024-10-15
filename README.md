@@ -29,3 +29,72 @@ The project follows a modular structure for easy maintenance and scalability:
 ## Key Components
 
 ### Login Screen
+dart:lib/auth/screens/login_screen.dart
+startLine: 1
+endLine: 101
+
+This screen handles user authentication, providing a sleek interface for users to log in to their accounts.
+
+### Pay By QR Screen
+dart:lib/main services/pay by qr/screens/pay_by_qr.dart
+startLine: 1
+endLine: 329
+
+The central hub for QR-based transactions, allowing users to scan QR codes and initiate the payment process.
+
+### QR Scan Page
+dart:lib/main services/pay by qr/screens/pay_by_qr_scan_page.dart
+startLine: 1
+endLine: 495
+
+Handles the scanning process and guides users through the payment steps.
+
+### QR Generation Page
+dart:lib/main services/pay by qr/screens/pay_by_qr_generate_page.dart
+startLine: 1
+endLine: 440
+
+Enables users to create their own QR codes for payments, offering a flexible payment option.
+
+## Getting Started
+
+To run this project locally:
+
+1. Ensure you have Flutter installed on your machine.
+2. Clone this repository: `git clone [repository-url]`
+3. Navigate to the project directory: `cd nedaj`
+4. Install dependencies: `flutter pub get`
+5. Run the app: `flutter run`
+
+## Dependencies
+
+Key dependencies include:
+- `get`: For state management and navigation
+- `qr_code_scanner`: For QR code scanning functionality
+- `qr_flutter`: For generating QR codes
+- `permission_handler`: To manage device permissions
+- `lottie`: For engaging animations
+
+For a full list of dependencies, refer to the `pubspec.yaml` file.
+
+## Contributing
+
+We welcome contributions to Nedaj! If you'd like to contribute, please:
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a pull request
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+For any queries or support, please contact [Your Contact Information].
+
+---
+
+Thank you for your interest in Nedaj! We hope this application provides a seamless and efficient fuel payment experience for users worldwide.
