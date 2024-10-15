@@ -89,7 +89,7 @@ We welcome contributions to Nedaj! If you'd like to contribute, please:
 
 ## License
 
-This project is licensed under the [EagleLion System Technology PLC](LICENSE).
+This project is licensed under the [EagleLion System Technology PLC](https://www.eaglelionsystems.com/).
 
 ## Contact
 
