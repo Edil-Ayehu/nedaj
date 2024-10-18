@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:nedaj/export.dart';
 
 class ProfilePageSecondContainer extends StatelessWidget {
@@ -19,56 +18,14 @@ class ProfilePageSecondContainer extends StatelessWidget {
       child: Column(
         children: [
           ProfileInfoContainer(
-            text: 'my_cars'.tr,
-            icon: CupertinoIcons.car_detailed,
-            onTap: () {
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: MyCarsPage(),
-                    inheritTheme: true,
-                    ctx: context),
-              );
-            },
-          ),
-          ProfileInfoContainer(
-            text: 'notifications'.tr,
-            icon: Icons.notification_add,
-            onTap: () {
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: NotificationsScreen(),
-                    inheritTheme: true,
-                    ctx: context),
-              );
-            },
-          ),
-          ProfileInfoContainer(
             text: 'change_pin'.tr,
-            icon: Icons.password,
+            icon: Icons.lock,
             onTap: () {
               Navigator.push(
                 context,
                 PageTransition(
                     type: PageTransitionType.rightToLeft,
                     child: ChangePinScreen(),
-                    inheritTheme: true,
-                    ctx: context),
-              );
-            },
-          ),
-          ProfileInfoContainer(
-            text: 'terms_conditions'.tr,
-            icon: Icons.password,
-            onTap: () {
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: TermsAndConditionsScreen(),
                     inheritTheme: true,
                     ctx: context),
               );
@@ -82,8 +39,32 @@ class ProfilePageSecondContainer extends StatelessWidget {
             },
           ),
           ProfileInfoContainer(
+            text: 'Privacy Policy',
+            icon: Icons.privacy_tip,
+            onTap: () {},
+          ),
+          ProfileInfoContainer(
+            text: 'terms_conditions'.tr,
+            icon: Icons.policy,
+            onTap: () {
+              Navigator.push(
+                context,
+                PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: TermsAndConditionsScreen(),
+                    inheritTheme: true,
+                    ctx: context),
+              );
+            },
+          ),
+          ProfileInfoContainer(
+            text: 'About Nedaj',
+            icon: Icons.info,
+            onTap: () {},
+          ),
+          ProfileInfoContainer(
             text: 'unlink_phone'.tr,
-            icon: Icons.password,
+            icon: Icons.phone_android,
             onTap: () {},
           ),
           ProfileInfoContainer(
@@ -96,7 +77,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
     );
   }
 
-    void showLanguageSelectionBottomSheet(BuildContext context) {
+  void showLanguageSelectionBottomSheet(BuildContext context) {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       context: context,

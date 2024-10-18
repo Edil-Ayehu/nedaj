@@ -6,6 +6,7 @@ class CustomAppBar extends StatelessWidget {
   final Color textColor;
   final double height;
   final bool centerTitle;
+  final Widget? trailing;
 
   const CustomAppBar({
     super.key,
@@ -14,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
     this.textColor = Colors.black,
     required this.height,
     this.centerTitle = false,
+    this.trailing,
   });
 
   @override
@@ -51,6 +53,7 @@ class CustomAppBar extends StatelessWidget {
               ],
             ),
           ),
+          trailing ?? SizedBox.shrink(),
         ],
       ),
     );

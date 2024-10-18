@@ -1,3 +1,4 @@
+import 'package:nedaj/auth/screens/signup_screen.dart';
 import 'package:nedaj/export.dart';
 import 'package:nedaj/widgets/custom_textfield.dart';
 
@@ -71,26 +72,32 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Gap(24),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                      text: 'Not Registered Yet?  ',
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Not Registered Yet?',
+                    style: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Gap(4),
+                  GestureDetector(
+                    onTap: () {
+                      Get.off(() => SignupScreen());
+                    },
+                    child: Text(
+                      'Register',
                       style: TextStyle(
-                        color: Colors.grey.shade500,
+                        color: Colors.green,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
-                      children: [
-                        TextSpan(
-                          text: 'Register',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ]),
-                ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

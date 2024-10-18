@@ -61,7 +61,7 @@ Enables users to create their own QR codes for payments, offering a flexible pay
 To run this project locally:
 
 1. Ensure you have Flutter installed on your machine.
-2. Clone this repository: `git clone [repository-url]`
+2. Clone this repository: `git clone [https://github.com/Edil-Ayehu/nedaj]`
 3. Navigate to the project directory: `cd nedaj`
 4. Install dependencies: `flutter pub get`
 5. Run the app: `flutter run`
