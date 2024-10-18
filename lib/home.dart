@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
                     icon: Icon(Icons.local_gas_station_outlined),
                     label: 'home'.tr),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.history), label: 'history'.tr),
+                    icon: Icon(Icons.history), label: 'Transactions'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: 'profile'.tr),
               ],

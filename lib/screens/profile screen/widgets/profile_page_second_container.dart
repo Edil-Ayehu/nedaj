@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/webview_widget.dart';
 
 class ProfilePageSecondContainer extends StatelessWidget {
   ProfilePageSecondContainer({super.key});
@@ -41,26 +42,32 @@ class ProfilePageSecondContainer extends StatelessWidget {
           ProfileInfoContainer(
             text: 'Privacy Policy',
             icon: Icons.privacy_tip,
-            onTap: () {},
+            onTap: () {
+              Get.to(() => WebviewWidget(
+                    url: 'https://www.eaglelionsystems.com/',
+                    title: 'Privacy Policy',
+                  ));
+            },
           ),
           ProfileInfoContainer(
             text: 'terms_conditions'.tr,
             icon: Icons.policy,
             onTap: () {
-              Navigator.push(
-                context,
-                PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: TermsAndConditionsScreen(),
-                    inheritTheme: true,
-                    ctx: context),
-              );
+              Get.to(() => WebviewWidget(
+                    url: 'https://www.eaglelionsystems.com/',
+                    title: 'Terms and Conditions',
+                  ));
             },
           ),
           ProfileInfoContainer(
             text: 'About Nedaj',
             icon: Icons.info,
-            onTap: () {},
+            onTap: () {
+              Get.to(() => WebviewWidget(
+                    url: 'https://www.eaglelionsystems.com/',
+                    title: 'About Nedaj',
+                  ));
+            },
           ),
           ProfileInfoContainer(
             text: 'unlink_phone'.tr,
