@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:nedaj/export.dart';
 
 class Transaction {
@@ -32,7 +33,34 @@ class Transaction {
         transactionId: 'A023219',
         fuelType: 'Gasoil',
         amount: 4500.0,
-        date: DateTime.now(), // June 12, 2024 6:30 AM
+        date: DateTime(2024, 6, 13, 8, 45), // June 12, 2024 6:30 AM
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
+      ),
+      Transaction(
+        transactionId: 'A023219',
+        fuelType: 'Gasoil',
+        amount: 4500.0,
+        date: DateTime(2024, 6, 13, 6, 45), // June 12, 2024 6:30 AM
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
+      ),
+      Transaction(
+        transactionId: 'A023219',
+        fuelType: 'Gasoil',
+        amount: 4500.0,
+        date: DateTime(2024, 6, 13, 3, 40), // June 12, 2024 6:30 AM
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
+      ),
+      Transaction(
+        transactionId: 'A023219',
+        fuelType: 'Gasoil',
+        amount: 4500.0,
+        date: DateTime(2024, 6, 13, 14, 45), // June 12, 2024 6:30 AM
         onTap: () {
           Get.to(() => TransactionDetailsScreen());
         },
@@ -41,7 +69,7 @@ class Transaction {
         transactionId: 'A023220',
         fuelType: 'Petrol',
         amount: 500.0,
-        date: DateTime.now(),
+        date: DateTime(2024, 7, 13, 14, 45),
         onTap: () {
           Get.to(() => TransactionDetailsScreen());
         },
@@ -50,7 +78,7 @@ class Transaction {
         transactionId: 'A023221',
         fuelType: 'Gasoil',
         amount: 400.0,
-        date: DateTime.now(),
+        date: DateTime(2024, 8, 13, 14, 45),
         onTap: () {
           Get.to(() => TransactionDetailsScreen());
         },
@@ -59,7 +87,16 @@ class Transaction {
         transactionId: 'A023222',
         fuelType: 'Gasoil',
         amount: 200.0,
-        date: DateTime.now(),
+        date: DateTime(2024, 9, 13, 3, 48),
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
+      ),
+      Transaction(
+        transactionId: 'A023222',
+        fuelType: 'Gasoil',
+        amount: 200.0,
+        date: DateTime(2024, 9, 13, 1, 05),
         onTap: () {
           Get.to(() => TransactionDetailsScreen());
         },
@@ -68,7 +105,7 @@ class Transaction {
         transactionId: 'A023223',
         fuelType: 'Gasoil',
         amount: 100.0,
-        date: DateTime.now(),
+        date: DateTime(2024, 10, 13, 14, 45),
         onTap: () {
           Get.to(() => TransactionDetailsScreen());
         },
@@ -83,5 +120,37 @@ class Transaction {
         },
       ),
     ];
+  }
+
+  static Map<String, List<Transaction>> groupTransactionsByDate(
+      List<Transaction> transactions) {
+    final Map<String, List<Transaction>> groupedTransactions = {};
+    final now = DateTime.now();
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+
+    // Sort transactions by date in descending order (most recent first)
+    transactions.sort((a, b) => b.date.compareTo(a.date));
+
+    for (var transaction in transactions) {
+      String dateKey;
+      if (transaction.date.year == now.year &&
+          transaction.date.month == now.month &&
+          transaction.date.day == now.day) {
+        dateKey = 'Today';
+      } else if (transaction.date.year == yesterday.year &&
+          transaction.date.month == yesterday.month &&
+          transaction.date.day == yesterday.day) {
+        dateKey = 'Yesterday';
+      } else {
+        dateKey = DateFormat('MMMM d, yyyy').format(transaction.date);
+      }
+
+      if (!groupedTransactions.containsKey(dateKey)) {
+        groupedTransactions[dateKey] = [];
+      }
+      groupedTransactions[dateKey]!.add(transaction);
+    }
+
+    return groupedTransactions;
   }
 }

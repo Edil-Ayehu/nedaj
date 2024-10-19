@@ -19,25 +19,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: Column(
           children: [
             CustomAppBar(
-                title: 'profile'.tr,
-                height: 100,
-                trailing: Container(
-                  margin: EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.1),
-                    shape: BoxShape.circle,
+              title: 'profile'.tr,
+              height: 100,
+              trailing: Container(
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Get.to(() => NotificationsScreen());
+                  },
+                  icon: Icon(
+                    Icons.notifications_none,
+                    size: 25,
+                    color: Colors.green,
                   ),
-                  child: IconButton(
-                    onPressed: () {
-                      Get.to(() => NotificationsScreen());
-                    },
-                    icon: Icon(
-                      Icons.notifications_none,
-                      size: 25,
-                      color: Colors.green,
-                    ), 
-                  ),
-                )),
+                ),
+              ),
+            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(

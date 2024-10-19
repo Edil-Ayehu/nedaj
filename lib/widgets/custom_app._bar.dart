@@ -29,6 +29,7 @@ class CustomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
+            flex: 4,
             child: Row(
               children: [
                 centerTitle
@@ -46,14 +47,19 @@ class CustomAppBar extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: textColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 22,
+                        fontSize: 19,
                       ),
                 ),
                 centerTitle ? Spacer(flex: 3) : SizedBox.shrink(),
               ],
             ),
           ),
-          trailing ?? SizedBox.shrink(),
+
+          // trailing ?? SizedBox.shrink(),
+          Expanded(
+            flex: 1,
+            child: trailing ?? SizedBox.shrink(),
+          ),
         ],
       ),
     );

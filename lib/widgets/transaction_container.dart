@@ -24,6 +24,7 @@ class TransactionContainer extends StatelessWidget {
       child: Container(
         width: double.infinity,
         color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical: 8),
         child: Row(
           children: [
             Image.asset(

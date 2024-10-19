@@ -17,7 +17,7 @@ const Map<String, String> enUS = {
   "other_services": "Other Services",
   "recent_history": "Recent History",
   "collected_points": "Collected Points",
-  "transactions": "Transactions",
+  "transactions": "Fuel Transactions",
   "register_car": "Register Car",
   "registered_vehicles": "Registered Vehicles",
   "linked_cars": "The cars listed below are linked to your bank account.",

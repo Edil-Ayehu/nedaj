@@ -9,7 +9,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      titleTextStyle: GoogleFonts.roboto(
+      titleTextStyle: GoogleFonts.sofia(
         color: Colors.grey.shade800,
         fontWeight: FontWeight.w300,
         fontSize: 24,
@@ -18,27 +18,27 @@ class AppTheme {
 
     // text theme
     textTheme: TextTheme(
-      titleLarge: GoogleFonts.roboto(
+      titleLarge: GoogleFonts.montserrat(
         fontSize: 32,
         color: Colors.black,
       ),
-      titleMedium: GoogleFonts.roboto(
+      titleMedium: GoogleFonts.montserrat(
         fontSize: 24,
         color: Colors.black,
       ),
-      titleSmall: GoogleFonts.roboto(
+      titleSmall: GoogleFonts.montserrat(
         fontSize: 20,
         color: Colors.black54,
       ),
-      bodyLarge: GoogleFonts.roboto(
+      bodyLarge: GoogleFonts.montserrat(
         fontSize: 20,
         color: Colors.black,
       ),
-      bodyMedium: GoogleFonts.roboto(
+      bodyMedium: GoogleFonts.montserrat(
         fontSize: 18,
         color: Colors.black,
       ),
-      bodySmall: GoogleFonts.roboto(
+      bodySmall: GoogleFonts.montserrat(
         fontSize: 14,
         color: Colors.black54,
       ),
@@ -57,7 +57,7 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: Colors.green,
-        textStyle: GoogleFonts.roboto(fontSize: 18),
+        textStyle: GoogleFonts.sofiaSans(fontSize: 18),
       ),
     ),
 

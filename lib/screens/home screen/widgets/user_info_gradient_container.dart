@@ -1,5 +1,6 @@
 import 'package:nedaj/export.dart';
 
+
 class UserInfoGradientContainer extends StatelessWidget {
   UserInfoGradientContainer({
     super.key,
@@ -93,25 +94,7 @@ class UserInfoGradientContainer extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Container(
-                width: 48,
-                height: 48,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white.withOpacity(0.2),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    Get.to(() => NotificationsScreen());
-                  },
-                  icon: Icon(
-                    Icons.notifications_none,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-              ),
+              NotificationIconContainer(),
             ],
           ),
           Gap(25),
@@ -125,3 +108,4 @@ class UserInfoGradientContainer extends StatelessWidget {
     );
   }
 }
+
