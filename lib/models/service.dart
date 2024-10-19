@@ -4,14 +4,14 @@ import 'package:nedaj/export.dart';
 class Service {
   final String title;
   final String description;
-  final IconData icon;
   final VoidCallback onTap;
+  final String imageUrl;
 
   Service({
     required this.title,
     required this.description,
-    required this.icon,
     required this.onTap,
+    required this.imageUrl,
   });
 
   // Factory constructor to create a Service instance from a Map
@@ -19,8 +19,8 @@ class Service {
     return Service(
       title: data['title'],
       description: data['description'],
-      icon: data['icon'],
       onTap: data['onTap'],
+      imageUrl: data['imageUrl'],
     );
   }
 
@@ -28,21 +28,8 @@ class Service {
   static List<Service> getServices() {
     return [
       Service(
-        title: 'otp'.tr,
-        description: 'Your registered cars listed here.',
-        icon: Icons.pin,
-        onTap: () {
-          Get.to(
-            () => OtpScreen(),
-            transition: Transition.fadeIn,
-            duration: Duration(milliseconds: 200),
-          );
-        },
-      ),
-      Service(
         title: 'my_cars'.tr,
         description: 'Your registered cars listed here.',
-        icon: CupertinoIcons.car_detailed,
         onTap: () {
           Get.to(
             () => MyCarsPage(),
@@ -50,11 +37,17 @@ class Service {
             duration: Duration(milliseconds: 200),
           );
         },
+        imageUrl: 'assets/icons/my_cars_icon.png',
+      ),
+      Service(
+        title: 'fuel_stations'.tr,
+        description: 'Find nearby fuel stations',
+        onTap: () {},
+        imageUrl: 'assets/icons/fuel_stations_icon.png',
       ),
       Service(
         title: 'tips'.tr,
         description: 'You can give a tip for an attendant.',
-        icon: Icons.tips_and_updates_outlined,
         onTap: () {
           Get.to(
             () => TipsScreen(),
@@ -62,12 +55,7 @@ class Service {
             duration: Duration(milliseconds: 200),
           );
         },
-      ),
-      Service(
-        title: 'fuel_stations'.tr,
-        description: 'You can find fuel available at nearby fuel stations.',
-        icon: Icons.ev_station_outlined,
-        onTap: () {},
+        imageUrl: 'assets/icons/tips_icon.png',
       ),
     ];
   }

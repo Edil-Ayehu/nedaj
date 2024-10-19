@@ -26,10 +26,10 @@ class OtherServicesListContainer extends StatelessWidget {
           return Column(
             children: [
               OtherServiceContainer(
-                icon: service.icon,
                 title: service.title,
                 description: service.description,
                 onTap: service.onTap,
+                imageUrl: service.imageUrl,
               ),
               Gap(5),
               if (index != services.length - 1)

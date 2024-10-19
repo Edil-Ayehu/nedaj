@@ -9,7 +9,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
         statusBarIconBrightness: Brightness.light, // For light icons
@@ -38,7 +37,7 @@ class HomeScreen extends StatelessWidget {
 
               // the second container
               Transform.translate(
-                offset: Offset(0, -25),
+                offset: Offset(0, -24),
                 child: Container(
                   padding: EdgeInsets.only(left: 10, right: 10, top: 20),
                   width: double.infinity,
@@ -57,7 +56,8 @@ class HomeScreen extends StatelessWidget {
                         'other_services'.tr,
                         textScaler: TextScaler.linear(1),
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontSize: 22,
+                              fontSize: 18,
+                              color: Colors.grey,
                             ),
                       ),
                       SizedBox(height: 10),
@@ -65,12 +65,34 @@ class HomeScreen extends StatelessWidget {
                       // other services list
                       OtherServicesListContainer(),
                       SizedBox(height: 18),
-                      Text(
-                        'recent_history'.tr,
-                        textScaler: TextScaler.linear(1),
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontSize: 22,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'recent_history'.tr,
+                            textScaler: TextScaler.linear(1),
+                            style:
+                                Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                      fontSize: 18,
+                                      color: Colors.grey,
+                                    ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              homeController.currentPage.value = 1;
+                            },
+                            child: Text(
+                              'See All',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    fontSize: 18,
+                                    color: Colors.green,
+                                  ),
                             ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 10),
                       RecentHistoryListContainer(),
@@ -85,4 +107,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

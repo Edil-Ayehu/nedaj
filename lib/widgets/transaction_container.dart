@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:nedaj/export.dart';
 import 'package:intl/intl.dart';
 
@@ -20,7 +18,7 @@ class TransactionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat('dd/MM/yyyy').format(date);
+    String formattedDate = DateFormat('MMMM d, yyyy h:mm a').format(date);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -28,16 +26,10 @@ class TransactionContainer extends StatelessWidget {
         color: Colors.white,
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.green.shade200,
-              child: Transform.rotate(
-                angle: pi / 4, // 45 degrees rotation
-                child: Icon(
-                  Icons.arrow_upward,
-                  color: Colors.green,
-                  size: 30,
-                ), // Upward arrow, rotated to north-east
-              ),
+            Image.asset(
+              'assets/icons/transaction_icon.png',
+              width: 45,
+              height: 45,
             ),
             Gap(16),
             Column(
@@ -63,7 +55,7 @@ class TransactionContainer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text('+ETB $amount',
+                Text('ETB $amount',
                     textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 16,

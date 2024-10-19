@@ -3,15 +3,16 @@ import 'package:nedaj/export.dart';
 class MainServiceContainer extends StatelessWidget {
   final String title;
   final String description;
-  final IconData icon;
+  final String imageUrl;
+
   final VoidCallback onTap;
 
   const MainServiceContainer({
     super.key,
     required this.title,
     required this.description,
-    required this.icon,
     required this.onTap,
+    required this.imageUrl,
   });
 
   @override
@@ -21,7 +22,7 @@ class MainServiceContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: size.width * 0.3,
+        width: size.width * 0.305,
         height: 170,
         padding: EdgeInsets.only(
           left: 8,
@@ -31,16 +32,18 @@ class MainServiceContainer extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: Colors.green.withOpacity(0.5), width: 1),
         ),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.green,
-                child: Icon(icon, color: Colors.white),
+              Image.asset(
+                imageUrl,
+                width: 50,
+                height: 50,
               ),
               SizedBox(height: 6),
               FittedBox(
@@ -50,7 +53,7 @@ class MainServiceContainer extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 19,
                         )),
               ),
               SizedBox(height: 6),
@@ -60,7 +63,7 @@ class MainServiceContainer extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
             ],
           ),

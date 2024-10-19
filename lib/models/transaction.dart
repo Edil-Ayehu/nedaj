@@ -18,12 +18,11 @@ class Transaction {
   // Convert a Map to a Transaction object
   factory Transaction.fromMap(Map<String, dynamic> map) {
     return Transaction(
-      transactionId: map['transactionId'],
-      fuelType: map['fuelType'],
-      amount: map['amount'],
-      date: map['date'],
-      onTap: map['onTap']
-    );
+        transactionId: map['transactionId'],
+        fuelType: map['fuelType'],
+        amount: map['amount'],
+        date: map['date'],
+        onTap: map['onTap']);
   }
 
   // Static method to return a list of transactions
@@ -33,55 +32,55 @@ class Transaction {
         transactionId: 'A023219',
         fuelType: 'Gasoil',
         amount: 4500.0,
-        date: DateTime.now(),
+        date: DateTime.now(), // June 12, 2024 6:30 AM
         onTap: () {
-        Get.to(()=> TransactionDetailsScreen());
-      },
+          Get.to(() => TransactionDetailsScreen());
+        },
       ),
       Transaction(
         transactionId: 'A023220',
         fuelType: 'Petrol',
         amount: 500.0,
         date: DateTime.now(),
-         onTap: () {
-        Get.to(()=> TransactionDetailsScreen());
-      },
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
       ),
       Transaction(
         transactionId: 'A023221',
         fuelType: 'Gasoil',
         amount: 400.0,
         date: DateTime.now(),
-         onTap: () {
-        Get.to(()=> TransactionDetailsScreen());
-      },
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
       ),
       Transaction(
-        transactionId: 'A023222', 
+        transactionId: 'A023222',
         fuelType: 'Gasoil',
         amount: 200.0,
         date: DateTime.now(),
-         onTap: () {
-        Get.to(()=> TransactionDetailsScreen());
-      },
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
       ),
       Transaction(
         transactionId: 'A023223',
         fuelType: 'Gasoil',
         amount: 100.0,
         date: DateTime.now(),
-         onTap: () {
-        Get.to(()=> TransactionDetailsScreen());
-      },
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
       ),
       Transaction(
         transactionId: 'A023224',
         fuelType: 'Gasoil',
         amount: 900.0,
         date: DateTime.now(),
-         onTap: () {
-        Get.to(()=> TransactionDetailsScreen());
-      },
+        onTap: () {
+          Get.to(() => TransactionDetailsScreen());
+        },
       ),
     ];
   }

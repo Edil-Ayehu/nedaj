@@ -12,42 +12,26 @@ class MainServicesContainer extends StatelessWidget {
       children: [
         MainServiceContainer(
           title: 'Stand By',
-          description: 'Set all process before arriving',
-          icon: Icons.rocket_launch_outlined,
+          description: 'Pay by payment code',
+          imageUrl: 'assets/images/stand_by_icon.png',
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return StandByCodePage();
-                },
-              ),
-            );
-          },
-        ),
-        MainServiceContainer(
-          title: 'Direct Pay',
-          description: 'Pay by fuel station ID',
-          icon: Icons.payments_outlined,
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return DirectPayPage();
-                },
-              ),
-            );
+            Get.to(() => StandByCodePage());
           },
         ),
         MainServiceContainer(
           title: 'Pay by QR',
-          description: 'Directly pay by station QR',
-          icon: Icons.qr_code_scanner,
+          description: 'Pay by QR code',
+          imageUrl: 'assets/images/pay_by_qr_img.png',
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) {
-                return PayByQr();
-              },
-            ));
+            Get.to(() => PayByQrGeneratePage());
+          },
+        ),
+        MainServiceContainer(
+          title: 'OTPs',
+          description: 'OTPs for your payment',
+          imageUrl: 'assets/images/otps_image.png',
+          onTap: () {
+            Get.to(() => OtpScreen());
           },
         ),
       ],

@@ -1,6 +1,6 @@
 const Map<String, String> enUS = {
   'app_name': 'My Application',
-  'welcome': 'Welcome',
+  'welcome': 'Welcome back!',
   'gas_station': 'Gas Station',
   "home": "Home",
   "history": "History",

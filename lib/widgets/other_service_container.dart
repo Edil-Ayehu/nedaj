@@ -1,15 +1,15 @@
 import 'package:nedaj/export.dart';
 
 class OtherServiceContainer extends StatelessWidget {
-  final IconData icon;
   final String title;
   final String description;
+  final String imageUrl;
   final VoidCallback onTap;
   const OtherServiceContainer({
     super.key,
-    required this.icon,
     required this.title,
     required this.description,
+    required this.imageUrl,
     required this.onTap,
   });
 
@@ -22,15 +22,12 @@ class OtherServiceContainer extends StatelessWidget {
         width: double.infinity,
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.grey.shade300,
-              child: Icon(
-                icon,
-                color: Colors.grey.shade800,
-              ),
+            Image.asset(
+              imageUrl,
+              width: 50,
+              height: 50,
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,6 +48,11 @@ class OtherServiceContainer extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: Colors.black,
+              size: 18,
             ),
           ],
         ),
