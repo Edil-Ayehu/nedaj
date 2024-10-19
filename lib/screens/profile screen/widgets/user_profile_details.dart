@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:nedaj/controllers/permission_controller.dart';
 import 'package:nedaj/export.dart';
 
@@ -71,7 +72,8 @@ class _UserProfileDetailsState extends State<UserProfileDetails> {
                       shape: BoxShape.circle,
                       border: Border.all(width: 1, color: Colors.green),
                     ),
-                    child: Icon(Icons.photo_camera, color: Colors.white),
+                    child:
+                        Icon(FluentIcons.camera_16_filled, color: Colors.white),
                   ),
                 ),
               ),

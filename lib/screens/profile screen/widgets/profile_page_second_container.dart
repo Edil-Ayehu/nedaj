@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:nedaj/export.dart';
 import 'package:nedaj/screens/webview_widget.dart';
 
@@ -20,7 +21,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
         children: [
           ProfileInfoContainer(
             text: 'change_pin'.tr,
-            icon: Icons.lock,
+            icon: FluentIcons.lock_closed_24_regular,
             onTap: () {
               Navigator.push(
                 context,
@@ -34,14 +35,14 @@ class ProfilePageSecondContainer extends StatelessWidget {
           ),
           ProfileInfoContainer(
             text: 'language'.tr,
-            icon: Icons.language,
+            icon: FluentIcons.globe_24_regular,
             onTap: () {
               showLanguageSelectionBottomSheet(context);
             },
           ),
           ProfileInfoContainer(
             text: 'Privacy Policy',
-            icon: Icons.privacy_tip,
+            icon: FluentIcons.shield_24_regular,
             onTap: () {
               Get.to(() => WebviewWidget(
                     url: 'https://www.eaglelionsystems.com/',
@@ -51,7 +52,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
           ),
           ProfileInfoContainer(
             text: 'terms_conditions'.tr,
-            icon: Icons.policy,
+            icon: FluentIcons.document_24_regular,
             onTap: () {
               Get.to(() => WebviewWidget(
                     url: 'https://www.eaglelionsystems.com/',
@@ -61,7 +62,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
           ),
           ProfileInfoContainer(
             text: 'About Nedaj',
-            icon: Icons.info,
+            icon: FluentIcons.info_24_regular,
             onTap: () {
               Get.to(() => WebviewWidget(
                     url: 'https://www.eaglelionsystems.com/',
@@ -71,12 +72,12 @@ class ProfilePageSecondContainer extends StatelessWidget {
           ),
           ProfileInfoContainer(
             text: 'unlink_phone'.tr,
-            icon: Icons.phone_android,
+            icon: FluentIcons.phone_dismiss_24_regular,
             onTap: () {},
           ),
           ProfileInfoContainer(
             text: 'logout'.tr,
-            icon: Icons.logout,
+            icon: FluentIcons.sign_out_24_regular,
             onTap: () {},
           ),
         ],

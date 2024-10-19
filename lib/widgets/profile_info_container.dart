@@ -24,18 +24,19 @@ class ProfileInfoContainer extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               children: [
-                Icon(icon, color: Colors.grey, size: 28),
+                Icon(icon, color: Colors.grey.shade800, size: 28),
                 SizedBox(width: 16),
                 Text(
                   text,
                   textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w300,
-                        color: Colors.grey.shade700,
+                        color: Colors.grey.shade900,
+                        fontSize: 17,
                       ),
                 ),
                 Spacer(),
-                Icon(Icons.navigate_next, color: Colors.grey),
+                Icon(Icons.navigate_next, color: Colors.grey.shade900),
               ],
             ),
             SizedBox(height: 10),

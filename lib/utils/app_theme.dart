@@ -9,7 +9,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      titleTextStyle: GoogleFonts.sofia(
+      titleTextStyle: GoogleFonts.montserrat(
         color: Colors.grey.shade800,
         fontWeight: FontWeight.w300,
         fontSize: 24,
@@ -57,7 +57,7 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: Colors.green,
-        textStyle: GoogleFonts.sofiaSans(fontSize: 18),
+        textStyle: GoogleFonts.montserrat(fontSize: 18),
       ),
     ),
 
