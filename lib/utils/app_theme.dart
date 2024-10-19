@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nedaj/export.dart';
 
 class AppTheme {
@@ -8,47 +9,38 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      titleTextStyle: TextStyle(
+      titleTextStyle: GoogleFonts.roboto(
         color: Colors.grey.shade800,
         fontWeight: FontWeight.w300,
         fontSize: 24,
-        fontFamily: 'Lato',
       ),
     ),
 
     // text theme
     textTheme: TextTheme(
-      titleLarge: TextStyle(
+      titleLarge: GoogleFonts.roboto(
         fontSize: 32,
-        fontWeight: FontWeight.bold,
         color: Colors.black,
-        fontFamily: 'Lato',
       ),
-      titleMedium: TextStyle(
+      titleMedium: GoogleFonts.roboto(
         fontSize: 24,
-        fontWeight: FontWeight.bold,
         color: Colors.black,
-        fontFamily: 'Lato',
       ),
-      titleSmall: TextStyle( 
+      titleSmall: GoogleFonts.roboto(
         fontSize: 20,
         color: Colors.black54,
-        fontFamily: 'Lato',
       ),
-      bodyLarge: TextStyle(
+      bodyLarge: GoogleFonts.roboto(
         fontSize: 20,
         color: Colors.black,
-        fontFamily: 'Lato',
       ),
-      bodyMedium: TextStyle(
+      bodyMedium: GoogleFonts.roboto(
         fontSize: 18,
         color: Colors.black,
-        fontFamily: 'Lato',
       ),
-      bodySmall: TextStyle(
+      bodySmall: GoogleFonts.roboto(
         fontSize: 14,
         color: Colors.black54,
-        fontFamily: 'Lato',
       ),
     ),
 
@@ -65,7 +57,7 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: Colors.green,
-        textStyle: TextStyle(fontSize: 18),
+        textStyle: GoogleFonts.roboto(fontSize: 18),
       ),
     ),
 

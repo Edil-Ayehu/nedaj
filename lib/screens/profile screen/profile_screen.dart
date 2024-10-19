@@ -28,14 +28,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
-                      onPressed: () {
-                        Get.to(() => NotificationsScreen());
-                      },
-                      icon: Icon(
-                        Icons.notifications_none,
-                        size: 25,
-                        color: Colors.green,
-                      ),),
+                    onPressed: () {
+                      Get.to(() => NotificationsScreen());
+                    },
+                    icon: Icon(
+                      Icons.notifications_none,
+                      size: 25,
+                      color: Colors.green,
+                    ), 
+                  ),
                 )),
             Expanded(
               child: SingleChildScrollView(
@@ -65,6 +66,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       // Profile Info
                       ProfilePageSecondContainer(),
+                      Gap(30),
+
+                      // logo section
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        child: Image.asset(
+                          'assets/logos/eaglelion.png',
+                          height: 80,
+                        ),
+                      ),
+                      Gap(10),
                     ],
                   ),
                 ),

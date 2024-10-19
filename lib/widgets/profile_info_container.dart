@@ -29,7 +29,10 @@ class ProfileInfoContainer extends StatelessWidget {
                 Text(
                   text,
                   textScaler: TextScaler.linear(1),
-                  style: TextStyle(fontSize: 18),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w300,
+                        color: Colors.grey.shade700,
+                      ),
                 ),
                 Spacer(),
                 Icon(Icons.navigate_next, color: Colors.grey),
