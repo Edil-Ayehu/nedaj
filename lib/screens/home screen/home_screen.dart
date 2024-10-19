@@ -6,6 +6,8 @@ class HomeScreen extends StatelessWidget {
   });
 
   final HomeController homeController = Get.find<HomeController>();
+  final List<Transaction> transactionHistory =
+      Transaction.getSampleTransactions();
 
   @override
   Widget build(BuildContext context) {
@@ -77,25 +79,26 @@ class HomeScreen extends StatelessWidget {
                                       color: Colors.grey,
                                     ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              homeController.currentPage.value = 1;
-                            },
-                            child: Text(
-                              'See All',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                    fontSize: 18,
-                                    color: Colors.green,
-                                  ),
+                          if (transactionHistory.isNotEmpty)
+                            GestureDetector(
+                              onTap: () {
+                                homeController.currentPage.value = 1;
+                              },
+                              child: Text(
+                                'See All',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                      fontSize: 18,
+                                      color: Colors.green,
+                                    ),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                       SizedBox(height: 10),
-                      // RecentHistoryListContainer(),
+                      RecentHistoryListContainer(),
                     ],
                   ),
                 ),
