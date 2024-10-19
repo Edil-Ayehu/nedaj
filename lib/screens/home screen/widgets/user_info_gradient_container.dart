@@ -1,6 +1,5 @@
 import 'package:nedaj/export.dart';
 
-
 class UserInfoGradientContainer extends StatelessWidget {
   UserInfoGradientContainer({
     super.key,
@@ -74,7 +73,7 @@ class UserInfoGradientContainer extends StatelessWidget {
                               Theme.of(context).textTheme.titleMedium!.copyWith(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                    fontSize: 18,
                                   ),
                         ),
                         Text(
@@ -85,7 +84,7 @@ class UserInfoGradientContainer extends StatelessWidget {
                               .bodyMedium!
                               .copyWith(
                                   color: Colors.white,
-                                  fontSize: 16,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w200),
                         ),
                       ],
@@ -108,4 +107,3 @@ class UserInfoGradientContainer extends StatelessWidget {
     );
   }
 }
-

@@ -1,7 +1,7 @@
 export 'package:flutter/material.dart';
 export 'package:nedaj/widgets/custom_button.dart';
 export 'package:nedaj/widgets/profile_info_container.dart';
-export 'package:nedaj/widgets/transaction_container.dart';
+export 'package:nedaj/screens/transactions%20screen/widgets/transaction_container.dart';
 export 'package:nedaj/home.dart';
 export 'package:nedaj/widgets/main_service_container.dart';
 export 'package:nedaj/widgets/other_service_container.dart';
@@ -46,7 +46,7 @@ export 'package:nedaj/screens/terms_and_conditions_screen.dart';
 export 'package:nedaj/models/car_model.dart';
 export 'package:nedaj/screens/otp_screen.dart';
 export 'package:nedaj/screens/tips_screen.dart';
-export 'package:nedaj/screens/transactions%20screen/transaction_details_screen.dart';
+export 'package:nedaj/screens/transactions%20screen/widgets/transaction_details_screen.dart';
 export 'package:nedaj/widgets/custom_app._bar.dart';
 export 'package:nedaj/widgets/custom_bottom_sheet.dart';
 export 'package:nedaj/screens/home%20screen/widgets/user_info_gradient_container.dart';

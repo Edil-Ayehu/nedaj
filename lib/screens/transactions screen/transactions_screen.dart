@@ -1,5 +1,5 @@
 import 'package:nedaj/export.dart';
-import 'package:intl/intl.dart';
+import 'package:nedaj/screens/transactions%20screen/widgets/empty_transactions_container.dart';
 
 class TransactionsScreen extends StatelessWidget {
   const TransactionsScreen({super.key});
@@ -8,6 +8,47 @@ class TransactionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Transaction> transactionHistory =
         Transaction.getSampleTransactions();
+
+    if (transactionHistory.isEmpty) {
+      return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light.copyWith(
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade100,
+          body: Column(
+            children: [
+              CustomAppBar(
+                title: 'transactions'.tr,
+                height: 100,
+                trailing: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.green.withOpacity(0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      Get.to(() => NotificationsScreen());
+                    },
+                    icon: Icon(
+                      Icons.notifications_none,
+                      size: 25,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: EmptyTransactionsContainer(),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     final Map<String, List<Transaction>> groupedTransactions =
         Transaction.groupTransactionsByDate(transactionHistory);
 
