@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:nedaj/export.dart';
 
 class Home extends StatelessWidget {
@@ -44,11 +45,15 @@ class Home extends StatelessWidget {
               items: [
                 BottomNavigationBarItem(
                     icon: Icon(Icons.local_gas_station_outlined),
+                    activeIcon: Icon(Icons.local_gas_station_rounded),
                     label: 'home'.tr),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.history), label: 'Transactions'),
+                    icon: Icon(FluentIcons.history_24_regular),
+                    label: 'Transactions'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.person), label: 'profile'.tr),
+                    icon: Icon(FluentIcons.person_24_regular),
+                    activeIcon: Icon(FluentIcons.person_24_filled),
+                    label: 'profile'.tr),
               ],
             );
           })),
