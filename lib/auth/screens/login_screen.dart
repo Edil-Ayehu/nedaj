@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
         statusBarBrightness: Brightness.light,
       ),
       child: Scaffold(
-         resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                   'Use your phone number to login to your Nedaj Account.',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey.shade500,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                 ),
                 Gap(16),
@@ -56,13 +56,13 @@ class LoginScreen extends StatelessWidget {
                   'Phone Number',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey.shade500,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                 ),
                 Gap(6),
                 CustomTextfield(
                   hintText: '- 912345678',
-                  hintFontSize: 18,
+                  hintFontSize: 16,
                   fillColor: Colors.green.withOpacity(0.05),
                   borderColor: Colors.green.shade100,
                   prefixWidget: Container(
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                           '+251',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ],

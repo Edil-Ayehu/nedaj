@@ -7,32 +7,53 @@ class LanguageSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showLanguageSelectionBottomSheet(context);
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(28),
-          border: Border.all(color: Colors.green),
+    return Obx(() {
+      String languageName =
+          _getLanguageName(languageController.selectedLanguage.value);
+      return GestureDetector(
+        onTap: () {
+          showLanguageSelectionBottomSheet(context);
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(28),
+            border: Border.all(color: Colors.green),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.language, color: Colors.green, size: 20),
+              SizedBox(width: 8),
+              Text(
+                languageName,
+                style: TextStyle(color: Colors.green),
+              ),
+              SizedBox(width: 8),
+              Icon(Icons.keyboard_arrow_down, color: Colors.green, size: 26),
+            ],
+          ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.language, color: Colors.green, size: 20),
-            SizedBox(width: 8),
-            Text(
-              'English', // Replace with actual language name
-              style: TextStyle(color: Colors.green),
-            ),
-            SizedBox(width: 8),
-            Icon(Icons.keyboard_arrow_down, color: Colors.green, size: 26),
-          ],
-        ),
-      ),
-    );
+      );
+    });
+  }
+
+  String _getLanguageName(String languageCode) {
+    switch (languageCode) {
+      case 'en':
+        return 'English';
+      case 'am':
+        return 'አማርኛ';
+      case 'or':
+        return 'Afaan Oromoo';
+      case 'ti':
+        return 'ትግርኛ';
+      case 'so':
+        return 'Soomaali';
+      default:
+        return 'English';
+    }
   }
 
   void showLanguageSelectionBottomSheet(BuildContext context) {
@@ -104,7 +125,7 @@ class LanguageSelector extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: ListTile(
                     title: Text(
-                      'Amharic',
+                      'አማርኛ',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.black,
                           ),
@@ -142,7 +163,7 @@ class LanguageSelector extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: ListTile(
                     title: Text(
-                      'Tigrigna',
+                      'ትግርኛ',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.black,
                           ),

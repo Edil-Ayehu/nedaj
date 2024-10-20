@@ -154,7 +154,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: ListTile(
                     title: Text(
-                      'Amharic',
+                      'አማርኛ',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.black,
                           ),
@@ -192,7 +192,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: ListTile(
                     title: Text(
-                      'Tigrigna',
+                      'ትግርኛs',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.black,
                           ),

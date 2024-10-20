@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 fit: StackFit.expand,
                 children: [
                   Center(
-                    child: Image.asset('assets/logos/logo.png'),
+                    child: Image.asset('assets/images/nedaj_lgo.png'),
                   ),
                   Positioned(
                     bottom: 20,
