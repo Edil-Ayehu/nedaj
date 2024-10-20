@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 prefixWidget: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
-                    'assets/images/bg_image.png',
+                    'assets/logos/logo.png',
                     width: 34,
                     height: 20,
                   ),

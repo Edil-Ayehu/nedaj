@@ -1,8 +1,15 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/onboarding%20screen/onboarding_screen.dart';
 import 'package:nedaj/screens/splash%20screen/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Check if the onboarding should be shown
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool showOnboarding = prefs.getBool('showOnboarding') ?? true;
+
   // Get the application documents directory
   final appDocumentDir = await getApplicationDocumentsDirectory();
 
@@ -16,11 +23,12 @@ void main() async {
   Get.put(LanguageController());
   Get.put(HomeController());
 
-  runApp(const MyApp());
+  runApp(MyApp(showOnboarding: showOnboarding));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool showOnboarding;
+  const MyApp({super.key, required this.showOnboarding});
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +44,8 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'), // Fallback locale in case of an error
       title: 'app_name'.tr, // Use translation
       theme: AppTheme.lightTheme,  
-       initialRoute: '/',
-      routes: {
-        '/': (context) => SplashScreen(), // Show splash screen initially
-        '/home': (context) => HomeScreen(), // Your home screen
-      },
+       home: showOnboarding ? OnboardingScreen() : SplashScreen(),
+       
     );
   }
 } 
