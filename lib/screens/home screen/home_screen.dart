@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/utils/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -13,24 +14,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
+        statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light, // For light icons
         statusBarBrightness: Brightness.dark, // For dark background
       ),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) {
-                return PayByQr();
-              },
-            ));
-          },
-          child: Icon(
-            Icons.qr_code_scanner,
-            color: Colors.white,
-            size: 30,
-          ),
-        ),
+        extendBodyBehindAppBar: true, // Extend body behind app bar
         body: SingleChildScrollView(
           child: Column(
             children: [

@@ -7,6 +7,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
   ProfilePageSecondContainer({super.key});
 
   final LanguageController languageController = Get.find<LanguageController>();
+  final HomeController homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,13 @@ class ProfilePageSecondContainer extends StatelessWidget {
             text: 'logout'.tr,
             icon: FluentIcons.sign_out_24_regular,
             onTap: () {
-              Get.to(() => LoginScreen());
+              // Get.to(() => LoginScreen());
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (route) => false)
+                  .then((value) {
+                homeController.currentPage.value = 0;
+              });
             },
           ),
         ],

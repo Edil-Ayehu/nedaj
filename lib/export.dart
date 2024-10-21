@@ -24,7 +24,6 @@ export 'package:nedaj/utils/app_theme.dart';
 export 'package:hive/hive.dart';
 export 'package:nedaj/controllers/language_controller.dart';
 export 'package:nedaj/screens/my_cars_screen.dart';
-export 'package:nedaj/main%20services/direct%20pay/direct_pay_page.dart';
 export 'package:hive_flutter/adapters.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:nedaj/localization/translations/am_et.dart';

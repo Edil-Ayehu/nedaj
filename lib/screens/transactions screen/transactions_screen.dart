@@ -12,6 +12,7 @@ class TransactionsScreen extends StatelessWidget {
     if (transactionHistory.isEmpty) {
       return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light.copyWith(
+          statusBarColor: Colors.white,
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
         ),

@@ -11,7 +11,8 @@ class UserInfoGradientContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 390,
-      padding: EdgeInsets.only(left: 15, right: 15, top: 50),
+      padding: EdgeInsets.only(
+          left: 15, right: 15, top: MediaQuery.of(context).padding.top + 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
