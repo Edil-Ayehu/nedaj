@@ -22,6 +22,8 @@ class UserInfoGradientContainer extends StatelessWidget {
             Color(0XFF00471B),
           ],
         ),
+        image: DecorationImage(
+            image: AssetImage('assets/images/gradient_background.png')),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
