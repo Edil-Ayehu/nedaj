@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/utils/constants.dart';
 
 class StandByCodePage extends StatefulWidget {
   const StandByCodePage({super.key});
@@ -8,18 +9,308 @@ class StandByCodePage extends StatefulWidget {
 }
 
 class _StandByCodePageState extends State<StandByCodePage> {
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode(); // Create a FocusNode
-  int currentStep = 0;
+  bool _showCodeGeneratedWidget = false;
+  String _generatedCode = '';
+  String _car = '';
+  String _fuelType = '';
+  String _amount = '';
 
+  void _onFormSubmit(String car, String fuelType, String amount) {
+    setState(() {
+      _showCodeGeneratedWidget = true;
+      _car = car;
+      _fuelType = fuelType;
+      _amount = amount;
+      _generatedCode =
+          _generateCode(); // Implement this method to generate a code
+    });
+  }
+
+  String _generateCode() {
+    // Implement your code generation logic here
+    return '123456'; // Placeholder
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light.copyWith(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // custom appbar
+              Container(
+                height: size.height * 0.1,
+                width: size.width,
+                padding: EdgeInsets.only(top: 20, bottom: 0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        size: 26,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Text(
+                      'Stand by Payment',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 22,
+                              ),
+                    ),
+                  ],
+                ),
+              ),
+
+              _showCodeGeneratedWidget
+                  ? CodeGeneratedWidget(
+                      code: _generatedCode,
+                      car: _car,
+                      fuelType: _fuelType,
+                      amount: _amount,
+                    )
+                  : FormWidget(onFormSubmit: _onFormSubmit),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CodeGeneratedWidget extends StatelessWidget {
+  final String code;
+  final String car;
+  final String fuelType;
+  final String amount;
+
+  const CodeGeneratedWidget({
+    super.key,
+    required this.code,
+    required this.car,
+    required this.fuelType,
+    required this.amount,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      width: double.infinity,
+      height: size.height * 0.9,
+      padding: EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Gap(45),
+          Image.asset(
+            'assets/images/success_image.png',
+            height: 120,
+            width: 120,
+            fit: BoxFit.cover,
+          ),
+          Gap(20),
+          Center(
+            child: Text(
+              'Stand by Code generated Successfully!',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
+            ),
+          ),
+          Gap(20),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.green.shade50,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+            child: Column(
+              children: [
+                Text(
+                  'Your Payment Code',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                ),
+                Gap(10),
+                Text(
+                  code,
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Color(0xff16553A),
+                      ),
+                ),
+              ],
+            ),
+          ),
+          Gap(20),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.green.shade100, width: 1),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Payment Details:',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontSize: 20,
+                      ),
+                ),
+                Gap(15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Customer Name:',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                                color: Colors.grey,
+                              ),
+                    ),
+                    Text(
+                      'Abel Tesfaye Girma',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                              ),
+                    ),
+                  ],
+                ),
+                Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Selected Car:',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                                color: Colors.grey,
+                              ),
+                    ),
+                    Text(
+                      car,
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                              ),
+                    ),
+                  ],
+                ),
+                Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Fuel Type:',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                                color: Colors.grey,
+                              ),
+                    ),
+                    Text(
+                      fuelType,
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                              ),
+                    ),
+                  ],
+                ),
+                Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Amount:',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                                color: Colors.grey,
+                              ),
+                    ),
+                    Text(
+                      amount,
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                fontSize: 19,
+                              ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Spacer(),
+          SizedBox(
+            width: double.infinity,
+            height: 58,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Constants.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text(
+                  'Done',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: Colors.white,
+                      ),
+                )),
+          ),
+          Gap(24),
+        ],
+      ),
+    );
+  }
+}
+
+class FormWidget extends StatefulWidget {
+  final Function(String car, String fuelType, String amount) onFormSubmit;
+  const FormWidget({super.key, required this.onFormSubmit});
+
+  @override
+  State<FormWidget> createState() => _FormWidgetState();
+}
+
+class _FormWidgetState extends State<FormWidget> {
   String? _selectedFuelType; // Store selected fuel type
   String? _selectedCar; // Store the selected car value
-  String _enteredAmount = ''; // Store the entered amount
 
-  // List of car options
-  final List<String> _registeredCars = ['Toyota', 'Honda', 'Tesla', 'Ford'];
-
-  final List<String> _fuelTypes = ['Petrol', 'Diesel', 'Electric'];
+  final TextEditingController _amountController = TextEditingController();
+  final FocusNode _focusNode = FocusNode(); // Create a FocusNode
 
   @override
   void initState() {
@@ -27,7 +318,6 @@ class _StandByCodePageState extends State<StandByCodePage> {
     // Add a listener to handle focus changes
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
-        // Unfocus when tapped on the TextField
         _focusNode.unfocus();
       }
     });
@@ -35,84 +325,183 @@ class _StandByCodePageState extends State<StandByCodePage> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _amountController.dispose();
     _focusNode.dispose(); // Dispose the FocusNode
     super.dispose();
   }
 
-  void continueStep() {
-    if (currentStep < 2) {
-      setState(() {
-        currentStep++;
-      });
-    }
+  bool _areAllFieldsFilled() {
+    return _selectedCar != null &&
+        _selectedFuelType != null &&
+        _amountController.text.isNotEmpty;
   }
 
-  void cancelStep() {
-    if (currentStep > 0) {
-      setState(() {
-        currentStep--;
-      });
-    }
+  void _onContinuePressed() {
+    widget.onFormSubmit(
+        _selectedCar!, _selectedFuelType!, _amountController.text);
   }
 
-  void onStepTapped(int value) {
-    setState(() {
-      currentStep = value;
-    });
-  }
+  // List of car options
+  final List<String> _registeredCars = ['Toyota', 'Honda', 'Tesla', 'Ford'];
 
-  void _deleteText() {
-    final textSelection = _controller.selection;
-    if (textSelection.start > 0) {
-      final newText = _controller.text.replaceRange(
-        textSelection.start - 1,
-        textSelection.start,
-        '',
-      );
-      _controller.value = _controller.value.copyWith(
-        text: newText,
-        selection: TextSelection.collapsed(
-          offset: textSelection.start - 1,
-        ),
-      );
-    }
-  }
-
-  void _insertText(String text) {
-    final textSelection = _controller.selection;
-
-    if (textSelection.start >= 0) {
-      final newText = _controller.text.replaceRange(
-        textSelection.start,
-        textSelection.end,
-        text,
-      );
-      final textLength = text.length;
-
-      _controller.value = _controller.value.copyWith(
-        text: newText,
-        selection: TextSelection.collapsed(
-          offset: textSelection.start + textLength,
-        ),
-      );
-    }
-  }
-
-  void _generateButtonPressed() {
-    final enteredText = _controller.text;
-
-    // Store the entered text into _enteredAmount
-    setState(() {
-      _enteredAmount = enteredText;
-    });
-
-    // Proceed to the next step
-    continueStep();
-  }
-
-  Widget controlBuilders(context, details) {
-    return SizedBox(); // Return an empty SizedBox to hide default buttons
+  final List<String> _fuelTypes = ['Petrol', 'Diesel', 'Electric'];
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.9,
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gap(10),
+          Text(
+            'Make Fuel Payment',
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  fontSize: 26,
+                ),
+          ),
+          Text(
+            'Get your Nedaj stand by code ready to pay instantly at your nearest fuel station.',
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  fontSize: 16,
+                ),
+          ),
+          Gap(22),
+          Text('Select Car'),
+          Gap(7),
+          TextFormField(
+            readOnly: true,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            controller: TextEditingController(text: _selectedCar),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.shade50,
+              hintText: 'Select Car',
+              hintStyle: TextStyle(
+                color: Colors.grey.shade500,
+                fontSize: 18,
+              ),
+              suffixIcon: Icon(Icons.keyboard_arrow_down),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade50, width: 1),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade50, width: 1),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade200, width: 1),
+              ),
+            ),
+            onTap: () => _showCarSelectionBottomSheet(),
+          ),
+          Gap(15),
+          Text('Select Fuel Type'),
+          Gap(7),
+          TextFormField(
+            readOnly: true,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            controller: TextEditingController(text: _selectedFuelType),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.shade50,
+              hintText: 'Fuel Type',
+              hintStyle: TextStyle(
+                color: Colors.grey.shade500,
+                fontSize: 18,
+              ),
+              suffixIcon: Icon(Icons.keyboard_arrow_down),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade50, width: 1),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade50, width: 1),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade200, width: 1),
+              ),
+            ),
+            onTap: () => _showFuelTypeSelectionBottomSheet(),
+          ),
+          Gap(15),
+          Text('Enter Amount'),
+          Gap(7),
+          TextFormField(
+            controller: _amountController,
+            keyboardType: TextInputType.number,
+            style: TextStyle(
+              fontSize: 18,
+            ),
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.shade50,
+              hintText: 'Enter Amount',
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              hintStyle: TextStyle(
+                color: Colors.grey.shade500,
+                fontSize: 18,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade50, width: 1),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade50, width: 1),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.green.shade200, width: 1),
+              ),
+            ),
+          ),
+          Spacer(),
+          SizedBox(
+            width: double.infinity,
+            height: 58,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                  (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.disabled)) {
+                      return Colors.grey.shade500;
+                    }
+                    return Constants.primaryColor;
+                  },
+                ),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+              onPressed: _areAllFieldsFilled() ? _onContinuePressed : null,
+              child: Text(
+                'Continue',
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+            ),
+          ),
+          Gap(24),
+        ],
+      ),
+    );
   }
 
   // Function to show bottom sheet for selecting a car
@@ -174,297 +563,6 @@ class _StandByCodePageState extends State<StandByCodePage> {
           ),
         );
       },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text(
-          'Stand by Payment',
-          textScaler: TextScaler.linear(1),
-        ),
-      ),
-      body: Theme(
-        data: ThemeData(
-          canvasColor: Colors.white,
-        ),
-        child: Stepper(
-          elevation: 0,
-          connectorColor: WidgetStatePropertyAll(Colors.green),
-          stepIconMargin: EdgeInsets.symmetric(vertical: 12, horizontal: 0),
-          type: StepperType.horizontal,
-          physics: const ScrollPhysics(),
-          onStepTapped: onStepTapped,
-          currentStep: currentStep,
-          controlsBuilder: controlBuilders, // Hide default controls
-
-          steps: [
-            // step 1
-            buildAddAmountStep(context, size),
-            // step 2
-            buildBasicInfoStep(context),
-            // step 3
-            buildStandByCodeStep(context),
-          ],
-        ),
-      ),
-      bottomNavigationBar: currentStep == 0
-          ? CustomKeyboardWithButton(
-              onTextInput: _insertText,
-              onBackspace: _deleteText,
-              onGenerate: _generateButtonPressed,
-              buttonText: 'Generate',
-            )
-          : (currentStep == 1
-              ? Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                  child: CustomButton(
-                    buttonText: 'Next',
-                    onPressed: continueStep,
-                    width: size.width * 0.45,
-                  ),
-                )
-              : (currentStep == 2
-                  ? Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                      child: CustomButton(
-                          buttonText: 'Done',
-                          onPressed: () {
-                            Get.off(
-                              () => Home(),
-                            );
-                          }),
-                    )
-                  : null)),
-    );
-  }
-
-  // step 3
-  Step buildStandByCodeStep(BuildContext context) {
-    return Step(
-      stepStyle: StepStyle(
-        color: currentStep >= 2 ? Colors.green : Colors.grey,
-      ),
-      title: const Text(''),
-      label: Text(
-        'Stand By Code',
-        textScaler: TextScaler.linear(1),
-        style: TextStyle(
-          fontSize: 15,
-          color: currentStep == 2 ? Colors.green : Colors.grey,
-          fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Gap(70),
-          Center(
-            child: Transform.scale(
-              scale: 2.0,
-              child: Lottie.asset(
-                'assets/animations/success_anim.json',
-                repeat: false,
-                animate: true,
-              ),
-            ),
-          ),
-          Gap(50),
-          Text(
-            'Stand By Code Generated Successfully!',
-            textScaler: TextScaler.linear(1),
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 28,
-                ),
-          ),
-          Gap(30),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              color: Color(0xffEDFFF4),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Your code is',
-                  textScaler: TextScaler.linear(1.1),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-                ),
-                Gap(10),
-                Text(
-                  '4935930',
-                  textScaler: TextScaler.linear(1.1),
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-                ),
-              ],
-            ),
-          ),
-          Gap(20),
-          Text(
-            'Fuel Amount',
-            textScaler: TextScaler.linear(1),
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-          ),
-          Gap(10),
-          Text(
-            '$_enteredAmount Birr',
-            textScaler: TextScaler.linear(1),
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(),
-          ),
-        ],
-      ),
-      isActive: currentStep >= 2,
-      state: currentStep >= 2 ? StepState.complete : StepState.disabled,
-    );
-  }
-
-  // step 1
-  Step buildAddAmountStep(BuildContext context, Size size) {
-    return Step(
-      stepStyle: StepStyle(
-        color: currentStep >= 0 ? Colors.green : Colors.grey,
-      ),
-      title: const Text(
-        '',
-        style: TextStyle(fontSize: 1),
-      ),
-      label: Text(
-        'Add Amount',
-        textScaler: TextScaler.linear(1),
-        style: TextStyle(
-          fontSize: 15,
-          color: currentStep == 0 ? Colors.green : Colors.grey,
-          fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Gap(120),
-          Text(
-            'Enter Amount',
-            textScaler: TextScaler.linear(1),
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(),
-          ),
-          Gap(20),
-          SizedBox(
-            width: size.width * 0.9,
-            child: TextField(
-              controller: _controller,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontSize: 30,
-                  ),
-              cursorColor: Colors.grey.shade700,
-              autofocus: true,
-              focusNode: _focusNode, // Assign the FocusNode
-              readOnly: true, // Make the TextField read-only
-              decoration: InputDecoration(
-                hintText: '0 Birr',
-                contentPadding: EdgeInsets.only(left: 50),
-                hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Colors.grey,
-                      fontSize: 30,
-                    ),
-                suffixText: 'Birr',
-                suffixStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 30,
-                    ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              keyboardType: TextInputType.none,
-              textInputAction: TextInputAction.none,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-      isActive: currentStep >= 0,
-      state: currentStep >= 0 ? StepState.complete : StepState.disabled,
-    );
-  }
-
-  // step 2
-  Step buildBasicInfoStep(BuildContext context) {
-    return Step(
-      stepStyle: StepStyle(
-        color: currentStep >= 1 ? Colors.green : Colors.grey,
-      ),
-      title: const Text(''),
-      label: Text(
-        'Basic Info.',
-        textScaler: TextScaler.linear(1),
-        style: TextStyle(
-          fontSize: 15,
-          color: currentStep == 1 ? Colors.green : Colors.grey,
-          fontWeight: currentStep == 0 ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Select a car',
-            textScaler: TextScaler.linear(1),
-          ),
-          Gap(15),
-          TextField(
-            readOnly: true,
-            controller: TextEditingController(text: _selectedCar),
-            decoration: InputDecoration(
-              hintText: 'Choose your registered car',
-              hintStyle: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-              ),
-              suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-              border: Theme.of(context).inputDecorationTheme.border,
-              enabledBorder:
-                  Theme.of(context).inputDecorationTheme.enabledBorder,
-              focusedBorder:
-                  Theme.of(context).inputDecorationTheme.focusedBorder,
-            ),
-            onTap: _showCarSelectionBottomSheet,
-          ),
-          Gap(20),
-          Text(
-            'Fuel Type',
-            textScaler: TextScaler.linear(1),
-          ),
-          Gap(15),
-          TextField(
-            readOnly: true,
-            controller: TextEditingController(text: _selectedFuelType),
-            decoration: InputDecoration(
-              hintText: 'Choose a fuel type',
-              hintStyle: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-              ),
-              suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-              border: Theme.of(context).inputDecorationTheme.border,
-              enabledBorder:
-                  Theme.of(context).inputDecorationTheme.enabledBorder,
-              focusedBorder:
-                  Theme.of(context).inputDecorationTheme.focusedBorder,
-            ),
-            onTap: _showFuelTypeSelectionBottomSheet,
-          ),
-        ],
-      ),
-      isActive: currentStep >= 1,
-      state: currentStep >= 1 ? StepState.complete : StepState.disabled,
     );
   }
 }

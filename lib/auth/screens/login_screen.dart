@@ -3,7 +3,6 @@ import 'package:nedaj/auth/utils/validators.dart';
 import 'package:nedaj/auth/widgets/language_selector_widget.dart';
 import 'package:nedaj/export.dart';
 import 'package:nedaj/utils/constants.dart';
-import 'package:nedaj/widgets/custom_textfield.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
