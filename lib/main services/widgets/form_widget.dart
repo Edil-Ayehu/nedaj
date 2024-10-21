@@ -50,7 +50,7 @@ class _FormWidgetState extends State<FormWidget> {
   }
 
   final List<String> _registeredCars = ['Toyota', 'Honda', 'Tesla', 'Ford'];
-  final List<String> _fuelTypes = ['Petrol', 'Diesel', 'Electric'];
+  final List<String> _fuelTypes = ['Gasoline', 'Regular'];
 
   @override
   Widget build(BuildContext context) {
@@ -200,15 +200,15 @@ class _FormWidgetState extends State<FormWidget> {
             height: 58,
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.disabled)) {
+                backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                  (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.disabled)) {
                       return Colors.grey.shade500;
                     }
                     return Constants.primaryColor;
                   },
                 ),
-                shape: MaterialStateProperty.all(
+                shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -230,61 +230,115 @@ class _FormWidgetState extends State<FormWidget> {
 
   // Function to show bottom sheet for selecting a car
   void _showCarSelectionBottomSheet() {
-    showModalBottomSheet(
-      backgroundColor: Colors.white,
-      context: context,
-      isScrollControlled: true, // This allows better control over the size
-      builder: (context) {
-        return CustomBottomSheet(
-          title: 'Select a car',
-          child: ListView.builder(
-            itemCount: _registeredCars.length,
-            shrinkWrap: true,
-            physics:
-                const NeverScrollableScrollPhysics(), // Prevent scrolling in the list
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(_registeredCars[index]),
-                onTap: () {
-                  setState(() {
-                    _selectedCar = _registeredCars[index];
-                  });
-                  Navigator.pop(context); // Close the bottom sheet
-                },
-              );
+    mainFunctionBottomSheet(
+      title: 'Select Car',
+      child: ListView.builder(
+        itemCount: _registeredCars.length,
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                _selectedCar = _registeredCars[index];
+              });
+              Navigator.pop(context); // Close the bottom sheet
             },
-          ),
-        );
-      },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+              margin: EdgeInsets.only(bottom: 10),
+              child: Text(
+                _registeredCars[index],
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      fontSize: 18,
+                    ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
   // Function to show bottom sheet for selecting a fuel type
   void _showFuelTypeSelectionBottomSheet() {
-    showModalBottomSheet(
+    mainFunctionBottomSheet(
+      title: 'Fuel Type',
+      child: ListView.builder(
+        itemCount: _fuelTypes.length,
+        shrinkWrap: true,
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                _selectedFuelType = _fuelTypes[index];
+              });
+              Navigator.pop(context); // Close the bottom sheet
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+              margin: EdgeInsets.only(bottom: 10),
+              child: Text(
+                _fuelTypes[index],
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      fontSize: 18,
+                    ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Future<dynamic> mainFunctionBottomSheet(
+      {required String title, required Widget child}) {
+    return showModalBottomSheet(
       backgroundColor: Colors.white,
       context: context,
       isScrollControlled: true, // This allows better control over the size
       builder: (context) {
-        return CustomBottomSheet(
-          title: 'Select fuel type',
-          child: ListView.builder(
-            itemCount: _fuelTypes.length,
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(_fuelTypes[index]),
-                onTap: () {
-                  setState(() {
-                    _selectedFuelType = _fuelTypes[index];
-                  });
-                  Navigator.pop(context); // Close the bottom sheet
-                },
-              );
-            },
-          ),
+        return Wrap(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(
+                        Icons.close,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          fontSize: 22,
+                        ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                child,
+              ],
+            ),
+          ],
         );
       },
     );

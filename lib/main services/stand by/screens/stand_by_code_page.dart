@@ -42,6 +42,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
         statusBarBrightness: Brightness.light,
       ),
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

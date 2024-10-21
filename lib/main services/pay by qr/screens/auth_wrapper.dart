@@ -1,1 +1,0 @@
-// Determines whether the user is logged in and navigates accordingly.
