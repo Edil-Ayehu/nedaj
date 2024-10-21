@@ -8,7 +8,7 @@ class Validators {
 
     // Check if the password matches the regular expression
     return passwordRegex.hasMatch(password);
-  }
+  } 
 
 
    // email validator method
@@ -31,4 +31,17 @@ class Validators {
     // Check if the phone number matches the regular expression
     return phoneRegex.hasMatch(phoneNumber);
   }
+
+  static String? validatePhoneNumber(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Please enter a phone number';
+  }
+  if (value.length != 9) {
+    return 'Phone number must be 9 digits';
+  }
+  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+    return 'Phone number can only contain digits';
+  }
+  return null;
+}
 }

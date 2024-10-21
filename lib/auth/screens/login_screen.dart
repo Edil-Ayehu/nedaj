@@ -1,4 +1,5 @@
 import 'package:nedaj/auth/screens/signup_screen.dart';
+import 'package:nedaj/auth/utils/validators.dart';
 import 'package:nedaj/auth/widgets/language_selector_widget.dart';
 import 'package:nedaj/export.dart';
 import 'package:nedaj/utils/constants.dart';
@@ -60,31 +61,53 @@ class LoginScreen extends StatelessWidget {
                       ),
                 ),
                 Gap(6),
-                CustomTextfield(
-                  hintText: '- 912345678',
-                  hintFontSize: 16,
-                  fillColor: Colors.green.withOpacity(0.05),
-                  borderColor: Colors.green.shade100,
-                  prefixWidget: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.asset(
-                          'assets/images/country_flag.png',
-                          width: 30,
-                          height: 22,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(width: 4),
-                        Text(
-                          '+251',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                TextFormField(
+                  validator: Validators.validatePhoneNumber,
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                  maxLength: 9,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.green.withOpacity(0.05),
+                    hintText: '912345678',
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                    hintStyle: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontSize: 18,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green.shade100),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.green.shade100),
+                    ),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 6),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            'assets/images/country_flag.png',
+                            fit: BoxFit.cover,
+                            width: 30,
+                            height: 28,
                           ),
-                        ),
-                      ],
+                          Text(
+                            '+251',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -120,7 +143,7 @@ class LoginScreen extends StatelessWidget {
                     Gap(4),
                     GestureDetector(
                       onTap: () {
-                        Get.off(() => SignupScreen());
+                        Get.to(() => SignupScreen());
                       },
                       child: Text(
                         'Register',

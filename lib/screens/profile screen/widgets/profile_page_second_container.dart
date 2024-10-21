@@ -1,4 +1,5 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:nedaj/auth/screens/login_screen.dart';
 import 'package:nedaj/export.dart';
 import 'package:nedaj/screens/webview_widget.dart';
 
@@ -78,7 +79,9 @@ class ProfilePageSecondContainer extends StatelessWidget {
           ProfileInfoContainer(
             text: 'logout'.tr,
             icon: FluentIcons.sign_out_24_regular,
-            onTap: () {},
+            onTap: () {
+              Get.to(() => LoginScreen());
+            },
           ),
         ],
       ),

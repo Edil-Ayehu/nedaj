@@ -184,7 +184,7 @@ class _StandByCodePageState extends State<StandByCodePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          'Stand by Code',
+          'Stand by Payment',
           textScaler: TextScaler.linear(1),
         ),
       ),

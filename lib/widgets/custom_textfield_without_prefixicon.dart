@@ -1,16 +1,14 @@
 import 'package:nedaj/export.dart';
 
-class CustomTextfield extends StatelessWidget {
+class CustomTextfieldWithoutPrefixIcon extends StatelessWidget {
   final String hintText;
-  final Widget? prefixWidget;
   final Color? fillColor;
   final Color? borderColor;
   final double? hintFontSize;
 
-  const CustomTextfield({
+  const CustomTextfieldWithoutPrefixIcon({
     super.key,
     required this.hintText,
-    this.prefixWidget,
     this.fillColor,
     this.borderColor,
     this.hintFontSize,
@@ -19,14 +17,15 @@ class CustomTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(),
+      style: TextStyle(
+        fontSize: hintFontSize ?? 18,
+      ),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
           color: Colors.grey.shade500,
-          fontSize: hintFontSize ?? 16,
+          fontSize: hintFontSize ?? 18,
         ),
-        prefixIcon: prefixWidget ?? SizedBox.shrink(),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide:
@@ -35,7 +34,7 @@ class CustomTextfield extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide:
-              BorderSide(color: borderColor ?? Colors.grey.shade200, width: 1),
+              BorderSide(color: borderColor ?? Colors.grey.shade300, width: 1),
         ),
         filled: true,
         fillColor: fillColor ?? Colors.white70,
