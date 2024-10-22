@@ -1,8 +1,4 @@
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:nedaj/auth/screens/login_screen.dart';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/webview_widget.dart';
-import 'package:nedaj/utils/constants.dart';
 
 class ProfilePageSecondContainer extends StatelessWidget {
   ProfilePageSecondContainer({super.key});

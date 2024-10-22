@@ -1,8 +1,4 @@
-import 'package:nedaj/auth/screens/signup_screen.dart';
-import 'package:nedaj/auth/utils/validators.dart';
-import 'package:nedaj/auth/widgets/language_selector_widget.dart';
 import 'package:nedaj/export.dart';
-import 'package:nedaj/utils/constants.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

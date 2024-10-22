@@ -1,4 +1,3 @@
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nedaj/export.dart';
 
 class AppTheme {

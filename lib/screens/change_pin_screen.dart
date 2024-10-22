@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/utils/constants.dart';
 
 class ChangePinScreen extends StatefulWidget {
   const ChangePinScreen({super.key});

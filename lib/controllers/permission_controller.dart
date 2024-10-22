@@ -1,5 +1,4 @@
-import 'package:permission_handler/permission_handler.dart';
-import 'package:get/get.dart';
+import 'package:nedaj/export.dart';
 
 class PermissionController extends GetxController {
   Future<bool> requestCameraPermission() async {

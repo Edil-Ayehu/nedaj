@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:nedaj/export.dart';
 
 class HomeController extends GetxController {
   var currentPage = 0.obs;

@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:nedaj/controllers/permission_controller.dart';
 import 'package:nedaj/export.dart';
 
 class UserProfileDetails extends StatefulWidget {

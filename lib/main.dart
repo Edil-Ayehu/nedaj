@@ -1,7 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/onboarding%20screen/onboarding_screen.dart';
-import 'package:nedaj/screens/splash%20screen/splash_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,8 +1,3 @@
-import 'package:nedaj/auth/screens/login_screen.dart';
-import 'package:nedaj/auth/utils/validators.dart';
-import 'package:nedaj/utils/constants.dart';
-import 'package:nedaj/widgets/custom_textfield_without_prefixicon.dart';
-
 import '../../export.dart';
 
 class SignupScreen extends StatefulWidget {

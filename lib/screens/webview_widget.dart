@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:nedaj/export.dart';
 
 class WebviewWidget extends StatefulWidget {
   final String url;

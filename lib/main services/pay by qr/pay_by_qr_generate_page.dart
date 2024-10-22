@@ -1,7 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/widgets/form_widget.dart';
-import 'package:nedaj/main%20services/widgets/main_services_custom_appbar.dart';
-import 'package:nedaj/main%20services/widgets/qr_generated_widget.dart';
 
 class PayByQrGeneratePage extends StatefulWidget {
   const PayByQrGeneratePage({super.key});

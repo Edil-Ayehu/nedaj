@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/transactions%20screen/widgets/empty_transactions_container.dart';
 
 class TransactionsScreen extends StatelessWidget {
   const TransactionsScreen({super.key});

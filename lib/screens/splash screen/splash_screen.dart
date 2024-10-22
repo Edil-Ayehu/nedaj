@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:nedaj/auth/screens/login_screen.dart';
 import 'package:nedaj/export.dart';
 
 class SplashScreen extends StatefulWidget {

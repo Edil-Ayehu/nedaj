@@ -1,6 +1,4 @@
-import 'package:nedaj/auth/screens/login_screen.dart';
 import 'package:nedaj/export.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
