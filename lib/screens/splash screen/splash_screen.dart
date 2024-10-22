@@ -33,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(
+        systemNavigationBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ),
