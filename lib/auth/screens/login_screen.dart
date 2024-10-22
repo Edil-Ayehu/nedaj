@@ -27,20 +27,21 @@ class LoginScreen extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: LanguageSelector(),
                 ),
+                Spacer(),
                 Center(
                   child: Image.asset(
-                    'assets/logos/logo.png',
-                    height: 300,
+                    'assets/images/nedaj_lgo.png',
+                    height: 120,
                     fit: BoxFit.cover,
                   ),
                 ),
+                Gap(26),
                 Text(
                   'Login',
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                         fontSize: 38,
                       ),
                 ),
-                Gap(4),
                 Text(
                   'Use your phone number to login to your Nedaj Account.',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -48,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                         fontSize: 16,
                       ),
                 ),
-                Gap(16),
+                Gap(20),
                 Text(
                   'Phone Number',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
