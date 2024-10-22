@@ -16,31 +16,31 @@ class Car {
       plateNumber: 23493,
       code: 2,
       addedTime: '2 hours ago',
-      region: 'AA',
+      region: 'A.A',
+    ),
+    Car(
+      plateNumber: 09743,
+      code: 4,
+      addedTime: '45 minutes ago',
+      region: 'S.R',
     ),
     Car(
       plateNumber: 53643,
       code: 3,
       addedTime: 'in a few seconds',
-      region: 'OR',
+      region: 'O.R',
     ),
     Car(
       plateNumber: 97543,
       code: 1,
       addedTime: '2 hours ago',
-      region: 'TR',
+      region: 'T.R',
     ),
     Car(
       plateNumber: 09743,
       code: 4,
       addedTime: '45 minutes ago',
-      region: 'SR',
-    ),
-    Car(
-      plateNumber: 09743,
-      code: 4,
-      addedTime: '45 minutes ago',
-      region: 'SR',
+      region: 'S.R',
     ),
   ];
 }

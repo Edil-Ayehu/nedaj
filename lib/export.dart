@@ -17,13 +17,13 @@ export 'package:nedaj/main%20services/pay%20by%20qr/pay_by_qr_generate_page.dart
 export 'package:nedaj/main%20services/stand%20by/screens/stand_by_code_page.dart';
 export 'package:lottie/lottie.dart';
 export 'package:nedaj/widgets/station_container.dart';
-export 'package:nedaj/widgets/registered_car_container.dart';
+export 'package:nedaj/screens/my%20cars%20screen/widgets/registered_car_container.dart';
 export 'package:nedaj/localization/app_translations.dart';
 export 'package:get/get.dart';
 export 'package:nedaj/utils/app_theme.dart';
 export 'package:hive/hive.dart';
 export 'package:nedaj/controllers/language_controller.dart';
-export 'package:nedaj/screens/my_cars_screen.dart';
+export 'package:nedaj/screens/my%20cars%20screen/my_cars_screen.dart';
 export 'package:hive_flutter/adapters.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:nedaj/localization/translations/am_et.dart';
