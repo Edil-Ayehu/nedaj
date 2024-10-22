@@ -82,9 +82,10 @@ class ProfilePageSecondContainer extends StatelessWidget {
             icon: FluentIcons.sign_out_24_regular,
             onTap: () {
               // Get.to(() => LoginScreen());
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                  (route) => false)
+              Navigator.of(context)
+                  .pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false)
                   .then((value) {
                 homeController.currentPage.value = 0;
               });
@@ -108,140 +109,98 @@ class ProfilePageSecondContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
-                      height: 5,
-                      width: 35,
-                      margin: EdgeInsets.only(top: 20, bottom: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(30),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0, top: 16),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.close, color: Colors.grey.shade700),
                       ),
                     ),
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: Text(
                         'select_language'.tr,
                         textScaler: TextScaler.linear(1),
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontSize: 24,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                  fontSize: 22,
+                                ),
                       ),
                     ),
                   ],
                 ),
                 Gap(10),
-                Divider(
-                  color: Colors.grey.shade400,
-                ),
-                Gap(10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'English',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'en'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('en', 'US');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'አማርኛ',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'am'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('am', 'ET');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'Afaan Oromoo',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'or'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('or', 'ET');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'ትግርኛs',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'ti'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('ti', 'ET');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'Soomaali',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1.1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'so'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('so', 'SO');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
+                _buildLanguageTile(context, 'English', 'en', 'US'),
+                Gap(5),
+                _buildLanguageTile(context, 'አማርኛ', 'am', 'ET'),
+                Gap(5),
+                _buildLanguageTile(context, 'Afaan Oromoo', 'or', 'ET'),
+                Gap(5),
+                _buildLanguageTile(context, 'ትግርኛ', 'ti', 'ET'),
+                Gap(5),
+                _buildLanguageTile(context, 'Soomaali', 'so', 'SO'),
                 Gap(10),
               ],
             ),
           );
         });
       },
+    );
+  }
+
+  Widget _buildLanguageTile(BuildContext context, String language,
+      String langCode, String countryCode) {
+    bool isSelected = languageController.selectedLanguage.value == langCode;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(10),
+          border: isSelected
+              ? Border.all(color: Color(0xff131C66), width: 1)
+              : null,
+        ),
+        child: ListTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          leading: Container(
+            width: 20,
+            height: 20,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isSelected ? Color(0xff131C66) : Colors.white,
+              border: Border.all(color: Colors.grey.shade500, width: 1),
+            ),
+            child: isSelected
+                ? Icon(Icons.check, color: Colors.white, size: 20)
+                : null,
+          ),
+          title: Text(
+            language,
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  color: isSelected ? Colors.black : Colors.grey.shade500,
+                  fontWeight: isSelected ? FontWeight.w900 : FontWeight.normal,
+                  fontSize: 18,
+                ),
+            textScaler: TextScaler.linear(1),
+          ),
+          onTap: () {
+            languageController.changeLanguage(langCode, countryCode);
+            Navigator.pop(context);
+          },
+        ),
+      ),
     );
   }
 }

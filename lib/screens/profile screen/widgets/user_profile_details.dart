@@ -82,8 +82,8 @@ class _UserProfileDetailsState extends State<UserProfileDetails> {
           SizedBox(height: 5),
           Text(
             'Aschalew G Tesfa',
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  fontSize: 20,
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontSize: 22,
                   color: Colors.black,
                 ),
           ),
