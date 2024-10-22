@@ -13,7 +13,7 @@ export 'package:nedaj/models/service.dart';
 export 'package:nedaj/models/transaction.dart';
 export 'package:nedaj/widgets/custom_keyboard_with_button.dart';
 export 'package:qr_flutter/qr_flutter.dart';
-export 'package:nedaj/main%20services/pay%20by%20qr/screens/pay_by_qr_generate_page.dart';
+export 'package:nedaj/main%20services/pay%20by%20qr/pay_by_qr_generate_page.dart';
 export 'package:nedaj/main%20services/stand%20by/screens/stand_by_code_page.dart';
 export 'package:lottie/lottie.dart';
 export 'package:nedaj/widgets/station_container.dart';
