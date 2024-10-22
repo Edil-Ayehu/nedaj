@@ -5,6 +5,7 @@ class RegisteredCarContainer extends StatelessWidget {
   final String region;
   final int code;
   final int plateNumber;
+  final VoidCallback onTap;
 
   const RegisteredCarContainer({
     super.key,
@@ -12,6 +13,7 @@ class RegisteredCarContainer extends StatelessWidget {
     required this.region,
     required this.code,
     required this.plateNumber,
+    required this.onTap,
   });
 
   Color _getColorForCode(int code) {
@@ -32,102 +34,99 @@ class RegisteredCarContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final codeColor = _getColorForCode(code);
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-      margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: Offset(0, 2),
+    return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+          margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 3,
+                offset: Offset(0, 2),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Image.asset(
-              'assets/images/my_car_image.png',
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Gap(15),
-          Expanded(
-            flex: 6,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Image.asset(
+                  'assets/images/my_car_image.png',
+                  height: 60,
+                  width: 60,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Gap(15),
+              Expanded(
+                flex: 6,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Code:  ',
-                      textScaler: TextScaler.linear(1),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 15,
-                          ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: codeColor,
-                          width: 2,
+                    Row(
+                      children: [
+                        Text(
+                          'Code:  ',
+                          textScaler: TextScaler.linear(1),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontSize: 15,
+                                  ),
                         ),
-                      ),
-                      child: Text(
-                        '$code',
-                        textScaler: TextScaler.linear(1),
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
                               color: codeColor,
-                              fontSize: 15,
+                              width: 2,
                             ),
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(3),
-                Row(
-                  children: [
-                    Text(
-                      'Region: ',
-                      textScaler: TextScaler.linear(1),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 15,
                           ),
-                    ),
-                    Text(
-                      region,
-                      textScaler: TextScaler.linear(1),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                            fontSize: 15,
+                          child: Text(
+                            '$code',
+                            textScaler: TextScaler.linear(1),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: codeColor,
+                                  fontSize: 15,
+                                ),
                           ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Added on: ',
-                      textScaler: TextScaler.linear(1),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 15,
-                            color: Colors.grey,
-                          ),
+                    Gap(3),
+                    Row(
+                      children: [
+                        Text(
+                          'Region: ',
+                          textScaler: TextScaler.linear(1),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontSize: 15,
+                                  ),
+                        ),
+                        Text(
+                          region,
+                          textScaler: TextScaler.linear(1),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                        ),
+                      ],
                     ),
-                    Flexible(
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          addedTime,
+                    Row(
+                      children: [
+                        Text(
+                          'Added on: ',
                           textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -135,39 +134,53 @@ class RegisteredCarContainer extends StatelessWidget {
                                     color: Colors.grey,
                                   ),
                         ),
-                      ),
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              addedTime,
+                              textScaler: TextScaler.linear(1),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    fontSize: 15,
+                                    color: Colors.grey,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    Gap(3),
                   ],
                 ),
-                Gap(3),
-              ],
-            ),
-          ),
-          Gap(16),
-          Expanded(
-            flex: 3,
-            child: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(
-                color: codeColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(6),
               ),
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  '$plateNumber',
-                  textScaler: TextScaler.linear(1),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: codeColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+              Gap(16),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: codeColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(
+                      '$plateNumber',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: codeColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }
