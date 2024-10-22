@@ -52,6 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       // Profile pic and details
                       UserProfileDetails(),
                       Gap(10),
+                      // Settings
                       Padding(
                         padding: const EdgeInsets.only(left: 25.0, bottom: 10),
                         child: Text(

@@ -92,7 +92,6 @@ class ProfilePageSecondContainer extends StatelessWidget {
                 'Unlink',
                 () {
                   // Add unlink phone logic here
-                  // Navigator.of(context).pop();
                 },
               );
             },
