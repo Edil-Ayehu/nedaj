@@ -21,13 +21,14 @@ class CustomButton extends StatelessWidget {
       width: width,
       height: 50,
       decoration: BoxDecoration(
-        border:
-            Border.all(color: Colors.green, width: isOutlinedButton ? 1 : 0),
+        border: Border.all(
+            color: Constants.primaryColor, width: isOutlinedButton ? 1 : 0),
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: isOutlinedButton ? Colors.white : Colors.green,
+          backgroundColor:
+              isOutlinedButton ? Colors.white : Constants.primaryColor,
         ),
         onPressed: onPressed,
         child: Text(
