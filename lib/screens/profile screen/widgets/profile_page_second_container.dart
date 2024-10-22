@@ -92,7 +92,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                 'Unlink',
                 () {
                   // Add unlink phone logic here
-                  Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
                 },
               );
             },
@@ -138,86 +138,114 @@ class ProfilePageSecondContainer extends StatelessWidget {
     String actionButtonText,
     VoidCallback onActionPressed,
   ) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  imagePath,
-                  height: 40,
-                  width: 50,
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(height: 10),
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        fontSize: 24,
+    OverlayState? overlayState = Overlay.of(context);
+    OverlayEntry? overlayEntry;
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Material(
+        color: Colors.black.withOpacity(0.5),
+        child: SafeArea(
+          child: GestureDetector(
+            onTap: () {
+              overlayEntry?.remove();
+            },
+            child: Container(
+              color: Colors.transparent,
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {}, // Prevent taps from closing the dialog
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 40),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            imagePath,
+                            height: 40,
+                            width: 50,
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  fontSize: 24,
+                                ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            message,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Constants.primaryColor,
+                                  side:
+                                      BorderSide(color: Constants.primaryColor),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 10),
+                                  child: Text(cancelButtonText),
+                                ),
+                                onPressed: () {
+                                  overlayEntry?.remove();
+                                },
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Constants.primaryColor,
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 10),
+                                  child: Text(actionButtonText),
+                                ),
+                                onPressed: () {
+                                  overlayEntry?.remove();
+                                  onActionPressed();
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  message,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[600],
+                    ),
                   ),
                 ),
-                SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Constants.primaryColor,
-                        side: BorderSide(color: Constants.primaryColor),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Text(cancelButtonText),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    Gap(5),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Constants.primaryColor,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      onPressed: onActionPressed,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Text(actionButtonText),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
+
+    overlayState.insert(overlayEntry);
   }
 
   void showLanguageSelectionBottomSheet(BuildContext context) {
