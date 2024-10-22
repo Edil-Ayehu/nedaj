@@ -81,18 +81,111 @@ class ProfilePageSecondContainer extends StatelessWidget {
             text: 'logout'.tr,
             icon: FluentIcons.sign_out_24_regular,
             onTap: () {
-              // Get.to(() => LoginScreen());
-              Navigator.of(context)
-                  .pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                      (route) => false)
-                  .then((value) {
-                homeController.currentPage.value = 0;
-              });
+              // Navigator.of(context)
+              //     .pushAndRemoveUntil(
+              //         MaterialPageRoute(builder: (context) => LoginScreen()),
+              //         (route) => false)
+              //     .then((value) {
+              //   homeController.currentPage.value = 0;
+              // });
+              _showLogoutDialog(context);
             },
           ),
         ],
       ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/images/logout_dialog_image.png',
+                  height: 40,
+                  width: 50,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Log out',
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        fontSize: 24,
+                      ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Are you sure you want to logout?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.green,
+                        side: BorderSide(color: Colors.green),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Text('Cancel'),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    Gap(5),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Text('Logout'),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context)
+                            .pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreen()),
+                                (route) => false)
+                            .then((value) {
+                          homeController.currentPage.value = 0;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -112,7 +205,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(right: 16.0, top: 16),
+                      padding: const EdgeInsets.only(right: 16.0, top: 10),
                       child: IconButton(
                         onPressed: () {
                           Navigator.pop(context);
