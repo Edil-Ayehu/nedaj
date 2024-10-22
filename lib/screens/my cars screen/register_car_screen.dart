@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:nedaj/export.dart';
 
 class RegisterCarScreen extends StatefulWidget {
-  const RegisterCarScreen({super.key});
+  final Car? carToEdit;
+  const RegisterCarScreen({super.key, this.carToEdit});
 
   @override
   _RegisterCarScreenState createState() => _RegisterCarScreenState();
@@ -13,6 +14,18 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
   String plateCode = '';
   String plateRegion = '';
   String plateNumber = '';
+  bool isEditing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.carToEdit != null) {
+      isEditing = true;
+      plateCode = widget.carToEdit!.code.toString();
+      plateRegion = widget.carToEdit!.region;
+      plateNumber = widget.carToEdit!.plateNumber.toString();
+    }
+  }
 
   Color _getColorForCode(String code) {
     switch (code) {
@@ -80,7 +93,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Add your car',
+              Text(isEditing ? 'Update your car' : 'Add your car',
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontSize: 32,
                       )),
@@ -289,7 +302,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                     ),
                   ),
                   child: Text(
-                    'Register Car',
+                    isEditing ? 'Update Car' : 'Register Car',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,

@@ -81,7 +81,7 @@ class MyCarsPage extends StatelessWidget {
                 region: vehicle.region,
                 code: vehicle.code,
                 plateNumber: vehicle.plateNumber,
-                onTap: () => _showBottomSheet(context),
+                onTap: () => _showBottomSheet(context, vehicle),
               );
             },
           ),
@@ -90,7 +90,7 @@ class MyCarsPage extends StatelessWidget {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
+  void _showBottomSheet(BuildContext context, Car car) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
@@ -136,6 +136,13 @@ class MyCarsPage extends StatelessWidget {
                 title: Text('Edit my Car'),
                 onTap: () {
                   Navigator.pop(context);
+                   Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegisterCarScreen(carToEdit: car),
+                    ),
+                  );
                   // Add edit car logic here
                 },
               ),
