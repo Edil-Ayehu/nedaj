@@ -1,6 +1,6 @@
 import 'package:nedaj/export.dart';
 import 'package:intl/intl.dart';
-import 'package:nedaj/models/otp_model.dart';
+
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -20,61 +20,65 @@ class OtpScreen extends StatelessWidget {
                   fontSize: 20,
                 )),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gap(20),
-            Text(
-              'List of Generated OTP\'s',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontSize: 26,
-                  ),
-            ),
-            Text(
-              'Generated OTPs for your payment transactions.',
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    fontSize: 17,
-                  ),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: ListView.builder(
-                itemCount: otps.length,
-                itemBuilder: (context, index) {
-                  final otp = otps[index];
-                  final dateString = _getDateString(otp.date);
-                  final showDateHeader = index == 0 ||
-                      dateString != _getDateString(otps[index - 1].date);
+      body: otps.isEmpty ? EmptyOtpPage() : _buildOtpList(context, otps),
+    );
+  }
 
-                  if (showDateHeader) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text(
-                            dateString,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    color: Colors.grey.shade600),
-                          ),
+  Widget _buildOtpList(BuildContext context, List<OtpModel> otps) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gap(20),
+          Text(
+            'List of Generated OTP\'s',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: 26,
+                ),
+          ),
+          Text(
+            'Generated OTPs for your payment transactions.',
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  fontSize: 17,
+                ),
+          ),
+          SizedBox(height: 20),
+          Expanded(
+            child: ListView.builder(
+              itemCount: otps.length,
+              itemBuilder: (context, index) {
+                final otp = otps[index];
+                final dateString = _getDateString(otp.date);
+                final showDateHeader = index == 0 ||
+                    dateString != _getDateString(otps[index - 1].date);
+
+                if (showDateHeader) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(
+                          dateString,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.grey.shade600),
                         ),
-                        _buildOtpContainer(context, otps, index),
-                      ],
-                    );
-                  }
-                  return Container(); // Return an empty container for non-header items
-                },
-              ),
+                      ),
+                      _buildOtpContainer(context, otps, index),
+                    ],
+                  );
+                }
+                return Container(); // Return an empty container for non-header items
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -159,3 +163,4 @@ class OtpScreen extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: otp));
   }
 }
+
