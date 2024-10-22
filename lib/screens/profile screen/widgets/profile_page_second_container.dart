@@ -2,6 +2,7 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:nedaj/auth/screens/login_screen.dart';
 import 'package:nedaj/export.dart';
 import 'package:nedaj/screens/webview_widget.dart';
+import 'package:nedaj/utils/constants.dart';
 
 class ProfilePageSecondContainer extends StatelessWidget {
   ProfilePageSecondContainer({super.key});
@@ -21,6 +22,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
       ),
       child: Column(
         children: [
+          // Change Pin
           ProfileInfoContainer(
             text: 'change_pin'.tr,
             icon: FluentIcons.lock_closed_24_regular,
@@ -35,6 +37,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
               );
             },
           ),
+          // Language
           ProfileInfoContainer(
             text: 'language'.tr,
             icon: FluentIcons.globe_24_regular,
@@ -42,6 +45,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
               showLanguageSelectionBottomSheet(context);
             },
           ),
+          // Privacy Policy
           ProfileInfoContainer(
             text: 'Privacy Policy',
             icon: FluentIcons.shield_24_regular,
@@ -52,6 +56,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                   ));
             },
           ),
+          // Terms and Conditions
           ProfileInfoContainer(
             text: 'terms_conditions'.tr,
             icon: FluentIcons.document_24_regular,
@@ -62,6 +67,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                   ));
             },
           ),
+          // About Nedaj
           ProfileInfoContainer(
             text: 'About Nedaj',
             icon: FluentIcons.info_24_regular,
@@ -72,23 +78,50 @@ class ProfilePageSecondContainer extends StatelessWidget {
                   ));
             },
           ),
+          // Unlink Device
           ProfileInfoContainer(
             text: 'unlink_phone'.tr,
             icon: FluentIcons.phone_dismiss_24_regular,
-            onTap: () {},
+            onTap: () {
+              _showCustomDialog(
+                context,
+                'assets/images/unlink_dialog_image.png',
+                'Unlink Device',
+                'Are you sure you want to unlink your account from this device?',
+                'Cancel',
+                'Unlink',
+                () {
+                  // Add unlink phone logic here
+                  Navigator.of(context).pop();
+                },
+              );
+            },
           ),
+          // Logout
           ProfileInfoContainer(
             text: 'logout'.tr,
             icon: FluentIcons.sign_out_24_regular,
             onTap: () {
-              // Navigator.of(context)
-              //     .pushAndRemoveUntil(
-              //         MaterialPageRoute(builder: (context) => LoginScreen()),
-              //         (route) => false)
-              //     .then((value) {
-              //   homeController.currentPage.value = 0;
-              // });
-              _showLogoutDialog(context);
+              // _showLogoutDialog(context);
+              _showCustomDialog(
+                context,
+                'assets/images/logout_dialog_image.png',
+                'Log out',
+                'Are you sure you want to logout?',
+                'Cancel',
+                'Logout',
+                () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context)
+                      .pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()),
+                          (route) => false)
+                      .then((value) {
+                    homeController.currentPage.value = 0;
+                  });
+                },
+              );
             },
           ),
         ],
@@ -96,7 +129,15 @@ class ProfilePageSecondContainer extends StatelessWidget {
     );
   }
 
-  void _showLogoutDialog(BuildContext context) {
+  void _showCustomDialog(
+    BuildContext context,
+    String imagePath,
+    String title,
+    String message,
+    String cancelButtonText,
+    String actionButtonText,
+    VoidCallback onActionPressed,
+  ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -110,21 +151,21 @@ class ProfilePageSecondContainer extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(
-                  'assets/images/logout_dialog_image.png',
+                  imagePath,
                   height: 40,
                   width: 50,
                   fit: BoxFit.cover,
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Log out',
+                  title,
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 24,
                       ),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Are you sure you want to logout?',
+                  message,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -138,8 +179,8 @@ class ProfilePageSecondContainer extends StatelessWidget {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        foregroundColor: Colors.green,
-                        side: BorderSide(color: Colors.green),
+                        foregroundColor: Constants.primaryColor,
+                        side: BorderSide(color: Constants.primaryColor),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -147,7 +188,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Text('Cancel'),
+                        child: Text(cancelButtonText),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -156,28 +197,18 @@ class ProfilePageSecondContainer extends StatelessWidget {
                     Gap(5),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                        backgroundColor: Constants.primaryColor,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
+                      onPressed: onActionPressed,
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Text('Logout'),
+                        child: Text(actionButtonText),
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.of(context)
-                            .pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => LoginScreen()),
-                                (route) => false)
-                            .then((value) {
-                          homeController.currentPage.value = 0;
-                        });
-                      },
                     ),
                   ],
                 ),

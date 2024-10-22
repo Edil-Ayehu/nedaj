@@ -22,5 +22,5 @@ const Map<String, String> enUS = {
   "registered_vehicles": "Registered Vehicles",
   "linked_cars": "The cars listed below are linked to your bank account.",
   "terms_conditions": "Terms and conditions",
-  "unlink_phone": "Unlink Phone",
+  "unlink_phone": "Unlink Device",
 };
