@@ -1,5 +1,6 @@
 import 'package:nedaj/export.dart';
 import 'package:nedaj/screens/my%20cars%20screen/widgets/empty_car_widget.dart';
+import 'package:nedaj/screens/my cars screen/register_car_screen.dart';
 
 class MyCarsPage extends StatelessWidget {
   const MyCarsPage({super.key});
@@ -18,7 +19,9 @@ class MyCarsPage extends StatelessWidget {
             ? FloatingActionButton.extended(
                 foregroundColor: Colors.white,
                 backgroundColor: Constants.primaryColor,
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => RegisterCarScreen());
+                },
                 label: Text('Register Car'),
                 icon: Icon(Icons.add),
               )
