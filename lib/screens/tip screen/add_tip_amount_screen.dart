@@ -1,10 +1,11 @@
 import 'package:nedaj/export.dart';
 import 'package:nedaj/screens/tip%20screen/tip_success_screen.dart';
+// Add this import
 
 class AddTipAmountScreen extends StatefulWidget {
   final Transaction transaction;
 
-  const AddTipAmountScreen({Key? key, required this.transaction}) : super(key: key);
+  const AddTipAmountScreen({super.key, required this.transaction});
 
   @override
   _AddTipAmountScreenState createState() => _AddTipAmountScreenState();
@@ -29,8 +30,9 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Add amount'),
+        title: Text('Tips'),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -39,20 +41,59 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Gap(10),
             Text(
-              'Set your tip amount',
-              style: Theme.of(context).textTheme.bodyMedium,
+              'Add Amount',
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    fontSize: 30,
+                  ),
+            ),
+            Text(
+              'Set your tip amount for the selected transaction and send.',
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.grey,
+                    fontSize: 17,
+                  ),
             ),
             SizedBox(height: 16),
             Text(
               'Add Amount',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
+            Gap(6),
             TextField(
               controller: _amountController,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.phone,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(
+                    r'^\d+\.?\d{0,2}')), // Allow only numbers with up to 2 decimal places
+              ],
               decoration: InputDecoration(
-                hintText: 'Enter tip amount',
+                hintText: 'Add Amount',
+                hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.grey,
+                    ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: Constants.primaryColor.withOpacity(0.3),
+                    width: 1,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: Constants.primaryColor.withOpacity(0.3),
+                    width: 1,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: Constants.primaryColor.withOpacity(0.6),
+                    width: 1,
+                  ),
+                ),
               ),
             ),
             Spacer(),
@@ -61,14 +102,24 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
               child: ElevatedButton(
                 onPressed: _isButtonEnabled
                     ? () {
-                        double tipAmount = double.tryParse(_amountController.text) ?? 0;
+                        double tipAmount =
+                            double.tryParse(_amountController.text) ?? 0;
                         Get.to(() => TipSuccessScreen(tipAmount: tipAmount));
                       }
                     : null,
-                child: Text('Send'),
                 style: ElevatedButton.styleFrom(
+                  disabledBackgroundColor: Colors.grey.shade500,
                   backgroundColor: Constants.primaryColor,
                   padding: EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  'Send',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Colors.white,
+                      ),
                 ),
               ),
             ),
