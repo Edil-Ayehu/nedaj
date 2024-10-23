@@ -33,8 +33,11 @@ class OtherServicesListContainer extends StatelessWidget {
               ),
               Gap(5),
               if (index != services.length - 1)
-                Divider(
-                  color: Colors.grey.shade300,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Divider(
+                    color: Colors.grey.shade200,
+                  ),
                 ),
               Gap(5),
             ],

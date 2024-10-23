@@ -58,15 +58,18 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'recent_history'.tr,
-                            textScaler: TextScaler.linear(1),
-                            style:
-                                Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                      fontSize: 18,
-                                      color: Colors.grey,
-                                    ),
-                          ),
+                          if (transactionHistory.isNotEmpty)
+                            Text(
+                              'recent_history'.tr,
+                              textScaler: TextScaler.linear(1),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    fontSize: 18,
+                                    color: Colors.grey,
+                                  ),
+                            ),
                           if (transactionHistory.isNotEmpty)
                             GestureDetector(
                               onTap: () {

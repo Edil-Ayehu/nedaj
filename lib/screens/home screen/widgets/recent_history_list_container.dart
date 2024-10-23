@@ -9,42 +9,6 @@ class RecentHistoryListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (transactionHistory.isEmpty) {
-      return Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          children: [
-            // Image.asset(
-            //   'assets/images/empty_transaction_icon.png',
-            //   width: 100,
-            //   height: 100,
-            // ),
-            // Gap(10),
-            Text(
-              'No recent transactions',
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontSize: 16,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                  ),
-            ),
-            Gap(5),
-            Text(
-              'Your recent transactions will appear here',
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-            ),
-          ],
-        ),
-      );
-    }
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),

@@ -23,7 +23,9 @@ class UserInfoGradientContainer extends StatelessWidget {
           ],
         ),
         image: DecorationImage(
-            image: AssetImage('assets/images/gradient_background.png')),
+          image: AssetImage('assets/images/gradient_bg_image.png'),
+          fit: BoxFit.cover,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

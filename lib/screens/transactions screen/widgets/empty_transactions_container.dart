@@ -10,9 +10,10 @@ class EmptyTransactionsContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/images/empty_transaction_icon.png',
+            'assets/images/no_transaction_image.png',
             width: 200,
             height: 200,
+            fit: BoxFit.cover,
           ),
           Gap(20),
           Padding(
