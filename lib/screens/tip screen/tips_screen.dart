@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/tip%20screen/transaction_list_for_tip_screen.dart';
 import 'package:nedaj/screens/tip%20screen/widgets/empty_tips_widget.dart';
 import 'package:nedaj/screens/tip%20screen/widgets/tip_container.dart';
 import 'package:nedaj/models/tip_model.dart';
@@ -68,7 +69,7 @@ class TipsScreen extends StatelessWidget {
         foregroundColor: Colors.white,
         backgroundColor: Constants.primaryColor,
         onPressed: () {
-          // Get.to(() => RegisterCarScreen());
+          Get.to(() => TransactionListForTipScreen());
         },
         label: Text('Give Tip',
             style: TextStyle(
