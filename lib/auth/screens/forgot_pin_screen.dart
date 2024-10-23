@@ -1,14 +1,14 @@
-import 'package:nedaj/auth/screens/pin_entry_screen.dart';
+import 'package:nedaj/auth/screens/phone_verification_screen.dart';
 import 'package:nedaj/export.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgotPinScreen extends StatefulWidget {
+  const ForgotPinScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPinScreen> createState() => _ForgotPinScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPinScreenState extends State<ForgotPinScreen> {
   final _formKey = GlobalKey<FormState>();
   final _phoneController = TextEditingController();
   String? _phoneError;
@@ -26,7 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_formKey.currentState!.validate()) {
       if (_phoneController.text.length == 9) {
-        Get.to(() => PinEntryScreen());
+        // Handle forgot PIN logic here
+        // For now, we'll just print a message
+        Get.to(() => PhoneVerificationScreen(
+              phoneNumber: _phoneController.text,
+            ));
+        print('Forgot PIN for number: ${_phoneController.text}');
       } else {
         setState(() {
           _phoneError = 'Please enter a 9-digit phone number';
@@ -61,7 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.topRight,
                     child: LanguageSelector(),
                   ),
-                  Spacer(),
+                  Spacer(
+                    flex: 2,
+                  ),
                   Center(
                     child: Image.asset(
                       'assets/images/nedaj_lgo.png',
@@ -69,15 +76,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Gap(26),
+                  Gap(36),
                   Text(
-                    'Login',
+                    'Forgot PIN',
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                          fontSize: 38,
+                          fontSize: 34,
                         ),
                   ),
                   Text(
-                    'Use your phone number to login to your Nedaj Account.',
+                    'Enter your phone number to reset your PIN.',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 16,
@@ -94,7 +101,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   Gap(6),
                   TextFormField(
                     controller: _phoneController,
-                    cursorColor: Colors.grey.shade600,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your phone number';
@@ -150,7 +156,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  Spacer(
+                    flex: 3,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 58,
@@ -162,40 +170,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: _validateAndSubmit,
-                      child: Text('Login'),
+                      child: Text('Continue'),
                     ),
                   ),
-                  Gap(24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Not Registered Yet?',
-                        style: TextStyle(
-                          color: Colors.grey.shade500,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      Gap(4),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => SignupScreen());
-                        },
-                        child: Text(
-                          'Register',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall!
-                              .copyWith(
-                                color: Constants.primaryColor,
-                                fontSize: 16,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gap(30),
+                  Gap(34),
                 ],
               ),
             ),

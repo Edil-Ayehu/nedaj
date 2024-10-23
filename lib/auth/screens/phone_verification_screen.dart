@@ -127,22 +127,25 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.phone,
                         cursorColor: Colors.black,
-                        
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly,
                           LengthLimitingTextInputFormatter(1),
                         ],
                         decoration: InputDecoration(
                           hintText: '-',
-                          hintStyle: TextStyle(color: Colors.green),
+                          filled: true,
+                          fillColor: Constants.primaryColor.withOpacity(0.06),
+                          hintStyle: TextStyle(color: Constants.primaryColor),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: Constants.primaryColor, width: 1),
+                                color: Constants.primaryColor.withOpacity(0.3),
+                                width: 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                                color: Constants.primaryColor, width: 2),
+                                color: Constants.primaryColor.withOpacity(0.7),
+                                width: 1),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:nedaj/auth/screens/forgot_pin_screen.dart';
 import 'package:nedaj/export.dart';
 
 class PinEntryScreen extends StatefulWidget {
@@ -139,7 +140,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                 SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
-                    // Handle forgot PIN
+                    Get.to(() => ForgotPinScreen());
                   },
                   child: Text(
                     'Forgot PIN?',
