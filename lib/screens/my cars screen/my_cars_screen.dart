@@ -132,11 +132,18 @@ class MyCarsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 tileColor: Colors.grey.shade100,
-                leading: Icon(FluentIcons.edit_line_horizontal_3_20_filled),
-                title: Text('Edit my Car'),
+                leading: Icon(FluentIcons.edit_line_horizontal_3_20_filled,
+                    color: Constants.primaryColor),
+                title: Text(
+                  'Edit my Car',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Constants.primaryColor),
+                ),
                 onTap: () {
                   Navigator.pop(context);
-                   Navigator.pop(context);
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -152,8 +159,15 @@ class MyCarsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 tileColor: Colors.grey.shade100,
-                leading: Icon(FluentIcons.delete_24_filled),
-                title: Text('Delete my Car'),
+                leading: Icon(FluentIcons.delete_24_filled,
+                    color: Constants.primaryColor),
+                title: Text(
+                  'Delete my Car',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Constants.primaryColor),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   // _showLogoutDialog(context);

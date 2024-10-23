@@ -155,6 +155,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                               .copyWith(
                                 color: _getColorForCode(plateCode),
                                 fontSize: 40,
+                                letterSpacing: 1.2,
                               ),
                         ),
                         Spacer(),
@@ -321,19 +322,81 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
   void _showPlateCodeBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.white,
       builder: (BuildContext bc) {
         return Container(
           child: Wrap(
+            alignment: WrapAlignment.center,
             children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.close, color: Colors.grey.shade700),
+                  ),
+                ],
+              ),
+              Center(
+                child: Image.asset(
+                  'assets/images/my_car_image.png',
+                  height: 70,
+                  width: 70,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(height: 18),
+              Text(
+                'Plate Code',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              SizedBox(height: 30),
               for (var code in ['1', '2', '3', '4'])
-                ListTile(
-                  title: Text('Code $code'),
-                  onTap: () {
-                    setState(() {
-                      plateCode = code;
-                    });
-                    Navigator.pop(context);
-                  },
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(
+                        color: plateCode == code
+                            ? Color(0xff131C66)
+                            : Colors.grey.shade200,
+                        width: 1,
+                      ),
+                    ),
+                    tileColor: Colors.grey.shade50,
+                    leading: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: plateCode == code
+                                ? Color(0xff131C66)
+                                : Colors.grey.shade400),
+                      ),
+                      child: plateCode == code
+                          ? Icon(Icons.check,
+                              size: 18, color: Color(0xff131C66))
+                          : null,
+                    ),
+                    title: Text('Code $code',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: plateCode == code
+                                  ? Color(0xff131C66)
+                                  : Colors.grey.shade500,
+                            )),
+                    onTap: () {
+                      setState(() {
+                        plateCode = code;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
             ],
           ),
@@ -360,30 +423,105 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       builder: (BuildContext bc) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.75,
+          height: MediaQuery.of(context).size.height * 0.5,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Select Plate Region',
-                  style: Theme.of(context).textTheme.titleLarge,
+              // first container
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                ),
+                child: Column(
+                  children: [
+                    // close button
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close, color: Colors.grey.shade700),
+                        ),
+                      ],
+                    ),
+                    // car image
+                    Image.asset(
+                      'assets/images/my_car_image.png',
+                      height: 70,
+                      width: 70,
+                      fit: BoxFit.cover,
+                    ),
+                    SizedBox(height: 14),
+                    // plate region text
+                    Text(
+                      'Plate Region',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(height: 20),
+                  ],
                 ),
               ),
+
+              // scrollable list
               Expanded(
                 child: ListView.builder(
                   itemCount: regions.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(regions[index]),
-                      onTap: () {
-                        setState(() {
-                          plateRegion = regions[index];
-                        });
-                        Navigator.pop(context);
-                      },
+                    final region = regions[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10, bottom: 10),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(
+                            color: plateRegion == region
+                                ? Color(0xff131C66)
+                                : Colors.grey.shade200,
+                            width: 1,
+                          ),
+                        ),
+                        tileColor: Colors.grey.shade50,
+                        leading: Container(
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: plateRegion == region
+                                    ? Color(0xff131C66)
+                                    : Colors.grey.shade400),
+                          ),
+                          child: plateRegion == region
+                              ? Icon(Icons.check,
+                                  size: 18, color: Color(0xff131C66))
+                              : null,
+                        ),
+                        title: Text(region,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: plateRegion == region
+                                      ? Color(0xff131C66)
+                                      : Colors.grey.shade500,
+                                )),
+                        onTap: () {
+                          setState(() {
+                            plateRegion = region;
+                          });
+                          Navigator.pop(context);
+                        },
+                      ),
                     );
                   },
                 ),
