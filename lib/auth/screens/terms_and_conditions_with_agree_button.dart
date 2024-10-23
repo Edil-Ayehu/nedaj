@@ -124,7 +124,7 @@ class _TermsAndConditionsWithAgreeButtonState
               ),
             ),
             onPressed: () {
-              Get.to(() => PhoneVerificationScreen(phoneNumber: '+251930884402'));
+              Get.to(() => PhoneVerificationScreen(phoneNumber: '930884402'));
             },
             child: Text('Agree'),
           ),

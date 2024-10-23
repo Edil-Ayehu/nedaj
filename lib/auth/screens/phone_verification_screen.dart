@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nedaj/export.dart';
 
 class PhoneVerificationScreen extends StatefulWidget {
@@ -48,35 +46,68 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Phone Verification')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(
+          'Phone Verification',
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+                fontSize: 21,
+              ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Gap(56),
                 Text(
                   'Verify your phone number',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 30,
+                      ),
                 ),
-                SizedBox(height: 16),
-                Text('We sent you a confirmation code to'),
-                SizedBox(height: 8),
+                Gap(8),
+                Text(
+                  'We sent you a confirmation code to',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Colors.grey.shade600,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                      ),
+                ),
+                SizedBox(height: 4),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.phoneNumber,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      '+251 - ${widget.phoneNumber}',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 21,
+                          ),
                     ),
-                    Spacer(),
                     TextButton(
                       onPressed: () {
                         // Handle change phone number
                       },
                       child: Text(
                         'Change',
-                        style: TextStyle(decoration: TextDecoration.underline),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Constants.primaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 21,
+                              decoration: TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.solid,
+                              decorationColor: Constants.primaryColor,
+                            ),
                       ),
                     ),
                   ],
@@ -87,12 +118,13 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                   children: List.generate(
                     5,
                     (index) => SizedBox(
-                      width: 50,
+                      width: 65,
+                      height: 65,
                       child: TextField(
                         controller: _controllers[index],
                         focusNode: _focusNodes[index],
                         textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.phone,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly,
                           LengthLimitingTextInputFormatter(1),
@@ -101,11 +133,14 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                           hintText: '-',
                           hintStyle: TextStyle(color: Colors.green),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green),
+                            borderSide: BorderSide(
+                                color: Constants.primaryColor, width: 1),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.green, width: 2),
+                            borderSide: BorderSide(
+                                color: Constants.primaryColor, width: 2),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                         onChanged: (value) {
@@ -126,14 +161,21 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                     },
                     child: Text(
                       'Resend SMS Code',
-                      style: TextStyle(decoration: TextDecoration.underline),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Constants.primaryColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 21,
+                            decoration: TextDecoration.underline,
+                            decorationStyle: TextDecorationStyle.solid,
+                            decorationColor: Constants.primaryColor,
+                          ),
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 6),
                 Center(
                   child: Text(
-                    'The OTP code will be expired in 20 min',
+                    'The OTP code will be expired in 2.0 min',
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
