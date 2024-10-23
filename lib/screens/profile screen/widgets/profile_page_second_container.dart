@@ -106,11 +106,18 @@ class ProfilePageSecondContainer extends StatelessWidget {
                 'Cancel',
                 'Logout',
                 () {
-                  homeController.currentPage.value = 0;
+                  // Close the dialog
                   Navigator.of(context).pop();
+
+                  // Navigate to LoginScreen and remove all previous routes
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => LoginScreen()),
                       (route) => false);
+
+                  // Reset the current page after navigation
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    homeController.currentPage.value = 0;
+                  });
                 },
               );
             },
