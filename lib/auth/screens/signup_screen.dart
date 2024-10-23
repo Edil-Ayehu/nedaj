@@ -1,3 +1,5 @@
+import 'package:nedaj/auth/screens/terms_and_conditions_with_agree_button.dart';
+
 import '../../export.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -209,7 +211,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     onPressed: () {
-                      Get.off(() => Home());
+                      Get.off(() => TermsAndConditionsWithAgreeButton(
+                            url: 'https://www.eaglelionsystems.com/',
+                          ));
                     },
                     child: Text('Register'),
                   ),

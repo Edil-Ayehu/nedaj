@@ -215,7 +215,7 @@ class MyCarsPage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {}, // Prevent taps from closing the dialog
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 40),
+                    margin: EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
