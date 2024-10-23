@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                       return null;
                     },
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.phone,
                     style: TextStyle(
                       fontSize: 18,
                     ),

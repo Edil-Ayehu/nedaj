@@ -18,7 +18,7 @@ class TransactionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat('MMMM d, yyyy h:mm a').format(date);
+    String formattedDate = DateFormat('MMM d, yyyy h:mm a').format(date);
     return GestureDetector(
       onTap: onTap,
       child: Container(

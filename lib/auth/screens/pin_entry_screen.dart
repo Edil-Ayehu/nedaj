@@ -117,7 +117,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                                 width: 1),
                           ),
                         ),
-                       onChanged: (value) {
+                        onChanged: (value) {
                           if (value.isNotEmpty && index < 4) {
                             FocusScope.of(context)
                                 .requestFocus(_focusNodes[index + 1]);
