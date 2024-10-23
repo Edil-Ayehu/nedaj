@@ -106,15 +106,11 @@ class ProfilePageSecondContainer extends StatelessWidget {
                 'Cancel',
                 'Logout',
                 () {
+                  homeController.currentPage.value = 0;
                   Navigator.of(context).pop();
-                  Navigator.of(context)
-                      .pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
-                          (route) => false)
-                      .then((value) {
-                    homeController.currentPage.value = 0;
-                  });
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false);
                 },
               );
             },

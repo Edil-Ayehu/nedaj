@@ -1,3 +1,4 @@
+import 'package:nedaj/auth/screens/create_pin_screen.dart';
 import 'package:nedaj/export.dart';
 
 class PhoneVerificationScreen extends StatefulWidget {
@@ -125,6 +126,8 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                         focusNode: _focusNodes[index],
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.phone,
+                        cursorColor: Colors.black,
+                        
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly,
                           LengthLimitingTextInputFormatter(1),
@@ -194,12 +197,12 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
           ),
           child: SizedBox(
             width: double.infinity,
-            height: 50,
+            height: 55,
             child: ElevatedButton(
               onPressed: _isButtonActive
                   ? () {
                       // Handle continue button press
-                      Get.to(() => Home());
+                      Get.to(() => CreatePINScreen());
                     }
                   : null,
               style: ElevatedButton.styleFrom(
@@ -209,8 +212,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 backgroundColor: Colors.green,
                 disabledBackgroundColor: Colors.grey.shade400,
                 disabledForegroundColor: Colors.grey.shade800,
-                foregroundColor: Colors
-                    .white, // This will be the color when the button is disabled
+                foregroundColor: Colors.white,
               ),
               child: Text('Continue'),
             ),
