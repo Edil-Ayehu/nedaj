@@ -42,7 +42,7 @@ export 'package:nedaj/screens/change_pin_screen.dart';
 export 'package:nedaj/screens/terms_and_conditions_screen.dart';
 export 'package:nedaj/models/car_model.dart';
 export 'package:nedaj/screens/otp%20screen/otp_screen.dart';
-export 'package:nedaj/screens/tips_screen.dart';
+export 'package:nedaj/screens/tip%20screen/tips_screen.dart';
 export 'package:nedaj/screens/transactions%20screen/widgets/transaction_details_screen.dart';
 export 'package:nedaj/widgets/custom_app._bar.dart';
 export 'package:nedaj/widgets/custom_bottom_sheet.dart';
