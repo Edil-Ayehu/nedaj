@@ -1,3 +1,4 @@
+import 'package:nedaj/auth/screens/phone_verification_screen.dart';
 import 'package:nedaj/export.dart';
 
 class _CenterDockedFloatingActionButtonLocation
@@ -123,7 +124,7 @@ class _TermsAndConditionsWithAgreeButtonState
               ),
             ),
             onPressed: () {
-              Get.to(() => Home());
+              Get.to(() => PhoneVerificationScreen(phoneNumber: '+251930884402'));
             },
             child: Text('Agree'),
           ),
