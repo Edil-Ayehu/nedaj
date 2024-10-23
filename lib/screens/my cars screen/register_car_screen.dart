@@ -154,12 +154,12 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                               .headlineLarge!
                               .copyWith(
                                 color: _getColorForCode(plateCode),
-                                fontSize: 40,
-                                letterSpacing: 1.2,
+                                fontSize: 48,
+                                letterSpacing: 2.5,
                               ),
                         ),
                         Spacer(),
-                        Gap(30),
+                        Gap(60),
                       ],
                     ),
                   ),
@@ -252,6 +252,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                       )),
               SizedBox(height: 4),
               TextField(
+                cursorColor: Colors.grey.shade600,
                 decoration: InputDecoration(
                   hintText: 'Plate Number',
                   hintStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
@@ -273,7 +274,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                     borderSide: BorderSide(color: Colors.grey.shade300),
                   ),
                 ),
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.phone,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(6),
@@ -296,6 +297,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
+                    disabledBackgroundColor: Colors.grey.shade500,
                     backgroundColor:
                         _isFormValid ? Colors.green : Colors.grey.shade500,
                     shape: RoundedRectangleBorder(
