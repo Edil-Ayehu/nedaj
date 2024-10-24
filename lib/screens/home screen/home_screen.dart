@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Main Services List
-                      MainServicesContainer(),
+                      MainServicesListWidget(),
 
                       SizedBox(height: 14),
                       Text(

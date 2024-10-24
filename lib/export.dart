@@ -47,7 +47,7 @@ export 'package:nedaj/screens/transactions%20screen/widgets/transaction_details_
 export 'package:nedaj/widgets/custom_app._bar.dart';
 export 'package:nedaj/widgets/custom_bottom_sheet.dart';
 export 'package:nedaj/screens/home%20screen/widgets/user_info_gradient_container.dart';
-export 'package:nedaj/screens/home%20screen/widgets/main_services_container.dart';
+export 'package:nedaj/screens/home%20screen/widgets/main_services_list_widget.dart';
 export 'package:nedaj/screens/home%20screen/widgets/other_services_list_container.dart';
 export 'package:nedaj/screens/home%20screen/widgets/recent_history_list_container.dart';
 export 'package:page_transition/page_transition.dart';

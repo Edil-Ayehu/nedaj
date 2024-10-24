@@ -44,7 +44,9 @@ class OtherServiceContainer extends StatelessWidget {
                     description,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Colors.grey.shade400,
+                        ),
                   ),
                 ],
               ),
@@ -52,7 +54,7 @@ class OtherServiceContainer extends StatelessWidget {
             Icon(
               Icons.arrow_forward_ios_rounded,
               color: Colors.black,
-              size: 18,
+              size: 16,
             ),
           ],
         ),

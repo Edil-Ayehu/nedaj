@@ -1,7 +1,7 @@
 import 'package:nedaj/export.dart';
 
-class MainServicesContainer extends StatelessWidget {
-  const MainServicesContainer({
+class MainServicesListWidget extends StatelessWidget {
+  const MainServicesListWidget({
     super.key,
   });
 

@@ -34,6 +34,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,6 +62,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                 SizedBox(height: 10),
                 Text(
                   'Enter your PIN and sign in to your Nedaj account.',
+                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey,
                         fontSize: 16,
@@ -136,7 +138,14 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                   ),
                 ),
                 SizedBox(height: 30),
-                Icon(Icons.fingerprint, size: 90, color: Colors.green),
+                Container(
+                  padding: EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: Color(0xffF7F7F7),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.fingerprint, size: 70, color: Colors.green),
+                ),
                 SizedBox(height: 20),
                 TextButton(
                   onPressed: () {

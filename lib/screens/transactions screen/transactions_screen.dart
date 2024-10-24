@@ -115,7 +115,7 @@ class TransactionsScreen extends StatelessWidget {
                                   .titleSmall!
                                   .copyWith(
                                     fontWeight: FontWeight.w900,
-                                    color: Colors.black,
+                                    color: Colors.grey.shade500,
                                     fontSize: 19,
                                   ),
                             ),
