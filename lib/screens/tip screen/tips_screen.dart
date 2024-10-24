@@ -34,7 +34,7 @@ class TipsScreen extends StatelessWidget {
                   Gap(20),
                   Text(
                     'Tips Given',
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Colors.black,
                           fontSize: 26,
                         ),
@@ -42,7 +42,7 @@ class TipsScreen extends StatelessWidget {
                   Text(
                     'List of all tips given to Nedaj attendants',
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Colors.black,
+                          color: Colors.grey.shade500,
                           fontSize: 16,
                         ),
                   ),
@@ -82,5 +82,3 @@ class TipsScreen extends StatelessWidget {
     );
   }
 }
-
-

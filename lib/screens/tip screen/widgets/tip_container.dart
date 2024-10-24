@@ -41,7 +41,7 @@ class TipContainer extends StatelessWidget {
                     Text('Amount: ',
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  color: Colors.black,
+                                  color: Colors.grey.shade500,
                                   fontSize: 18,
                                 )),
                     Text(tipAmount.toStringAsFixed(2),

@@ -24,7 +24,13 @@ class TransactionListForTipScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Give Tip'),
+        title: Text(
+          'Give Tip',
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -38,13 +44,17 @@ class TransactionListForTipScreen extends StatelessWidget {
               children: [
                 Text(
                   'List of transactions',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        color: Colors.black,
+                        fontSize: 26,
+                      ),
                 ),
                 SizedBox(height: 3),
                 Text(
                   'Select a transaction from the list and send a tip',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.grey,
+                        color: Colors.grey.shade500,
+                        fontSize: 18,
                       ),
                 ),
               ],
@@ -66,7 +76,7 @@ class TransactionListForTipScreen extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.titleSmall!.copyWith(
                                     fontWeight: FontWeight.w900,
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     fontSize: 19,
                                   ),
                         ),

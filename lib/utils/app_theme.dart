@@ -8,7 +8,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      titleTextStyle: GoogleFonts.montserrat(
+      titleTextStyle: GoogleFonts.roboto(
         color: Colors.grey.shade800,
         fontWeight: FontWeight.w300,
         fontSize: 24,
@@ -17,27 +17,27 @@ class AppTheme {
 
     // text theme
     textTheme: TextTheme(
-      titleLarge: GoogleFonts.montserrat(
+      titleLarge: GoogleFonts.roboto(
         fontSize: 32,
         color: Colors.black,
       ),
-      titleMedium: GoogleFonts.montserrat(
+      titleMedium: GoogleFonts.roboto(
         fontSize: 24,
         color: Colors.black,
       ),
-      titleSmall: GoogleFonts.montserrat(
+      titleSmall: GoogleFonts.roboto(
         fontSize: 20,
         color: Colors.black54,
       ),
-      bodyLarge: GoogleFonts.montserrat(
+      bodyLarge: GoogleFonts.roboto(
         fontSize: 20,
         color: Colors.black,
       ),
-      bodyMedium: GoogleFonts.montserrat(
+      bodyMedium: GoogleFonts.roboto(
         fontSize: 18,
         color: Colors.black,
       ),
-      bodySmall: GoogleFonts.montserrat(
+      bodySmall: GoogleFonts.roboto(
         fontSize: 14,
         color: Colors.black54,
       ),
@@ -45,7 +45,7 @@ class AppTheme {
 
     // floatingActionButto Theme
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: Colors.green,
+      backgroundColor: Constants.primaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
       ),
@@ -55,8 +55,8 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.green,
-        textStyle: GoogleFonts.montserrat(fontSize: 18),
+        backgroundColor: Constants.primaryColor,
+        textStyle: GoogleFonts.roboto(fontSize: 18),
       ),
     ),
 
