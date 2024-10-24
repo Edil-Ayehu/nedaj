@@ -2,6 +2,7 @@ import 'package:nedaj/export.dart';
 import 'package:nedaj/models/notification_model.dart';
 import 'package:intl/intl.dart';
 import 'package:collection/collection.dart';
+import 'package:nedaj/screens/notification%20screen/widgets/empty_notifications_container.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
@@ -25,34 +26,37 @@ class NotificationsScreen extends StatelessWidget {
               ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: groupedNotifications.length,
-        itemBuilder: (context, index) {
-          final date = groupedNotifications.keys.elementAt(index);
-          final notificationsForDate = groupedNotifications[date]!;
+      body: notifications.isEmpty
+          ? EmptyNotificationsContainer()
+          : ListView.builder(
+              itemCount: groupedNotifications.length,
+              itemBuilder: (context, index) {
+                final date = groupedNotifications.keys.elementAt(index);
+                final notificationsForDate = groupedNotifications[date]!;
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                child: Text(
-                  _formatDate(date),
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              ...notificationsForDate
-                  .map((notification) =>
-                      _buildNotificationCard(context, notification))
-                  .toList(),
-            ],
-          );
-        },
-      ),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      child: Text(
+                        _formatDate(date),
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    ...notificationsForDate
+                        .map((notification) =>
+                            _buildNotificationCard(context, notification))
+                        .toList(),
+                  ],
+                );
+              },
+            ),
     );
   }
 
@@ -102,6 +106,7 @@ class NotificationsScreen extends StatelessWidget {
                     notification.description,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           fontSize: 14,
+                          color: Colors.grey[800],
                         ),
                   ),
                   SizedBox(height: 14),
