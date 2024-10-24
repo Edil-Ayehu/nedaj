@@ -32,7 +32,11 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Tips'),
+        title: Text('Tips',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Colors.black,
+                  fontSize: 20,
+                )),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -44,15 +48,15 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
             Gap(10),
             Text(
               'Add Amount',
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 30,
                   ),
             ),
             Text(
               'Set your tip amount for the selected transaction and send.',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Colors.grey,
-                    fontSize: 17,
+                    color: Colors.grey.shade400,
+                    fontSize: 16,
                   ),
             ),
             SizedBox(height: 16),
@@ -71,7 +75,7 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
               decoration: InputDecoration(
                 hintText: 'Add Amount',
                 hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Colors.grey,
+                      color: Colors.grey.shade400,
                     ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),

@@ -7,50 +7,94 @@ class TipSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text('Tips',
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Colors.black,
+                  fontSize: 20,
+                )),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/success_image.png', // Make sure you have this image in your assets
-              width: 200,
-              height: 200,
-            ),
-            SizedBox(height: 24),
-            Text(
-              'Tip amount',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            SizedBox(height: 8),
-            Text(
-              '\$${tipAmount.toStringAsFixed(2)}',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Constants.primaryColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Your tip is successfully sent',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SizedBox(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Gap(size.height * 0.16),
+              Image.asset(
+                'assets/images/success_image.png', // Make sure you have this image in your assets
+                width: 110,
+                height: 110,
+                fit: BoxFit.cover,
+              ),
+              Gap(30),
+              Container(
+                width: size.width * 0.7,
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                decoration: BoxDecoration(
+                  color: Color(0xffF0F8F5),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Tip amount',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      '${tipAmount.toStringAsFixed(2)} Birr',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Color(0xff16553A),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 36,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 26),
+              Text(
+                'Your Tip is Successfully Sent',
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontSize: 22,
+                    ),
+              ),
+              Gap(10),
+              Text(
+                'You haven’t registered any cars yet. Add your car now to make fuel payments faster and easier!',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontSize: 16,
+                      color: Colors.grey.shade400,
+                    ),
+              ),
+              Spacer(),
+              SizedBox(
                 width: double.infinity,
+                height: 55,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => Home());
+                  },
                   style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     backgroundColor: Constants.primaryColor,
                     padding: EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: Text('Back'),
+                  child: Text('Done'),
                 ),
               ),
-            ),
-          ],
+              Gap(22),
+            ],
+          ),
         ),
       ),
     );
