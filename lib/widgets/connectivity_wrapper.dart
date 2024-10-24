@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:nedaj/export.dart';
 import 'package:nedaj/screens/no_internet_screen.dart';
 
 class ConnectivityWrapper extends StatefulWidget {
@@ -12,8 +13,8 @@ class ConnectivityWrapper extends StatefulWidget {
 }
 
 class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
-  // late Stream<ConnectivityResult> _connectivityStream;
   late Stream<List<ConnectivityResult>> _connectivityStream;
+  bool _isRetrying = false;
 
   @override
   void initState() {
@@ -26,8 +27,30 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
     return connectivityResult.contains(ConnectivityResult.none) == false;
   }
 
-  void _retryConnection() {
-    setState(() {});
+  Future<void> _retryConnection() async {
+    if (_isRetrying) return;
+
+    setState(() {
+      _isRetrying = true;
+    });
+
+    // Add a slight delay to simulate the checking process
+    await Future.delayed(Duration(seconds: 2));
+
+    var isConnected = await _checkConnectivity();
+
+    setState(() {
+      _isRetrying = false;
+    });
+
+    if (!isConnected) {
+      // If still not connected, you might want to show a snackbar or toast message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content:
+                Text('Still no internet connection. Please try again later.')),
+      );
+    }
   }
 
   @override
@@ -41,7 +64,10 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
             if (snapshot.hasData && snapshot.data == true) {
               return widget.child;
             } else {
-              return NoInternetScreen(onRetry: _retryConnection);
+              return NoInternetScreen(
+                onRetry: _retryConnection,
+                isRetrying: _isRetrying,
+              );
             }
           },
         );
