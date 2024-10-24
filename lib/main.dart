@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/widgets/connectivity_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'), // Fallback locale in case of an error
       title: 'app_name'.tr, // Use translation
       theme: AppTheme.lightTheme,  
-       home: showOnboarding ? OnboardingScreen() : SplashScreen(),
+      home: showOnboarding ? ConnectivityWrapper(child: OnboardingScreen()) : ConnectivityWrapper(child: SplashScreen()),
        
     );
   }
