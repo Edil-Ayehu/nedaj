@@ -1,8 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/tip%20screen/transaction_list_for_tip_screen.dart';
-import 'package:nedaj/screens/tip%20screen/widgets/empty_tips_widget.dart';
-import 'package:nedaj/screens/tip%20screen/widgets/tip_container.dart';
-import 'package:nedaj/models/tip_model.dart';
 
 class TipsScreen extends StatelessWidget {
   const TipsScreen({super.key});
@@ -17,7 +13,7 @@ class TipsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'tips'.tr,
+          'tips'.tr,textScaler: TextScaler.linear(1),
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 color: Colors.black,
                 fontSize: 22,
@@ -33,14 +29,14 @@ class TipsScreen extends StatelessWidget {
                 children: [
                   Gap(20),
                   Text(
-                    'Tips Given',
+                    'Tips Given',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Colors.black,
                           fontSize: 26,
                         ),
                   ),
                   Text(
-                    'List of all tips given to Nedaj attendants',
+                    'List of all tips given to Nedaj attendants',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 16,
@@ -71,7 +67,7 @@ class TipsScreen extends StatelessWidget {
         onPressed: () {
           Get.to(() => TransactionListForTipScreen());
         },
-        label: Text('Give Tip',
+        label: Text('Give Tip',textScaler: TextScaler.linear(1),
             style: TextStyle(
               color: Colors.white,
               fontSize: 15,

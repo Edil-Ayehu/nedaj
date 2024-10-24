@@ -78,13 +78,13 @@ class _ForgotPinScreenState extends State<ForgotPinScreen> {
                   ),
                   Gap(36),
                   Text(
-                    'Forgot PIN',
+                    'Forgot PIN',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           fontSize: 34,
                         ),
                   ),
                   Text(
-                    'Enter your phone number to reset your PIN.',
+                    'Enter your phone number to reset your PIN.',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 16,
@@ -92,7 +92,7 @@ class _ForgotPinScreenState extends State<ForgotPinScreen> {
                   ),
                   Gap(20),
                   Text(
-                    'Phone Number',
+                    'Phone Number',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 16,

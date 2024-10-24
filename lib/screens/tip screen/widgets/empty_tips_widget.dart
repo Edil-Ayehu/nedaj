@@ -18,7 +18,7 @@ class EmptyTipsWidget extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'No Tips Given Yet',
+              'No Tips Given Yet',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     color: Colors.black,
                     fontSize: 24,
@@ -28,7 +28,7 @@ class EmptyTipsWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.center,textScaler: TextScaler.linear(1),
                 'You haven\'t given any tips yet. Once you do, your tip history will show up here for easy tracking!',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Colors.grey,

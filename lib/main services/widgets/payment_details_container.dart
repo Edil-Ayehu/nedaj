@@ -28,8 +28,9 @@ class PaymentDetailsContainer extends StatelessWidget {
         children: [
           Text(
             'Payment Details:',
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  fontSize: 20,
+            textScaler: TextScaler.linear(1),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 19,
                 ),
           ),
           Gap(18),
@@ -38,15 +39,17 @@ class PaymentDetailsContainer extends StatelessWidget {
             children: [
               Text(
                 'Customer Name:',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                       color: Colors.grey,
                     ),
               ),
               Text(
                 currentUserFullName,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                     ),
               ),
             ],
@@ -57,15 +60,17 @@ class PaymentDetailsContainer extends StatelessWidget {
             children: [
               Text(
                 'Selected Car:',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                       color: Colors.grey,
                     ),
               ),
               Text(
                 car,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                     ),
               ),
             ],
@@ -76,15 +81,17 @@ class PaymentDetailsContainer extends StatelessWidget {
             children: [
               Text(
                 'Fuel Type:',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                       color: Colors.grey,
                     ),
               ),
               Text(
                 fuelType,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                     ),
               ),
             ],
@@ -95,15 +102,17 @@ class PaymentDetailsContainer extends StatelessWidget {
             children: [
               Text(
                 'Amount:',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                       color: Colors.grey,
                     ),
               ),
               Text(
                 '$amount Birr',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontSize: 19,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontSize: 17,
                     ),
               ),
             ],

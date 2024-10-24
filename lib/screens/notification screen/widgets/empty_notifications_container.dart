@@ -19,7 +19,7 @@ class EmptyNotificationsContainer extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'No Notifications Yet!',
+              'No Notifications Yet!',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: 27,
@@ -29,7 +29,7 @@ class EmptyNotificationsContainer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Text(
-                'Your notification will appear here once you\'ve received them.',
+                'Your notification will appear here once you\'ve received them.',textScaler: TextScaler.linear(1),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.grey[500],

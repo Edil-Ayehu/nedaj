@@ -31,8 +31,9 @@ class MainServicesCustomAppBar extends StatelessWidget {
           ),
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  fontSize: 22,
+            textScaler: TextScaler.linear(1),
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontSize: 20,
                 ),
           ),
         ],

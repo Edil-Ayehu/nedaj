@@ -1,7 +1,6 @@
 import 'package:nedaj/export.dart';
 import 'package:intl/intl.dart';
 
-
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
 
@@ -14,10 +13,11 @@ class OtpScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('otp'.tr,
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 18,
                 )),
       ),
       body: otps.isEmpty ? EmptyOtpPage() : _buildOtpList(context, otps),
@@ -33,14 +33,16 @@ class OtpScreen extends StatelessWidget {
           Gap(20),
           Text(
             'List of Generated OTP\'s',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontSize: 26,
+                  fontSize: 22,
                 ),
           ),
           Text(
             'Generated OTPs for your payment transactions.',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  fontSize: 17,
+                  fontSize: 16,
                 ),
           ),
           SizedBox(height: 20),
@@ -61,12 +63,13 @@ class OtpScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
                           dateString,
+                          textScaler: TextScaler.linear(1),
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
                               ?.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  fontSize: 17,
                                   color: Colors.grey.shade600),
                         ),
                       ),
@@ -110,19 +113,26 @@ class OtpScreen extends StatelessWidget {
           return Column(
             children: [
               ListTile(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 leading: Image.asset(
                   'assets/icons/otp_page_icon.png',
                   width: 50,
                   height: 50,
                   fit: BoxFit.cover,
                 ),
-                title: Text(otp.otp,
-                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        )),
+                title: Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Text(otp.otp,
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          )),
+                ),
                 subtitle: Text(
                     DateFormat('MMM d, yyyy h:mm a').format(otp.date),
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.grey.shade500,
@@ -163,4 +173,3 @@ class OtpScreen extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: otp));
   }
 }
-

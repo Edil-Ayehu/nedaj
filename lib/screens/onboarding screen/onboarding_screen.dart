@@ -61,7 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'Fuel Up, Pay Effortlessly!',
+                            'Fuel Up, Pay Effortlessly!',textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium
@@ -77,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              'Easily pay for fuel with Nedaj—fast, secure, and',
+                              'Easily pay for fuel with Nedaj—fast, secure, and',textScaler: TextScaler.linear(1),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -93,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Text(
-                              'convenient. Skip the hassle and fuel up with just a few',
+                              'convenient. Skip the hassle and fuel up with just a few',textScaler: TextScaler.linear(1),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -107,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'taps!',
+                            'taps!',textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -146,7 +146,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Text('Get Started'),
+                    child: Text('Get Started',textScaler: TextScaler.linear(1),),
                   ),
                 ),
               ),

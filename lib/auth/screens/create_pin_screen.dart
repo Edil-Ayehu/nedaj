@@ -41,7 +41,7 @@ class _CreatePINScreenState extends State<CreatePINScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Create PIN')),
+      appBar: AppBar(title: Text('Create PIN',textScaler: TextScaler.linear(1),)),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Form(
@@ -56,7 +56,7 @@ class _CreatePINScreenState extends State<CreatePINScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Create PIN',
+                          'Create PIN',textScaler: TextScaler.linear(1),
                           style: Theme.of(context)
                               .textTheme
                               .headlineMedium!
@@ -64,7 +64,7 @@ class _CreatePINScreenState extends State<CreatePINScreen> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Create a new PIN for your account and confirm it.',
+                          'Create a new PIN for your account and confirm it.',textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: Colors.grey.shade600,
@@ -73,7 +73,7 @@ class _CreatePINScreenState extends State<CreatePINScreen> {
                         ),
                         SizedBox(height: 28),
                         Text(
-                          'Create New PIN',
+                          'Create New PIN',textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: Colors.grey.shade900,
@@ -141,7 +141,7 @@ class _CreatePINScreenState extends State<CreatePINScreen> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          'Confirm New PIN',
+                          'Confirm New PIN',textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: Colors.grey.shade900,
@@ -240,7 +240,7 @@ class _CreatePINScreenState extends State<CreatePINScreen> {
                               }
                             }
                           : null,
-                      child: Text('Set PIN'),
+                      child: Text('Set PIN',textScaler: TextScaler.linear(1),),
                     ),
                   ),
                 ),

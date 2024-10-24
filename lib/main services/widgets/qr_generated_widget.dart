@@ -1,6 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/widgets/payment_details_container.dart';
-import 'package:nedaj/utils/constants.dart';
 
 class QrGeneratedWidget extends StatelessWidget {
   final String car;
@@ -37,7 +35,7 @@ class QrGeneratedWidget extends StatelessWidget {
             Gap(20),
             Center(
               child: Text(
-                'QR Code Generated Successfully!',
+                'QR Code Generated Successfully!',textScaler: TextScaler.linear(1),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       fontWeight: FontWeight.bold,
@@ -56,7 +54,7 @@ class QrGeneratedWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Your Payment QR Code',
+                    'Your Payment QR Code',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -100,7 +98,7 @@ class QrGeneratedWidget extends StatelessWidget {
                     Get.back();
                   },
                   child: Text(
-                    'Done',
+                    'Done',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           color: Colors.white,
                         ),

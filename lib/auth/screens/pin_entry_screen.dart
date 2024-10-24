@@ -53,7 +53,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                     height: 150), // Replace with your image
                 SizedBox(height: 20),
                 Text(
-                  'Login',
+                  'Login',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 34,
                       ),
@@ -61,7 +61,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Enter your PIN and sign in to your Nedaj account.',
+                  'Enter your PIN and sign in to your Nedaj account.',textScaler: TextScaler.linear(1),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey,
@@ -152,7 +152,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
                     Get.to(() => ForgotPinScreen());
                   },
                   child: Text(
-                    'Forgot PIN?',
+                    'Forgot PIN?',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: Constants.primaryColor,
                           fontSize: 22,

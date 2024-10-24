@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nedaj/export.dart';
 
 class RegisterCarScreen extends StatefulWidget {
@@ -85,7 +83,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Register Car'),
+        title: Text('Register Car',textScaler: TextScaler.linear(1),),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -93,13 +91,13 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(isEditing ? 'Update your car' : 'Add your car',
+              Text(isEditing ? 'Update your car' : 'Add your car',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontSize: 32,
                       )),
               Text(
                   'Get your Nedaj QR Code ready to pay instantly at your nearest fuel station.',
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  textScaler: TextScaler.linear(1),style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontSize: 16,
                       )),
               SizedBox(height: 20),
@@ -128,7 +126,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                                 color: _getColorForCode(plateCode), width: 1),
                           ),
                           child: Text(
-                            plateCode,
+                            plateCode,textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -139,7 +137,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          _getDisplayRegion(plateRegion),
+                          _getDisplayRegion(plateRegion),textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: _getColorForCode(plateCode),
@@ -148,7 +146,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                         ),
                         Spacer(),
                         Text(
-                          plateNumber,
+                          plateNumber,textScaler: TextScaler.linear(1),
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
@@ -167,7 +165,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
               ),
               SizedBox(height: 20),
               // plate code
-              Text('Plate Code',
+              Text('Plate Code',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade900,
                         fontSize: 18,
@@ -206,7 +204,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
               ),
               SizedBox(height: 18),
               // plate region
-              Text('Plate Region',
+              Text('Plate Region',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade900,
                         fontSize: 18,
@@ -245,7 +243,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
               ),
               SizedBox(height: 18),
               // plate number
-              Text('Plate Number',
+              Text('Plate Number',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade900,
                         fontSize: 18,
@@ -305,7 +303,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                     ),
                   ),
                   child: Text(
-                    isEditing ? 'Update Car' : 'Register Car',
+                    isEditing ? 'Update Car' : 'Register Car',textScaler: TextScaler.linear(1),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -326,82 +324,80 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
       context: context,
       backgroundColor: Colors.white,
       builder: (BuildContext bc) {
-        return Container(
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.close, color: Colors.grey.shade700),
-                  ),
-                ],
-              ),
-              Center(
-                child: Image.asset(
-                  'assets/images/my_car_image.png',
-                  height: 70,
-                  width: 70,
-                  fit: BoxFit.cover,
+        return Wrap(
+          alignment: WrapAlignment.center,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.close, color: Colors.grey.shade700),
                 ),
+              ],
+            ),
+            Center(
+              child: Image.asset(
+                'assets/images/my_car_image.png',
+                height: 70,
+                width: 70,
+                fit: BoxFit.cover,
               ),
-              SizedBox(height: 18),
-              Text(
-                'Plate Code',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              SizedBox(height: 30),
-              for (var code in ['1', '2', '3', '4'])
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(
-                        color: plateCode == code
-                            ? Color(0xff131C66)
-                            : Colors.grey.shade200,
-                        width: 1,
-                      ),
+            ),
+            SizedBox(height: 18),
+            Text(
+              'Plate Code',textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(height: 30),
+            for (var code in ['1', '2', '3', '4'])
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(
+                      color: plateCode == code
+                          ? Color(0xff131C66)
+                          : Colors.grey.shade200,
+                      width: 1,
                     ),
-                    tileColor: Colors.grey.shade50,
-                    leading: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
+                  ),
+                  tileColor: Colors.grey.shade50,
+                  leading: Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          color: plateCode == code
+                              ? Color(0xff131C66)
+                              : Colors.grey.shade400),
+                    ),
+                    child: plateCode == code
+                        ? Icon(Icons.check,
+                            size: 18, color: Color(0xff131C66))
+                        : null,
+                  ),
+                  title: Text('Code $code',textScaler: TextScaler.linear(1),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: plateCode == code
                                 ? Color(0xff131C66)
-                                : Colors.grey.shade400),
-                      ),
-                      child: plateCode == code
-                          ? Icon(Icons.check,
-                              size: 18, color: Color(0xff131C66))
-                          : null,
-                    ),
-                    title: Text('Code $code',
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: plateCode == code
-                                  ? Color(0xff131C66)
-                                  : Colors.grey.shade500,
-                            )),
-                    onTap: () {
-                      setState(() {
-                        plateCode = code;
-                      });
-                      Navigator.pop(context);
-                    },
-                  ),
+                                : Colors.grey.shade500,
+                          )),
+                  onTap: () {
+                    setState(() {
+                      plateCode = code;
+                    });
+                    Navigator.pop(context);
+                  },
                 ),
-            ],
-          ),
+              ),
+          ],
         );
       },
     );
@@ -430,7 +426,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (BuildContext bc) {
-        return Container(
+        return SizedBox(
           height: MediaQuery.of(context).size.height * 0.5,
           child: Column(
             children: [
@@ -464,7 +460,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                     SizedBox(height: 14),
                     // plate region text
                     Text(
-                      'Plate Region',
+                      'Plate Region',textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     SizedBox(height: 20),
@@ -508,7 +504,7 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                                   size: 18, color: Color(0xff131C66))
                               : null,
                         ),
-                        title: Text(region,
+                        title: Text(region,textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!

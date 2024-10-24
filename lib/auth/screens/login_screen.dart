@@ -71,13 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Gap(26),
                   Text(
-                    'Login',
+                    'Login',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           fontSize: 38,
                         ),
                   ),
                   Text(
-                    'Use your phone number to login to your Nedaj Account.',
+                    'Use your phone number to login to your Nedaj Account.',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 16,
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Gap(20),
                   Text(
-                    'Phone Number',
+                    'Phone Number',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
                           fontSize: 16,
@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: _validateAndSubmit,
-                      child: Text('Login'),
+                      child: Text('Login',textScaler: TextScaler.linear(1),),
                     ),
                   ),
                   Gap(24),
@@ -171,6 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         'Not Registered Yet?',
+                        textScaler: TextScaler.linear(1),
                         style: TextStyle(
                           color: Colors.grey.shade500,
                           fontWeight: FontWeight.bold,
@@ -184,6 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           'Register',
+                          textScaler: TextScaler.linear(1),
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall!

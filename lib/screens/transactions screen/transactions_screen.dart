@@ -116,7 +116,7 @@ class TransactionsScreen extends StatelessWidget {
                                   .copyWith(
                                     fontWeight: FontWeight.w900,
                                     color: Colors.grey.shade500,
-                                    fontSize: 19,
+                                    fontSize: 18,
                                   ),
                             ),
                           ),
@@ -133,8 +133,11 @@ class TransactionsScreen extends StatelessWidget {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: transactions.length,
                               padding: EdgeInsets.only(top: 10),
-                              separatorBuilder: (context, index) => Divider(
-                                color: Colors.grey.shade200,
+                              separatorBuilder: (context, index) => Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                child: Divider(
+                                  color: Colors.grey.shade100,
+                                ),
                               ),
                               itemBuilder: (context, index) {
                                 final transaction = transactions[index];

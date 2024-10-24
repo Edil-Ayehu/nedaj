@@ -23,8 +23,8 @@ class EmptyOtpPage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: Text(
-              'No OTPs Available',
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+              'No OTPs Available',textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 26,
                   ),
             ),
@@ -34,7 +34,7 @@ class EmptyOtpPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               'You have no OTPs listed yet. Once you make a transaction, your OTPs will appear here for easy access.',
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              textScaler: TextScaler.linear(1),style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     fontSize: 15,
                   ),
             ),

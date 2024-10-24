@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/tip%20screen/add_tip_amount_screen.dart';
 
 class TransactionListForTipScreen extends StatelessWidget {
   const TransactionListForTipScreen({super.key});
@@ -25,7 +24,7 @@ class TransactionListForTipScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          'Give Tip',
+          'Give Tip',textScaler: TextScaler.linear(1),
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Colors.black,
                 fontSize: 20,
@@ -43,7 +42,7 @@ class TransactionListForTipScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'List of transactions',
+                  'List of transactions',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: Colors.black,
                         fontSize: 26,
@@ -51,7 +50,7 @@ class TransactionListForTipScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 3),
                 Text(
-                  'Select a transaction from the list and send a tip',
+                  'Select a transaction from the list and send a tip',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey.shade500,
                         fontSize: 18,

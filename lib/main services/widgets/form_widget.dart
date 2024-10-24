@@ -1,5 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/utils/constants.dart';
 
 class FormWidget extends StatefulWidget {
   final Function(String car, String fuelType, String amount) onFormSubmit;
@@ -66,18 +65,27 @@ class _FormWidgetState extends State<FormWidget> {
                   Gap(10),
                   Text(
                     'Make Fuel Payment',
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          fontSize: 26,
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontSize: 23,
                         ),
                   ),
                   Text(
                     'Get your Nedaj stand by code ready to pay instantly at your nearest fuel station.',
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontSize: 16,
+                          fontSize: 15,
+                          color: Colors.grey.shade500,
                         ),
                   ),
                   Gap(22),
-                  Text('Select Car'),
+                  Text(
+                    'Select Car',
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 18,
+                        ),
+                  ),
                   Gap(7),
                   TextFormField(
                     readOnly: true,
@@ -114,7 +122,13 @@ class _FormWidgetState extends State<FormWidget> {
                     onTap: () => _showCarSelectionBottomSheet(),
                   ),
                   Gap(15),
-                  Text('Select Fuel Type'),
+                  Text(
+                    'Select Fuel Type',
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 18,
+                        ),
+                  ),
                   Gap(7),
                   TextFormField(
                     readOnly: true,
@@ -151,7 +165,13 @@ class _FormWidgetState extends State<FormWidget> {
                     onTap: () => _showFuelTypeSelectionBottomSheet(),
                   ),
                   Gap(15),
-                  Text('Enter Amount'),
+                  Text(
+                    'Enter Amount',
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 18,
+                        ),
+                  ),
                   Gap(7),
                   TextFormField(
                     controller: _amountController,
@@ -199,24 +219,17 @@ class _FormWidgetState extends State<FormWidget> {
             width: double.infinity,
             height: 58,
             child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.resolveWith<Color>(
-                  (Set<WidgetState> states) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return Colors.grey.shade500;
-                    }
-                    return Constants.primaryColor;
-                  },
-                ),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+              style: ElevatedButton.styleFrom(
+                disabledBackgroundColor: Colors.grey.shade500,
+                backgroundColor: Constants.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
               onPressed: _areAllFieldsFilled() ? _onContinuePressed : null,
               child: Text(
                 'Continue',
+                textScaler: TextScaler.linear(1),
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color: Colors.white,
                     ),
@@ -253,6 +266,7 @@ class _FormWidgetState extends State<FormWidget> {
               margin: EdgeInsets.only(bottom: 10),
               child: Text(
                 _registeredCars[index],
+                textScaler: TextScaler.linear(1),
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 18,
                     ),
@@ -289,6 +303,7 @@ class _FormWidgetState extends State<FormWidget> {
               margin: EdgeInsets.only(bottom: 10),
               child: Text(
                 _fuelTypes[index],
+                textScaler: TextScaler.linear(1),
                 style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 18,
                     ),
@@ -329,6 +344,7 @@ class _FormWidgetState extends State<FormWidget> {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Text(
                     title,
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           fontSize: 22,
                         ),

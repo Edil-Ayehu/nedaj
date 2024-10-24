@@ -19,7 +19,7 @@ class EmptyTransactionsContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text(
-              'No Fuel Transactions Yet',
+              'No Fuel Transactions Yet',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontSize: 22,
                     color: Colors.black,
@@ -31,7 +31,7 @@ class EmptyTransactionsContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
-              'You haven\'t made any fuel transactions yet. Once you fill up, your transaction history will appear here for easy reference.',
+              'You haven\'t made any fuel transactions yet. Once you fill up, your transaction history will appear here for easy reference.',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     fontSize: 15,
                   ),

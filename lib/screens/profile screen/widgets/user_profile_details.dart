@@ -79,7 +79,7 @@ class _UserProfileDetailsState extends State<UserProfileDetails> {
           SizedBox(height: 5),
           Text(
             'Aschalew G Tesfa',
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontSize: 22,
                   color: Colors.black,
                 ),
@@ -87,7 +87,7 @@ class _UserProfileDetailsState extends State<UserProfileDetails> {
           Text(
             '+251 - 912345676',
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Colors.black,
+                  color: Colors.grey[700],
                   fontSize: 17,
                 ),
           ),
@@ -100,29 +100,67 @@ class _UserProfileDetailsState extends State<UserProfileDetails> {
   void _showImagePicker(BuildContext context) {
     showModalBottomSheet(
       backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       context: context,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.close, color: Colors.grey.shade700),
+                  ),
+                ],
+              ),
               Text(
                 'Select a Photo',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
+              Gap(20),
               ListTile(
-                leading: Icon(Icons.camera),
-                title: Text('Take a photo'),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                tileColor: Colors.grey.shade100,
+                leading: Icon(FluentIcons.camera_20_regular,
+                    color: Constants.primaryColor),
+                title: Text(
+                  'Take a photo',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Constants.primaryColor),
+                ),
                 onTap: () {
                   _takePhoto(context);
                   Navigator.pop(context);
                 },
               ),
+              Gap(10),
               ListTile(
-                leading: Icon(Icons.image),
-                title: Text('Choose from gallery'),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                tileColor: Colors.grey.shade100,
+                leading: Icon(FluentIcons.image_16_regular,
+                    color: Constants.primaryColor),
+                title: Text(
+                  'Choose from gallery',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Constants.primaryColor),
+                ),
                 onTap: () {
                   _selectFromGallery();
                   Navigator.pop(context);

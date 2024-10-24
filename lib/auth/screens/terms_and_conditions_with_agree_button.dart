@@ -90,7 +90,7 @@ class _TermsAndConditionsWithAgreeButtonState
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Terms and Conditions'),
+          title: Text('Terms and Conditions',textScaler: TextScaler.linear(1),),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () async {
@@ -126,7 +126,7 @@ class _TermsAndConditionsWithAgreeButtonState
             onPressed: () {
               Get.to(() => PhoneVerificationScreen(phoneNumber: '930884402'));
             },
-            child: Text('Agree'),
+            child: Text('Agree',textScaler: TextScaler.linear(1),),
           ),
         ),
       ),

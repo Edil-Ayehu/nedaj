@@ -1,8 +1,6 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/models/notification_model.dart';
 import 'package:intl/intl.dart';
 import 'package:collection/collection.dart';
-import 'package:nedaj/screens/notification%20screen/widgets/empty_notifications_container.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
@@ -97,6 +95,7 @@ class NotificationsScreen extends StatelessWidget {
                 children: [
                   Text(
                     notification.title,
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontSize: 19,
                         ),
@@ -104,6 +103,7 @@ class NotificationsScreen extends StatelessWidget {
                   SizedBox(height: 4),
                   Text(
                     notification.description,
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           fontSize: 14,
                           color: Colors.grey[800],
@@ -112,6 +112,7 @@ class NotificationsScreen extends StatelessWidget {
                   SizedBox(height: 14),
                   Text(
                     _formatDateTime(notification.date),
+                    textScaler: TextScaler.linear(1),
                     style: TextStyle(
                       fontSize: 13,
                       color: Colors.grey[600],

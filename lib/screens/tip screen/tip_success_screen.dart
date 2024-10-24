@@ -11,7 +11,7 @@ class TipSuccessScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Tips',
+        title: Text('Tips',textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: Colors.black,
                   fontSize: 20,
@@ -43,12 +43,12 @@ class TipSuccessScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Tip amount',
+                      'Tip amount',textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '${tipAmount.toStringAsFixed(2)} Birr',
+                      '${tipAmount.toStringAsFixed(2)} Birr',textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             color: Color(0xff16553A),
                             fontWeight: FontWeight.w900,
@@ -60,7 +60,7 @@ class TipSuccessScreen extends StatelessWidget {
               ),
               SizedBox(height: 26),
               Text(
-                'Your Tip is Successfully Sent',
+                'Your Tip is Successfully Sent',textScaler: TextScaler.linear(1),
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontSize: 22,
                     ),
@@ -68,6 +68,7 @@ class TipSuccessScreen extends StatelessWidget {
               Gap(10),
               Text(
                 'You haven’t registered any cars yet. Add your car now to make fuel payments faster and easier!',
+                textScaler: TextScaler.linear(1),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 16,
@@ -89,7 +90,7 @@ class TipSuccessScreen extends StatelessWidget {
                     backgroundColor: Constants.primaryColor,
                     padding: EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: Text('Done'),
+                  child: Text('Done',textScaler: TextScaler.linear(1),),
                 ),
               ),
               Gap(22),

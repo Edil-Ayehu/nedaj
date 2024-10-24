@@ -1,6 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/tip%20screen/tip_success_screen.dart';
-// Add this import
 
 class AddTipAmountScreen extends StatefulWidget {
   final Transaction transaction;
@@ -32,7 +30,7 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Tips',
+        title: Text('Tips',textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: Colors.black,
                   fontSize: 20,
@@ -47,13 +45,13 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
           children: [
             Gap(10),
             Text(
-              'Add Amount',
+              'Add Amount',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 30,
                   ),
             ),
             Text(
-              'Set your tip amount for the selected transaction and send.',
+              'Set your tip amount for the selected transaction and send.',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.grey.shade400,
                     fontSize: 16,
@@ -61,7 +59,7 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
             ),
             SizedBox(height: 16),
             Text(
-              'Add Amount',
+              'Add Amount',textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Gap(6),
@@ -120,7 +118,7 @@ class _AddTipAmountScreenState extends State<AddTipAmountScreen> {
                   ),
                 ),
                 child: Text(
-                  'Send',
+                  'Send',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.white,
                       ),

@@ -1,6 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/screens/my%20cars%20screen/widgets/empty_car_widget.dart';
-import 'package:nedaj/screens/my cars screen/register_car_screen.dart';
 
 class MyCarsPage extends StatelessWidget {
   const MyCarsPage({super.key});
@@ -22,14 +20,14 @@ class MyCarsPage extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => RegisterCarScreen());
                 },
-                label: Text('Register Car'),
+                label: Text('Register Car',textScaler: TextScaler.linear(1),),
                 icon: Icon(Icons.add),
               )
             : null,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            'my_cars'.tr,
+            'my_cars'.tr,textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontSize: 22,
                 ),
@@ -124,6 +122,7 @@ class MyCarsPage extends StatelessWidget {
               SizedBox(height: 14),
               Text(
                 'Manage my Car',
+                textScaler: TextScaler.linear(1),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(height: 20),
@@ -136,6 +135,7 @@ class MyCarsPage extends StatelessWidget {
                     color: Constants.primaryColor),
                 title: Text(
                   'Edit my Car',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
@@ -163,6 +163,7 @@ class MyCarsPage extends StatelessWidget {
                     color: Constants.primaryColor),
                 title: Text(
                   'Delete my Car',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
@@ -234,6 +235,7 @@ class MyCarsPage extends StatelessWidget {
                           SizedBox(height: 10),
                           Text(
                             title,
+                            textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall!
@@ -244,6 +246,7 @@ class MyCarsPage extends StatelessWidget {
                           SizedBox(height: 10),
                           Text(
                             message,
+                            textScaler: TextScaler.linear(1),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
@@ -267,7 +270,7 @@ class MyCarsPage extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
-                                  child: Text(cancelButtonText),
+                                  child: Text(cancelButtonText,textScaler: TextScaler.linear(1),),
                                 ),
                                 onPressed: () {
                                   overlayEntry?.remove();
@@ -284,7 +287,7 @@ class MyCarsPage extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
-                                  child: Text(actionButtonText),
+                                  child: Text(actionButtonText,textScaler: TextScaler.linear(1),),
                                 ),
                                 onPressed: () {
                                   overlayEntry?.remove();

@@ -34,90 +34,70 @@ class Transaction {
         fuelType: 'Gasoil',
         amount: 4500.0,
         date: DateTime(2024, 6, 13, 8, 45), // June 12, 2024 6:30 AM
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023219',
         fuelType: 'Gasoil',
         amount: 4500.0,
         date: DateTime(2024, 6, 13, 6, 45), // June 12, 2024 6:30 AM
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023219',
         fuelType: 'Gasoil',
         amount: 4500.0,
         date: DateTime(2024, 6, 13, 3, 40), // June 12, 2024 6:30 AM
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023219',
         fuelType: 'Gasoil',
         amount: 4500.0,
         date: DateTime(2024, 6, 13, 14, 45), // June 12, 2024 6:30 AM
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023220',
         fuelType: 'Petrol',
         amount: 500.0,
         date: DateTime(2024, 7, 13, 14, 45),
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023221',
         fuelType: 'Gasoil',
         amount: 400.0,
         date: DateTime(2024, 8, 13, 14, 45),
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023222',
         fuelType: 'Gasoil',
         amount: 200.0,
         date: DateTime(2024, 9, 13, 3, 48),
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023222',
         fuelType: 'Gasoil',
         amount: 200.0,
         date: DateTime(2024, 9, 13, 1, 05),
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023223',
         fuelType: 'Gasoil',
         amount: 100.0,
         date: DateTime(2024, 10, 13, 14, 45),
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
       Transaction(
         transactionId: 'A023224',
         fuelType: 'Gasoil',
         amount: 900.0,
         date: DateTime.now(),
-        onTap: () {
-          Get.to(() => TransactionDetailsScreen());
-        },
+        onTap: () {},
       ),
     ];
   }

@@ -31,7 +31,7 @@ class ProfileInfoContainer extends StatelessWidget {
                   textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w300,
-                        color: Colors.grey.shade900,
+                        color: Colors.grey.shade700,
                         fontSize: 17,
                       ),
                 ),

@@ -38,13 +38,13 @@ class TipContainer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text('Amount: ',
+                    Text('Amount: ',textScaler: TextScaler.linear(1),
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   color: Colors.grey.shade500,
                                   fontSize: 18,
                                 )),
-                    Text(tipAmount.toStringAsFixed(2),
+                    Text(tipAmount.toStringAsFixed(2),textScaler: TextScaler.linear(1),
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!
@@ -56,7 +56,7 @@ class TipContainer extends StatelessWidget {
                 ),
                 Gap(5),
                 Text(
-                  'Solomon Kebebe',
+                  'Solomon Kebebe',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: Colors.grey,
                         fontSize: 17,
@@ -66,7 +66,7 @@ class TipContainer extends StatelessWidget {
             ),
             Spacer(),
             Text(
-              formattedDate,
+              formattedDate,textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Colors.grey,
                     fontSize: 17,

@@ -27,7 +27,7 @@ class LanguageSelector extends StatelessWidget {
               Icon(Icons.language, color: Colors.green, size: 20),
               SizedBox(width: 8),
               Text(
-                languageName,
+                languageName,textScaler: TextScaler.linear(1),
                 style: TextStyle(color: Colors.green),
               ),
               SizedBox(width: 8),

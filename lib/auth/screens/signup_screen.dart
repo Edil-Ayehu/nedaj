@@ -25,6 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
         appBar: AppBar(
           title: Text(
             'Create Account',
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -39,7 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 Gap(15),
                 Text(
-                  'Create Account',
+                  'Create Account',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 30,
                       ),
@@ -48,7 +49,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 FittedBox(
                   fit: BoxFit.contain,
                   child: Text(
-                    'Fill in the details below to quickly create your Nedaj account.',
+                    'Fill in the details below to quickly create your Nedaj account.',textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 16,
                           color: Colors.grey.shade600,
@@ -57,7 +58,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Gap(15),
                 Text(
-                  'First Name*',
+                  'First Name*',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 20,
                       ),
@@ -69,7 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Gap(12),
                 Text(
-                  'Middle Name*',
+                  'Middle Name*',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 20,
                       ),
@@ -81,7 +82,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Gap(12),
                 Text(
-                  'Last Name*',
+                  'Last Name*',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 20,
                       ),
@@ -93,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Gap(12),
                 Text(
-                  'Phone Number*',
+                  'Phone Number*',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 20,
                       ),
@@ -154,7 +155,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 Text(
-                  'City*',
+                  'City*',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 20,
                       ),
@@ -189,7 +190,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 Gap(12),
                 Text(
-                  'Address',
+                  'Address',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                         fontSize: 20,
                       ),
@@ -215,7 +216,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             url: 'https://www.eaglelionsystems.com/',
                           ));
                     },
-                    child: Text('Register'),
+                    child: Text('Register',textScaler: TextScaler.linear(1),),
                   ),
                 ),
                 Gap(24),
@@ -223,7 +224,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already have an account?',
+                      'Already have an account?',textScaler: TextScaler.linear(1),
                       style: TextStyle(
                         color: Colors.grey.shade500,
                         fontWeight: FontWeight.bold,
@@ -236,7 +237,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         Get.to(() => LoginScreen());
                       },
                       child: Text(
-                        'Sign in',
+                        'Sign in',textScaler: TextScaler.linear(1),
                         style:
                             Theme.of(context).textTheme.headlineSmall!.copyWith(
                                   color: Constants.primaryColor,
@@ -274,7 +275,7 @@ class _SignupScreenState extends State<SignupScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'Select City',
+                  'Select City',textScaler: TextScaler.linear(1),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -291,7 +292,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     'Jimma',
                   ].map((String city) {
                     return ListTile(
-                      title: Text(city),
+                      title: Text(city,textScaler: TextScaler.linear(1),),
                       onTap: () {
                         Navigator.pop(context, city);
                       },

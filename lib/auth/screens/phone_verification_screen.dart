@@ -50,7 +50,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          'Phone Verification',
+          'Phone Verification',textScaler: TextScaler.linear(1),
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,
@@ -67,7 +67,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
               children: [
                 Gap(56),
                 Text(
-                  'Verify your phone number',
+                  'Verify your phone number',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
@@ -76,7 +76,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 ),
                 Gap(8),
                 Text(
-                  'We sent you a confirmation code to',
+                  'We sent you a confirmation code to',textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey.shade600,
                         fontWeight: FontWeight.w400,
@@ -88,7 +88,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '+251 - ${widget.phoneNumber}',
+                      '+251 - ${widget.phoneNumber}',textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
@@ -100,7 +100,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                         // Handle change phone number
                       },
                       child: Text(
-                        'Change',
+                        'Change',textScaler: TextScaler.linear(1),
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               color: Constants.primaryColor,
                               fontWeight: FontWeight.w600,
@@ -166,7 +166,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                       // Handle resend SMS code
                     },
                     child: Text(
-                      'Resend SMS Code',
+                      'Resend SMS Code',textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Constants.primaryColor,
                             fontWeight: FontWeight.w600,
@@ -181,7 +181,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 SizedBox(height: 6),
                 Center(
                   child: Text(
-                    'The OTP code will be expired in 2.0 min',
+                    'The OTP code will be expired in 2.0 min',textScaler: TextScaler.linear(1),
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
@@ -217,7 +217,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                 disabledForegroundColor: Colors.grey.shade800,
                 foregroundColor: Colors.white,
               ),
-              child: Text('Continue'),
+              child: Text('Continue',textScaler: TextScaler.linear(1),),
             ),
           ),
         ),

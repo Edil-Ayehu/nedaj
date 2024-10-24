@@ -1,6 +1,4 @@
 import 'package:nedaj/export.dart';
-import 'package:nedaj/main%20services/widgets/payment_details_container.dart';
-import 'package:nedaj/utils/constants.dart';
 
 class CodeGeneratedWidget extends StatelessWidget {
   final String code;
@@ -36,10 +34,11 @@ class CodeGeneratedWidget extends StatelessWidget {
             Center(
               child: Text(
                 'Stand by Code generated Successfully!',
+                textScaler: TextScaler.linear(1),
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontSize: 30,
+                      fontSize: 27,
                     ),
               ),
             ),
@@ -55,8 +54,9 @@ class CodeGeneratedWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Your Payment Code',
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          fontSize: 22,
+                    textScaler: TextScaler.linear(1),
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -64,6 +64,7 @@ class CodeGeneratedWidget extends StatelessWidget {
                   Gap(10),
                   Text(
                     code,
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 40,
@@ -96,6 +97,7 @@ class CodeGeneratedWidget extends StatelessWidget {
                   },
                   child: Text(
                     'Done',
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           color: Colors.white,
                         ),
