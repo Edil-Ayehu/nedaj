@@ -10,10 +10,10 @@ class LanguageSelector extends StatelessWidget {
     return Obx(() {
       String languageName =
           _getLanguageName(languageController.selectedLanguage.value);
-      return GestureDetector(
-        onTap: () {
-          showLanguageSelectionBottomSheet(context);
-        },
+      return PopupMenuButton<String>(
+        offset: Offset(0, 40),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        color: Colors.white,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
@@ -27,16 +27,54 @@ class LanguageSelector extends StatelessWidget {
               Icon(Icons.language, color: Colors.green, size: 20),
               SizedBox(width: 8),
               Text(
-                languageName,textScaler: TextScaler.linear(1),
-                style: TextStyle(color: Colors.green),
+                languageName,
+                textScaler: TextScaler.linear(1),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.green,
+                      fontSize: 16,
+                    ),
               ),
               SizedBox(width: 8),
               Icon(Icons.keyboard_arrow_down, color: Colors.green, size: 26),
             ],
           ),
         ),
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+          _buildPopupMenuItem('en', 'English', context),
+          _buildPopupMenuItem('am', 'አማርኛ', context),
+          _buildPopupMenuItem('or', 'Afaan Oromoo', context),
+          _buildPopupMenuItem('ti', 'ትግርኛ', context),
+          _buildPopupMenuItem('so', 'Soomaali', context),
+        ],
+        onSelected: (String value) {
+          languageController.changeLanguage(value, _getCountryCode(value));
+        },
       );
     });
+  }
+
+  PopupMenuItem<String> _buildPopupMenuItem(
+      String value, String text, BuildContext context) {
+    return PopupMenuItem<String>(
+      value: value,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              textScaler: TextScaler.linear(1),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 15,
+                  ),
+            ),
+            if (value == languageController.selectedLanguage.value)
+              Icon(Icons.check, color: Colors.green),
+          ],
+        ),
+      ),
+    );
   }
 
   String _getLanguageName(String languageCode) {
@@ -56,153 +94,20 @@ class LanguageSelector extends StatelessWidget {
     }
   }
 
-  void showLanguageSelectionBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      backgroundColor: Colors.white,
-      context: context,
-      builder: (context) {
-        return Obx(() {
-          return SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 5,
-                      width: 35,
-                      margin: EdgeInsets.only(top: 20, bottom: 15),
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        'select_language'.tr,
-                        textScaler: TextScaler.linear(1),
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              fontSize: 24,
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(10),
-                Divider(
-                  color: Colors.grey.shade400,
-                ),
-                Gap(10),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'English',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'en'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('en', 'US');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'አማርኛ',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'am'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('am', 'ET');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'Afaan Oromoo',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'or'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('or', 'ET');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'ትግርኛ',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'ti'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('ti', 'ET');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: ListTile(
-                    title: Text(
-                      'Soomaali',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Colors.black,
-                          ),
-                      textScaler: TextScaler.linear(1.1),
-                    ),
-                    trailing: languageController.selectedLanguage.value == 'so'
-                        ? Icon(Icons.check, color: Colors.green)
-                        : null,
-                    onTap: () {
-                      languageController.changeLanguage('so', 'SO');
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Gap(10),
-              ],
-            ),
-          );
-        });
-      },
-    );
+  String _getCountryCode(String languageCode) {
+    switch (languageCode) {
+      case 'en':
+        return 'US';
+      case 'am':
+        return 'ET';
+      case 'or':
+        return 'ET';
+      case 'ti':
+        return 'ET';
+      case 'so':
+        return 'SO';
+      default:
+        return 'US';
+    }
   }
 }
