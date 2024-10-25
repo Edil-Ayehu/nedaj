@@ -13,18 +13,23 @@ class ConnectivityWrapper extends StatefulWidget {
 }
 
 class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
-  late Stream<List<ConnectivityResult>> _connectivityStream;
+  late Stream<ConnectivityResult> _connectivityStream;
+  bool _isConnected = true;
   bool _isRetrying = false;
 
   @override
   void initState() {
     super.initState();
-    _connectivityStream = Connectivity().onConnectivityChanged;
+    _connectivityStream =
+        Connectivity().onConnectivityChanged.cast<ConnectivityResult>();
+    _initializeConnectivity();
   }
 
-  Future<bool> _checkConnectivity() async {
+  Future<void> _initializeConnectivity() async {
     var connectivityResult = await Connectivity().checkConnectivity();
-    return connectivityResult.contains(ConnectivityResult.none) == false;
+    setState(() {
+      _isConnected = connectivityResult != ConnectivityResult.none;
+    });
   }
 
   Future<void> _retryConnection() async {
@@ -34,43 +39,41 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
       _isRetrying = true;
     });
 
-    // Add a slight delay to simulate the checking process
     await Future.delayed(Duration(seconds: 2));
 
-    var isConnected = await _checkConnectivity();
+    var isConnected =
+        await Connectivity().checkConnectivity() != ConnectivityResult.none;
 
     setState(() {
       _isRetrying = false;
+      _isConnected = isConnected;
     });
 
     if (!isConnected) {
-      // If still not connected, you might want to show a snackbar or toast message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-            content:
-                Text('Still no internet connection. Please try again later.')),
+          content:
+              Text('Still no internet connection. Please try again later.'),
+        ),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<ConnectivityResult>>(
+    return StreamBuilder<ConnectivityResult>(
       stream: _connectivityStream,
       builder: (context, snapshot) {
-        return FutureBuilder<bool>(
-          future: _checkConnectivity(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData && snapshot.data == true) {
-              return widget.child;
-            } else {
-              return NoInternetScreen(
+        if (snapshot.connectionState == ConnectionState.active) {
+          _isConnected = snapshot.data != ConnectivityResult.none;
+        }
+
+        return _isConnected
+            ? widget.child
+            : NoInternetScreen(
                 onRetry: _retryConnection,
                 isRetrying: _isRetrying,
               );
-            }
-          },
-        );
       },
     );
   }

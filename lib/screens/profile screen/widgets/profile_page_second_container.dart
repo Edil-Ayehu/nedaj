@@ -136,114 +136,115 @@ class ProfilePageSecondContainer extends StatelessWidget {
     String actionButtonText,
     VoidCallback onActionPressed,
   ) {
-    OverlayState? overlayState = Overlay.of(context);
-    OverlayEntry? overlayEntry;
-
-    overlayEntry = OverlayEntry(
-      builder: (context) => Material(
-        color: Colors.black.withOpacity(0.5),
-        child: SafeArea(
-          child: GestureDetector(
-            onTap: () {
-              overlayEntry?.remove();
-            },
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 200),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Center(
+          child: Material(
+            color: Colors.transparent,
             child: Container(
-              color: Colors.transparent,
-              child: Center(
-                child: GestureDetector(
-                  onTap: () {}, // Prevent taps from closing the dialog
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            imagePath,
-                            height: 40,
-                            width: 50,
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: ScaleTransition(
+                scale: CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeOutBack,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        imagePath,
+                        height: 40,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        title,
+                        style:
+                            Theme.of(context).textTheme.headlineSmall!.copyWith(
                                   fontSize: 24,
                                 ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            message,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey[600],
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        message,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              side: BorderSide(color: Constants.primaryColor),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                             ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              child: Text(cancelButtonText,
+                                  style: TextStyle(
+                                      color: Constants.primaryColor,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                           ),
-                          SizedBox(height: 30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Constants.primaryColor,
-                                  side:
-                                      BorderSide(color: Constants.primaryColor),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 10),
-                                  child: Text(cancelButtonText),
-                                ),
-                                onPressed: () {
-                                  overlayEntry?.remove();
-                                },
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Constants.primaryColor,
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 10),
-                                  child: Text(actionButtonText),
-                                ),
-                                onPressed: () {
-                                  overlayEntry?.remove();
-                                  onActionPressed();
-                                },
-                              ),
-                            ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              child: Text(actionButtonText),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              onActionPressed();
+                            },
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
     );
-
-    overlayState.insert(overlayEntry);
   }
 
   void showLanguageSelectionBottomSheet(BuildContext context) {
@@ -317,7 +318,7 @@ class ProfilePageSecondContainer extends StatelessWidget {
           color: Colors.grey.shade100,
           borderRadius: BorderRadius.circular(10),
           border: isSelected
-              ? Border.all(color: Color(0xff131C66), width: 1)
+              ? Border.all(color: Color(0xff131C66).withOpacity(0.5), width: 1)
               : null,
         ),
         child: ListTile(

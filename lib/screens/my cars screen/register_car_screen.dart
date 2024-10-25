@@ -83,7 +83,10 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Register Car',textScaler: TextScaler.linear(1),),
+        title: Text(
+          'Register Car',
+          textScaler: TextScaler.linear(1),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -91,13 +94,15 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(isEditing ? 'Update your car' : 'Add your car',textScaler: TextScaler.linear(1),
+              Text(isEditing ? 'Update your car' : 'Add your car',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontSize: 32,
                       )),
               Text(
                   'Get your Nedaj QR Code ready to pay instantly at your nearest fuel station.',
-                  textScaler: TextScaler.linear(1),style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  textScaler: TextScaler.linear(1),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         fontSize: 16,
                       )),
               SizedBox(height: 20),
@@ -126,7 +131,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                                 color: _getColorForCode(plateCode), width: 1),
                           ),
                           child: Text(
-                            plateCode,textScaler: TextScaler.linear(1),
+                            plateCode,
+                            textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -137,7 +143,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          _getDisplayRegion(plateRegion),textScaler: TextScaler.linear(1),
+                          _getDisplayRegion(plateRegion),
+                          textScaler: TextScaler.linear(1),
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: _getColorForCode(plateCode),
@@ -146,7 +153,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                         ),
                         Spacer(),
                         Text(
-                          plateNumber,textScaler: TextScaler.linear(1),
+                          plateNumber,
+                          textScaler: TextScaler.linear(1),
                           style: Theme.of(context)
                               .textTheme
                               .headlineLarge!
@@ -165,7 +173,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
               ),
               SizedBox(height: 20),
               // plate code
-              Text('Plate Code',textScaler: TextScaler.linear(1),
+              Text('Plate Code',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade900,
                         fontSize: 18,
@@ -204,7 +213,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
               ),
               SizedBox(height: 18),
               // plate region
-              Text('Plate Region',textScaler: TextScaler.linear(1),
+              Text('Plate Region',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade900,
                         fontSize: 18,
@@ -243,7 +253,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
               ),
               SizedBox(height: 18),
               // plate number
-              Text('Plate Number',textScaler: TextScaler.linear(1),
+              Text('Plate Number',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Colors.grey.shade900,
                         fontSize: 18,
@@ -303,7 +314,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                     ),
                   ),
                   child: Text(
-                    isEditing ? 'Update Car' : 'Register Car',textScaler: TextScaler.linear(1),
+                    isEditing ? 'Update Car' : 'Register Car',
+                    textScaler: TextScaler.linear(1),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -348,7 +360,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
             ),
             SizedBox(height: 18),
             Text(
-              'Plate Code',textScaler: TextScaler.linear(1),
+              'Plate Code',
+              textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: 30),
@@ -379,11 +392,11 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                               : Colors.grey.shade400),
                     ),
                     child: plateCode == code
-                        ? Icon(Icons.check,
-                            size: 18, color: Color(0xff131C66))
+                        ? Icon(Icons.check, size: 18, color: Color(0xff131C66))
                         : null,
                   ),
-                  title: Text('Code $code',textScaler: TextScaler.linear(1),
+                  title: Text('Code $code',
+                      textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: plateCode == code
                                 ? Color(0xff131C66)
@@ -460,7 +473,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                     SizedBox(height: 14),
                     // plate region text
                     Text(
-                      'Plate Region',textScaler: TextScaler.linear(1),
+                      'Plate Region',
+                      textScaler: TextScaler.linear(1),
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     SizedBox(height: 20),
@@ -504,7 +518,8 @@ class _RegisterCarScreenState extends State<RegisterCarScreen> {
                                   size: 18, color: Color(0xff131C66))
                               : null,
                         ),
-                        title: Text(region,textScaler: TextScaler.linear(1),
+                        title: Text(region,
+                            textScaler: TextScaler.linear(1),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!

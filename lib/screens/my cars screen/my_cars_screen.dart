@@ -20,14 +20,18 @@ class MyCarsPage extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => RegisterCarScreen());
                 },
-                label: Text('Register Car',textScaler: TextScaler.linear(1),),
+                label: Text(
+                  'Register Car',
+                  textScaler: TextScaler.linear(1),
+                ),
                 icon: Icon(Icons.add),
               )
             : null,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Text(
-            'my_cars'.tr,textScaler: TextScaler.linear(1),
+            'my_cars'.tr,
+            textScaler: TextScaler.linear(1),
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontSize: 22,
                 ),
@@ -96,97 +100,150 @@ class MyCarsPage extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (BuildContext context) {
-        return Container(
-          // padding: EdgeInsets.all(12),
-          padding: EdgeInsets.only(bottom: 12, left: 12, right: 12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.close, color: Colors.grey.shade700),
+        return AnimatedBuilder(
+          animation: ModalRoute.of(context)!.animation!,
+          builder: (context, child) {
+            return ClipRRect(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(
+                    20 * ModalRoute.of(context)!.animation!.value),
+              ),
+              child: child,
+            );
+          },
+          child: Container(
+            padding: EdgeInsets.only(bottom: 12, left: 12, right: 12),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildAnimatedItem(
+                  context,
+                  index: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.close, color: Colors.grey.shade700),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Image.asset(
-                'assets/images/my_car_image.png',
-                height: 70,
-                width: 70,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(height: 14),
-              Text(
-                'Manage my Car',
-                textScaler: TextScaler.linear(1),
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              SizedBox(height: 20),
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
                 ),
-                tileColor: Colors.grey.shade100,
-                leading: Icon(FluentIcons.edit_line_horizontal_3_20_filled,
-                    color: Constants.primaryColor),
-                title: Text(
-                  'Edit my Car',
-                  textScaler: TextScaler.linear(1),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Constants.primaryColor),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RegisterCarScreen(carToEdit: car),
-                    ),
-                  );
-                  // Add edit car logic here
-                },
-              ),
-              Gap(10),
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                tileColor: Colors.grey.shade100,
-                leading: Icon(FluentIcons.delete_24_filled,
-                    color: Constants.primaryColor),
-                title: Text(
-                  'Delete my Car',
-                  textScaler: TextScaler.linear(1),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Constants.primaryColor),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  // _showLogoutDialog(context);
-                  _showCustomDialog(
-                    context,
+                _buildAnimatedItem(
+                  context,
+                  index: 1,
+                  child: Image.asset(
                     'assets/images/my_car_image.png',
-                    'Delete Car',
-                    'Are you sure you want to delete this car?',
-                    'Cancel',
-                    'Delete',
-                    () {},
-                  );
-                },
-              ),
-            ],
+                    height: 70,
+                    width: 70,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                _buildAnimatedItem(
+                  context,
+                  index: 2,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 14),
+                      Text(
+                        'Manage my Car',
+                        textScaler: TextScaler.linear(1),
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+                _buildAnimatedItem(
+                  context,
+                  index: 3,
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    tileColor: Colors.grey.shade100,
+                    leading: Icon(FluentIcons.edit_line_horizontal_3_20_filled,
+                        color: Constants.primaryColor),
+                    title: Text(
+                      'Edit my Car',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Constants.primaryColor),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RegisterCarScreen(carToEdit: car),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Gap(10),
+                _buildAnimatedItem(
+                  context,
+                  index: 4,
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    tileColor: Colors.grey.shade100,
+                    leading: Icon(FluentIcons.delete_24_filled,
+                        color: Constants.primaryColor),
+                    title: Text(
+                      'Delete my Car',
+                      textScaler: TextScaler.linear(1),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Constants.primaryColor),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      _showCustomDialog(
+                        context,
+                        'assets/images/my_car_image.png',
+                        'Delete Car',
+                        'Are you sure you want to delete this car?',
+                        'Cancel',
+                        'Delete',
+                        () {},
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildAnimatedItem(BuildContext context,
+      {required int index, required Widget child}) {
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: Duration(milliseconds: 300 + (index * 100)),
+      curve: Curves.easeOutCubic,
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, 50 * (1 - value)),
+          child: Opacity(
+            opacity: value,
+            child: child,
+          ),
+        );
+      },
+      child: child,
     );
   }
 
@@ -270,7 +327,10 @@ class MyCarsPage extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
-                                  child: Text(cancelButtonText,textScaler: TextScaler.linear(1),),
+                                  child: Text(
+                                    cancelButtonText,
+                                    textScaler: TextScaler.linear(1),
+                                  ),
                                 ),
                                 onPressed: () {
                                   overlayEntry?.remove();
@@ -278,7 +338,7 @@ class MyCarsPage extends StatelessWidget {
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Constants.primaryColor,
+                                  backgroundColor: Colors.red,
                                   foregroundColor: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
@@ -287,7 +347,10 @@ class MyCarsPage extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
-                                  child: Text(actionButtonText,textScaler: TextScaler.linear(1),),
+                                  child: Text(
+                                    actionButtonText,
+                                    textScaler: TextScaler.linear(1),
+                                  ),
                                 ),
                                 onPressed: () {
                                   overlayEntry?.remove();

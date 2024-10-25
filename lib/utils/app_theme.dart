@@ -8,36 +8,42 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
       foregroundColor: Colors.black,
-      titleTextStyle: GoogleFonts.roboto(
+      titleTextStyle: GoogleFonts.outfit(
         color: Colors.grey.shade800,
         fontWeight: FontWeight.w300,
         fontSize: 24,
       ),
     ),
+    //   titleTextStyle: GoogleFonts.roboto(
+    //     color: Colors.grey.shade800,
+    //     fontWeight: FontWeight.w300,
+    //     fontSize: 24,
+    //   ),
+    // ),
 
     // text theme
     textTheme: TextTheme(
-      titleLarge: GoogleFonts.roboto(
+      titleLarge: GoogleFonts.outfit(
         fontSize: 32,
         color: Colors.black,
       ),
-      titleMedium: GoogleFonts.roboto(
+      titleMedium: GoogleFonts.outfit(
         fontSize: 24,
         color: Colors.black,
       ),
-      titleSmall: GoogleFonts.roboto(
+      titleSmall: GoogleFonts.outfit(
         fontSize: 20,
         color: Colors.black54,
       ),
-      bodyLarge: GoogleFonts.roboto(
+      bodyLarge: GoogleFonts.outfit(
         fontSize: 20,
         color: Colors.black,
       ),
-      bodyMedium: GoogleFonts.roboto(
+      bodyMedium: GoogleFonts.outfit(
         fontSize: 18,
         color: Colors.black,
       ),
-      bodySmall: GoogleFonts.roboto(
+      bodySmall: GoogleFonts.outfit(
         fontSize: 14,
         color: Colors.black54,
       ),

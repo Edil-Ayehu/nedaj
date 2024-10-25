@@ -38,38 +38,42 @@ class TipContainer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text('Amount: ',textScaler: TextScaler.linear(1),
+                    Text('Amount: ',
+                        textScaler: TextScaler.linear(1),
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   color: Colors.grey.shade500,
-                                  fontSize: 18,
+                                  fontSize: 17,
                                 )),
-                    Text(tipAmount.toStringAsFixed(2),textScaler: TextScaler.linear(1),
+                    Text(tipAmount.toStringAsFixed(2),
+                        textScaler: TextScaler.linear(1),
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium!
                             .copyWith(
                               color: Colors.black,
-                              fontSize: 19,
+                              fontSize: 17,
                             )),
                   ],
                 ),
                 Gap(5),
                 Text(
-                  'Solomon Kebebe',textScaler: TextScaler.linear(1),
+                  'Solomon Kebebe',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: Colors.grey,
-                        fontSize: 17,
+                        fontSize: 16,
                       ),
                 ),
               ],
             ),
             Spacer(),
             Text(
-              formattedDate,textScaler: TextScaler.linear(1),
+              formattedDate,
+              textScaler: TextScaler.linear(1),
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Colors.grey,
-                    fontSize: 17,
+                    fontSize: 16,
                   ),
             ),
           ],

@@ -24,10 +24,11 @@ class TransactionListForTipScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          'Give Tip',textScaler: TextScaler.linear(1),
+          'Give Tip',
+          textScaler: TextScaler.linear(1),
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Colors.black,
-                fontSize: 20,
+                fontSize: 18,
               ),
         ),
         backgroundColor: Colors.white,
@@ -42,18 +43,20 @@ class TransactionListForTipScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'List of transactions',textScaler: TextScaler.linear(1),
+                  'List of transactions',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: Colors.black,
-                        fontSize: 26,
+                        fontSize: 22,
                       ),
                 ),
                 SizedBox(height: 3),
                 Text(
-                  'Select a transaction from the list and send a tip',textScaler: TextScaler.linear(1),
+                  'Select a transaction from the list and send a tip',
+                  textScaler: TextScaler.linear(1),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey.shade500,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                 ),
               ],
@@ -76,7 +79,7 @@ class TransactionListForTipScreen extends StatelessWidget {
                               Theme.of(context).textTheme.titleSmall!.copyWith(
                                     fontWeight: FontWeight.w900,
                                     color: Colors.grey,
-                                    fontSize: 19,
+                                    fontSize: 18,
                                   ),
                         ),
                       ),
@@ -114,6 +117,7 @@ class TransactionListForTipScreen extends StatelessWidget {
                                   fuelType: transaction.fuelType,
                                   amount: transaction.amount,
                                   date: transaction.date,
+                                  isTip: true,
                                   onTap: () {
                                     Get.to(() => AddTipAmountScreen(
                                         transaction: transaction));

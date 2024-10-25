@@ -9,7 +9,6 @@ class RecentHistoryListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
       decoration: BoxDecoration(
@@ -35,8 +34,11 @@ class RecentHistoryListContainer extends StatelessWidget {
               ),
               Gap(10),
               if (index != transactionHistory.length - 1 && index != 3)
-                Divider(
-                  color: Colors.grey.shade300,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Divider(
+                    color: Colors.grey.shade200,
+                  ),
                 ),
               Gap(10),
             ],

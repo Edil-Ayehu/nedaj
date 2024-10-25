@@ -13,10 +13,11 @@ class TipsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'tips'.tr,textScaler: TextScaler.linear(1),
+          'tips'.tr,
+          textScaler: TextScaler.linear(1),
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 color: Colors.black,
-                fontSize: 22,
+                fontSize: 18,
               ),
         ),
       ),
@@ -29,17 +30,19 @@ class TipsScreen extends StatelessWidget {
                 children: [
                   Gap(20),
                   Text(
-                    'Tips Given',textScaler: TextScaler.linear(1),
+                    'Tips Given',
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Colors.black,
-                          fontSize: 26,
+                          fontSize: 22,
                         ),
                   ),
                   Text(
-                    'List of all tips given to Nedaj attendants',textScaler: TextScaler.linear(1),
+                    'List of all tips given to Nedaj attendants',
+                    textScaler: TextScaler.linear(1),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey.shade500,
-                          fontSize: 16,
+                          fontSize: 14,
                         ),
                   ),
                   Gap(20),
@@ -67,7 +70,8 @@ class TipsScreen extends StatelessWidget {
         onPressed: () {
           Get.to(() => TransactionListForTipScreen());
         },
-        label: Text('Give Tip',textScaler: TextScaler.linear(1),
+        label: Text('Give Tip',
+            textScaler: TextScaler.linear(1),
             style: TextStyle(
               color: Colors.white,
               fontSize: 15,

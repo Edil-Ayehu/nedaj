@@ -1,4 +1,5 @@
 import 'package:nedaj/export.dart';
+import 'package:nedaj/screens/fuel%20stations%20screen/fuel_stations_screen.dart';
 
 class Service {
   final String title;
@@ -41,7 +42,13 @@ class Service {
       Service(
         title: 'fuel_stations'.tr,
         description: 'Find nearby fuel stations',
-        onTap: () {},
+        onTap: () {
+           Get.to(
+            () => FuelStationsScreen(),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 200),
+          );
+        },
         imageUrl: 'assets/icons/fuel_stations_icon.png',
       ),
       Service(

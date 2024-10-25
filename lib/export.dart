@@ -85,3 +85,4 @@ export 'package:nedaj/screens/notification%20screen/widgets/empty_notifications_
 export 'package:nedaj/models/notification_model.dart';
 export 'package:nedaj/screens/my%20cars%20screen/widgets/empty_car_widget.dart';
 export 'package:nedaj/screens/my cars screen/register_car_screen.dart';
+export 'package:nedaj/screens/home%20screen/widgets/semi_transparent_container.dart';
